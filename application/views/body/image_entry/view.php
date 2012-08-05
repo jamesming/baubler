@@ -1,12 +1,7 @@
 <legend>Remote Image 	Asset</legend>
+
 <div  id='images_row'   >
-	<div>
-		<?php foreach( $images  as  $key => $value):?>
-		
-			<img src="http://placehold.it/100x125">
-		
-		<?php endforeach; ?>
-	</div>
+	<div></div>
 </div>
 
 <br />
@@ -55,7 +50,7 @@
 			
 			 start:function(){
 			 		
-					this.makeImageRow();
+					this.getImagesThumbs();
 			 		
 			 		var that = this;
 			 	
@@ -73,18 +68,44 @@
 						that.spinner.spin(that.target);	
 						
 						
-						$.post( window.base_url  + "index.php/image_entry/update",
+						$.post( window.base_url  + "image_entry/update",
 								post_array,
 								function(data) {
 									setTimeout(function(){
 										that.target.style.display='none';					
-										that.spinner.stop();											
+										that.spinner.stop();
+										that.getImagesThumbs()											
 									}, 1000);
 									
 								}
 						);		
 
 			 		});	
+				
+			}
+			
+			
+			,getImagesThumbs:function(){
+				
+					$.getJSON(window.base_url  + 'image_entry/getJsonImages', function(data) {
+						
+							// console.log(JSON.stringify(data));
+							
+							var i= data.length
+							,imgs_ele = ''
+							,widthOfRow = (i * 100);							
+							
+							$.each(data, function(key, val) {
+								//console.log(val['id'] + ' ' + val['url']);
+								imgs_ele += '<a image_id="' + val['id'] + '" ><img  title="'+ val['url'] +'" src="http://placehold.it/100x125"></a>';
+							});
+							
+							$('#images_row div')
+							.html(imgs_ele)
+							.css({width:widthOfRow+'px'});							
+
+					});
+				
 				
 			}
 			

@@ -36,6 +36,12 @@ class Image_entry extends Controllers_Controller {
 		$this->model_images_form->insert_table($table, $post_array);
 		
 	}
+	
+	public function getJsonImages(){
+		
+		echo json_encode($this->model_images_form->get_all_images());
+		
+	}
 
 
 }
