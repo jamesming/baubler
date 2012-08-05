@@ -14,17 +14,15 @@ class ClassLoader {
 	
 	public static function auto_load($class) {
 		
-		
-		// echo '<pre>';print_r( ClassLoader::$_paths   );echo '</pre>';  exit;
 
 		// Transform the class name into a path
 		$file = str_replace('_', '/', strtolower($class));
 
 		if ($path = ClassLoader::find_file($file)) {
 			
-			echo "<script>
-				console.log('php: " . $path . "');
-			</script>";
+//			echo "<script>
+//				console.log('php: " . $path . "');
+//			</script>";
 			
 			// Load the class file
 			require $path;

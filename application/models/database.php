@@ -2,19 +2,33 @@
 
 class Database extends CI_Model  {
 		
-		public static function test2() {
-			echo "<script>
-//				console.log('php: My_database_model::test2()  from model/my_database_model.php');
-			</script>";
-		}	
-		
 		function __construct(){
 		    
 		    parent::__construct();
-		
+		    
+//			echo "<script>
+//				console.log('*******  php: Database::parent::__construct()  from model/database.php');
+//			</script>";		    
+		    
 		}
 		
-		function create_generic_table($table){
+		
+		public static function test2() {
+//			echo "<script>
+//				console.log('php: Database::test2()  from model/database.php');
+//			</script>";
+		}	
+		
+		
+		public  function test3() {
+			echo "<script>
+				console.log('php: Database::test2()  from model/database.php');
+			</script>";
+		}			
+		
+		
+		
+		public function create_generic_table($table){
 		
 				$fields_array = array(
 				                        'id' => array(
@@ -51,8 +65,10 @@ class Database extends CI_Model  {
 		
 		 
 		function add_column_to_table_if_not_exist($table, $fields_array){
-		
+			
+			
 			$this->load->dbforge();
+			
 			
 			foreach(  $fields_array as $field => $value){
 				
@@ -67,7 +83,18 @@ class Database extends CI_Model  {
 		
 		}
 		
-		
+		public function create_fields_with_post($table, $post_array){
+			
+				foreach( $post_array  as  $key => $value){
+					$this->add_column_to_table_if_not_exist(
+							  $table
+							, $fields_array = array(
+											$key => array( 'type' => 'varchar(255)' )
+								)
+						);
+				}
+			
+		}	
 		 
 		function insert_table($table, $insert_what){
 		
@@ -206,6 +233,97 @@ class Database extends CI_Model  {
 			
 		}
 		
+		
+		
+		
+		function select_from_table_left_join( 
+			$table, 
+			$select_what, 
+			$where_array, 
+			$use_order = FALSE, 
+			$order_field = '', 
+			$order_direction = 'asc', 
+			$limit = -1, 
+			$use_join = FALSE, 
+			$join_array = array(), 
+			$group_by_array = array(),
+			$or_where_array = array()
+			){
+			
+		
+			
+			$this->db->select($select_what);
+			
+			if( count($where_array) > 0 ){
+				
+				foreach( $where_array as $field => $value ){
+					$this->db->where($field, $value);
+				}		
+				
+			};
+			
+		
+			if( count($or_where_array) > 0 ){
+				
+				foreach( $or_where_array as $field => $value ){
+					$this->db->or_where($field, $value);
+				}		
+				
+			};	
+		
+		
+			if( $use_order == TRUE){
+				
+				$this->db->order_by($order_field. ' '.$order_direction);
+				
+				
+				if( $use_join == FALSE){
+					
+						$this->db->order_by('created desc');
+					
+				};
+				
+				
+			}else{
+				
+				$this->db->order_by('created asc');
+				
+			};
+			
+			if( $limit == -1 ){
+				
+			}else{
+				$this->db->limit($limit);
+			};
+			
+			if( $use_join == TRUE){
+				
+		
+					if( count($join_array) > 0 ){
+						
+						
+				
+						foreach( $join_array as $field => $value ){
+							$this->db->join($field, $value, 'left');
+						}		
+						
+					};
+					
+			};
+			
+			
+			$this->db->group_by( $group_by_array );
+			
+			
+			
+			$query = $this->db->get($table); 
+			
+			return $query->result(); 
+			
+		}
+		
+		
+		
 		function count_records( $table,  $where_array ){
 			
 			$this->db->select('id');
@@ -288,7 +406,6 @@ class Database extends CI_Model  {
 		}
 		
 		
-		
 		function object_to_array($data){
 		  if(is_array($data) || is_object($data)){
 		    $result = array(); 
@@ -299,6 +416,16 @@ class Database extends CI_Model  {
 		    return $result;
 		  }
 		  return $data;
+		}
+		
+		
+		function html2json( $str ){
+		
+			$str = htmlspecialchars($str, ENT_QUOTES);
+			$str = nl2br($str);
+			$str = str_replace("&lt;br&gt;", "", $str);
+			$str = preg_replace("#\n#", "\\\n", $str);
+			return $str;
 		}
         
     

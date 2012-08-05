@@ -2,16 +2,21 @@
 
 class Image_entry extends Controllers_Controller {
 	
+	function __construct() {
+		
+		parent::__construct();
+		
+		$this->model_images_form = new Models_Db_Images_Form;
+		$this->model_uploads_images = new Models_Uploads_Images;
+		
+	}	
+	
 	public function index() {
 		
-		$model_images_form = new Models_Db_Images_Form;
-		$model_images_form->mytest();
-		
-		$model_uploads_images = new Models_Uploads_Images;
-		$model_uploads_images->mytest();		
-		
+		$this->_data->images = $this->model_images_form->get_all_images();
 		
 		$this->_data->body = "body/image_entry/view";
+		
 		$this->load->view('index', $this->_data);	
 	}
 
@@ -22,10 +27,15 @@ class Image_entry extends Controllers_Controller {
 		
 		$table = $post_array['table'];
 		
+		$this->model_images_form->create_generic_table($table);
+		
 		unset($post_array['table']);
 		
-		echo '<pre>';print_r( $post_array  );echo '</pre>';  exit;
+		$this->model_images_form->create_fields_with_post($table, $post_array);
+		
+		$this->model_images_form->insert_table($table, $post_array);
 		
 	}
+
 
 }

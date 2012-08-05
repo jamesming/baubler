@@ -1,6 +1,11 @@
 <legend>Remote Image 	Asset</legend>
 <div  id='images_row'   >
 	<div>
+		<?php foreach( $images  as  $key => $value):?>
+		
+			<img src="http://placehold.it/100x125">
+		
+		<?php endforeach; ?>
 	</div>
 </div>
 
@@ -33,7 +38,7 @@
 	background:red;
 }
 #images_row div{
-	width:5000px;
+	width:2000px;
 	height:125px;
 }
 #images_row div img{
@@ -50,14 +55,7 @@
 			
 			 start:function(){
 			 		
-			 		var i=20
-			 				imgs_ele = '';
-			 				
-			 		while (--i) {
-			 				imgs_ele += '<img src="http://placehold.it/100x125">';
-			 		};
-			 		
-			 		$('#images_row div').html(imgs_ele);
+					this.makeImageRow();
 			 		
 			 		var that = this;
 			 	
@@ -69,9 +67,7 @@
 									post_array[$(this).attr('name')]= $(this).val();
 						});
 						
-						post_array.table = 'users';
-						
-						console.log(JSON.stringify(post_array));
+						post_array.table = 'images';
 						
 						that.target.style.display='block';					
 						that.spinner.spin(that.target);	
@@ -80,7 +76,6 @@
 						$.post( window.base_url  + "index.php/image_entry/update",
 								post_array,
 								function(data) {
-									console.log(data);
 									setTimeout(function(){
 										that.target.style.display='none';					
 										that.spinner.stop();											
@@ -91,6 +86,21 @@
 
 			 		});	
 				
+			}
+			
+			,makeImageRow:function(){
+				
+						var i= <?php echo sizeof($images)    ?>
+						,imgs_ele = ''
+						,widthOfRow = (i * 100);
+						
+						while (--i) {
+							// imgs_ele += '<img src="http://placehold.it/100x125">';
+						};
+						
+						$('#images_row div')
+						//.html(imgs_ele)
+						.css({width:widthOfRow+'px'});
 			}
 
 		});

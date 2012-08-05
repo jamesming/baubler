@@ -8,7 +8,6 @@ class Controllers_Controller extends CI_Controller
 		
 		parent::__construct();		
 		
-
 			$this->_data = new stdClass;
 			
 			$this->_data->title = "Baubler";
