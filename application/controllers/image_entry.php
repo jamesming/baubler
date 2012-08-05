@@ -39,7 +39,7 @@ class Image_entry extends Controllers_Controller {
 	
 	public function update(){
 		
-		echo "update";
+		echo '<pre>';print_r(  $this->input->post()    );echo '</pre>';  exit;
 		
 	}
 	

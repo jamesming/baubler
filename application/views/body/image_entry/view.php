@@ -73,6 +73,8 @@
 		_.extend(core, {
 			
 			 mode:'insert'
+			 
+			,image_id: undefined
 			
 			,start:function(){
 			 		
@@ -96,6 +98,12 @@
 						
 						post_array.table = 'images';
 						
+						if( that.mode == 'update'){
+							
+							post_array.image_id = that.image_id;
+							
+						};
+						
 						that.target.style.display='block';					
 						that.spinner.spin(that.target);	
 						
@@ -104,6 +112,9 @@
 								post_array,
 								function(data) {
 									setTimeout(function(){
+										
+										console.log(data);
+										
 										that.target.style.display='none';					
 										that.spinner.stop();
 										that.getImagesThumbs();
@@ -137,7 +148,14 @@
 												if($('#' + key2).length != 0){
 													
 													$('#' + key2).val(val2);
-												}												
+													
+												};
+												
+												if( key2 == 'id'){												
+													
+													that.image_id = val2;
+													
+												};
 												
 										});
 										
