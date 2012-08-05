@@ -37,6 +37,13 @@ class Image_entry extends Controllers_Controller {
 		
 	}
 	
+	public function update(){
+		
+		echo "update";
+		
+	}
+	
+	
 	public function getJsonAllImages(){
 		
 		echo json_encode($this->model_images_form->get_all_images());

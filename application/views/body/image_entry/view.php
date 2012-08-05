@@ -10,6 +10,24 @@
 <div  class='oh ' >
 	<form  id='image_asset_form' class="form-horizontal" method="post" accept-charset="utf-8">
 	  <fieldset>
+	  	
+	  	
+      <div class="control-group">
+        <label class="control-label">Edit Mode</label>
+        <div class="controls">
+          <label class="radio">
+            <input type="radio" name="editmode" id="insertmode" value="insert" checked>
+            Insert
+          </label>
+          <label class="radio">
+            <input type="radio" name="editmode" id="editmode" value="edit">
+            Update
+          </label>
+        </div>
+      </div>
+	  	
+	  	
+	  	
 	    <div class="control-group">
 	      <label class="control-label" for="input01">URL</label>
 	      <div class="controls">
@@ -18,6 +36,12 @@
 	        <button type="button" class="btn">Submit</button>
 	      </div>
 	    </div>
+	    
+	    
+	    
+	    
+	    
+	    
 	  </fieldset>
 	</form>	
 </div>
@@ -48,7 +72,13 @@
 		core.processCallbackQueue();		
 		_.extend(core, {
 			
-			 start:function(){
+			 mode:'insert'
+			
+			,start:function(){
+			 		
+			 		$('input[type=radio]').click(function(){
+					    return false;
+					});
 			 		
 					this.getImagesThumbs();
 					
@@ -70,13 +100,17 @@
 						that.spinner.spin(that.target);	
 						
 						
-						$.post( window.base_url  + "image_entry/insert",
+						$.post( window.base_url  + "image_entry/" + that.mode,
 								post_array,
 								function(data) {
 									setTimeout(function(){
 										that.target.style.display='none';					
 										that.spinner.stop();
-										that.getImagesThumbs()											
+										that.getImagesThumbs();
+										console.log(data);
+										that.mode = 'insert';
+										console.log('****' + data);
+										$('#insertmode').attr('checked', true);																			
 									}, 1000);
 									
 								}
@@ -91,23 +125,17 @@
 					var that = this;
 				
 					$('#images_row a').live('click', function(event) {
-											console.log($(this).attr('image_id'));
-											that.getImagesThumbWhereIdIs($(this).attr('image_id'));
+											
+						$.post( window.base_url  + "image_entry/getJsonImagesWherePkIs",
+								{'id':$(this).attr('image_id')},
+								function(data) {
+									that.mode = 'update';
+									console.log('****' + data);
+									$('#editmode').attr('checked', true);
+								}
+						);		
 											
 					});	
-				
-			}
-			
-			
-			,getImagesThumbWhereIdIs:function( id ){
-				
-						$.post( window.base_url  + "image_entry/getJsonImagesWherePkIs",
-								{'id':id},
-								function(data) {
-									alert(data);
-								}
-						);					
-				
 				
 			}
 			
