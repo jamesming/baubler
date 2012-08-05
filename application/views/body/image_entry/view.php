@@ -1,17 +1,21 @@
-<form  id='image_asset_form' class="form-horizontal" method="post" accept-charset="utf-8">
-  <fieldset>
-    <legend>Remote Image 	Asset</legend>
-    <div class="control-group">
-      <label class="control-label" for="input01">URL</label>
-      <div class="controls">
-        <input type="text" class="input-xlarge" name="url" placeholder="http:flickr.com/image.jpg">
-        <p class="help-block">i.e.  http://www.flickr.com/image.jpg</p>
-        <button type="button" class="btn">Submit</button>
-      </div>
-    </div>
-  </fieldset>
-</form>
-
+<div  class='oh ' >
+	<form  id='image_asset_form' class="form-horizontal" method="post" accept-charset="utf-8">
+	  <fieldset>
+	    <legend>Remote Image 	Asset</legend>
+	    <div class="control-group">
+	      <label class="control-label" for="input01">URL</label>
+	      <div class="controls">
+	        <input type="text" class="input-xlarge" name="url" placeholder="http:flickr.com/image.jpg">
+	        <p class="help-block">i.e.  http://www.flickr.com/image.jpg</p>
+	        <button type="button" class="btn">Submit</button>
+	      </div>
+	    </div>
+	  </fieldset>
+	</form>	
+</div>
+<div  class='oh '>
+	<img src="http://placehold.it/270x300">
+</div>
 
 <script type="text/javascript" language="Javascript">
 	$(document).ready(function() {
