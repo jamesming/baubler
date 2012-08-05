@@ -51,6 +51,8 @@
 			 start:function(){
 			 		
 					this.getImagesThumbs();
+					
+					this.clickToUpdate();
 			 		
 			 		var that = this;
 			 	
@@ -84,6 +86,13 @@
 				
 			}
 			
+			,clickToUpdate:function(){
+				
+					$('#images_row a').live('click', function(event) {
+											console.log($(this).attr('image_id'));
+					});	
+				
+			}
 			
 			,getImagesThumbs:function(){
 				
@@ -109,20 +118,6 @@
 				
 			}
 			
-			,makeImageRow:function(){
-				
-						var i= <?php echo sizeof($images)    ?>
-						,imgs_ele = ''
-						,widthOfRow = (i * 100);
-						
-						while (--i) {
-							// imgs_ele += '<img src="http://placehold.it/100x125">';
-						};
-						
-						$('#images_row div')
-						//.html(imgs_ele)
-						.css({width:widthOfRow+'px'});
-			}
 
 		});
 			
