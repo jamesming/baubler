@@ -107,9 +107,7 @@
 										that.target.style.display='none';					
 										that.spinner.stop();
 										that.getImagesThumbs();
-										console.log(data);
 										that.mode = 'insert';
-										console.log('****' + data);
 										$('#insertmode').attr('checked', true);																			
 									}, 1000);
 									

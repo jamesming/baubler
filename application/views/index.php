@@ -8,7 +8,7 @@
 	<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 	<?php $this->load->view($nav); ?>	
 	<div  class='container ' >
-		<div   style='padding-top:40px'  >
+		<div   style='padding-top:10px'  >
 			<?php $this->load->view($body); ?>
 		</div>
 	</div>
