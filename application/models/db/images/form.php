@@ -22,4 +22,18 @@ class Models_Db_Images_Form extends Database {
 			
 			
 		}
+		
+		public function get_images_where($pk){
+			
+			return $this->select_from_table( 
+				$table = 'images', 
+				$select_what = '*', 
+				$where_array = array(
+					'id' => $pk
+				)
+			);
+			
+			
+		}
+		
 }

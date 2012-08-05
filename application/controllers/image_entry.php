@@ -21,7 +21,7 @@ class Image_entry extends Controllers_Controller {
 	}
 
 
-	public function update(){
+	public function insert(){
 		
 		$post_array = $this->input->post();
 		
@@ -37,11 +37,17 @@ class Image_entry extends Controllers_Controller {
 		
 	}
 	
-	public function getJsonImages(){
+	public function getJsonAllImages(){
 		
 		echo json_encode($this->model_images_form->get_all_images());
 		
 	}
 
-
+	public function getJsonImagesWherePkIs(){
+		
+		$pk = $this->input->post('id');
+		
+		echo json_encode($this->model_images_form->get_images_where($pk));
+		
+	}
 }

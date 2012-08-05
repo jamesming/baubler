@@ -70,7 +70,7 @@
 						that.spinner.spin(that.target);	
 						
 						
-						$.post( window.base_url  + "image_entry/update",
+						$.post( window.base_url  + "image_entry/insert",
 								post_array,
 								function(data) {
 									setTimeout(function(){
@@ -88,15 +88,32 @@
 			
 			,clickToUpdate:function(){
 				
+					var that = this;
+				
 					$('#images_row a').live('click', function(event) {
 											console.log($(this).attr('image_id'));
+											that.getImagesThumbWhereIdIs($(this).attr('image_id'));
+											
 					});	
+				
+			}
+			
+			
+			,getImagesThumbWhereIdIs:function( id ){
+				
+						$.post( window.base_url  + "image_entry/getJsonImagesWherePkIs",
+								{'id':id},
+								function(data) {
+									alert(data);
+								}
+						);					
+				
 				
 			}
 			
 			,getImagesThumbs:function(){
 				
-					$.getJSON(window.base_url  + 'image_entry/getJsonImages', function(data) {
+					$.getJSON(window.base_url  + 'image_entry/getJsonAllImages', function(data) {
 						
 							// console.log(JSON.stringify(data));
 							
