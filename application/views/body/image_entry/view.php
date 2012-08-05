@@ -1,7 +1,15 @@
+<legend>Remote Image 	Asset</legend>
+<div  id='images_row'   >
+	<div>
+	</div>
+</div>
+
+<br />
+<br />
+
 <div  class='oh ' >
 	<form  id='image_asset_form' class="form-horizontal" method="post" accept-charset="utf-8">
 	  <fieldset>
-	    <legend>Remote Image 	Asset</legend>
 	    <div class="control-group">
 	      <label class="control-label" for="input01">URL</label>
 	      <div class="controls">
@@ -16,7 +24,23 @@
 <div  class='oh '>
 	<img src="http://placehold.it/270x300">
 </div>
-
+<style>
+#images_row{
+	width:100%;
+	height:125px;
+	overflow-x:scroll;
+	overflow-y:hidden;
+	background:red;
+}
+#images_row div{
+	width:5000px;
+	height:125px;
+}
+#images_row div img{
+	margin-right:15px;
+	float:left;
+}
+</style>
 <script type="text/javascript" language="Javascript">
 	$(document).ready(function() {
 
@@ -25,7 +49,16 @@
 		_.extend(core, {
 			
 			 start:function(){
-			 	
+			 		
+			 		var i=20
+			 				imgs_ele = '';
+			 				
+			 		while (--i) {
+			 				imgs_ele += '<img src="http://placehold.it/100x125">';
+			 		};
+			 		
+			 		$('#images_row div').html(imgs_ele);
+			 		
 			 		var that = this;
 			 	
 			 		$('#image_asset_form button').click(function(event) {
