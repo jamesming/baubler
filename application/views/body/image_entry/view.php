@@ -90,9 +90,13 @@
 			 	
 			 		$('#image_asset_form button').click(function(event) {
 
-						var post_array = {};    
+						var  post_array = {}
+								,fieldsValid = true;    
 						
 						$('#image_asset_form input[type=text]').each(function(event) {
+									if( $(this).val() == ''){
+										fieldsValid = false;
+									};
 									post_array[$(this).attr('name')]= $(this).val();
 						});
 						
@@ -104,9 +108,13 @@
 							
 						};
 						
+						if( !fieldsValid){
+							alert('Fields must not be blank');
+							return;
+						};
+						
 						that.target.style.display='block';					
 						that.spinner.spin(that.target);	
-						
 						
 						$.post( window.base_url  + "image_entry/" + that.mode,
 								post_array,
@@ -122,7 +130,7 @@
 										that.getImagesThumbs();
 										that.mode = 'insert';
 										$('#insertmode').attr('checked', true);																			
-									}, 1000);
+									}, 100);
 									
 								}
 						);		
