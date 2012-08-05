@@ -39,7 +39,23 @@ class Image_entry extends Controllers_Controller {
 	
 	public function update(){
 		
-		echo '<pre>';print_r(  $this->input->post()    );echo '</pre>';  exit;
+		$post_array = $this->input->post();
+		
+		$table = $post_array['table'];
+		
+		$pk = $post_array['image_id'];
+		
+		unset($post_array['table']);
+		
+		unset($post_array['image_id']);		
+		
+		echo $this->model_images_form->update_table_where( 
+			$table, 
+			$where_array = array(
+				'id' => $pk
+			), 
+			$set_what_array = $post_array
+		);
 		
 	}
 	

@@ -115,6 +115,8 @@
 										
 										console.log(data);
 										
+										$('#image_asset_form input[type=text]').val('');
+										
 										that.target.style.display='none';					
 										that.spinner.stop();
 										that.getImagesThumbs();
