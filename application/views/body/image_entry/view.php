@@ -31,7 +31,7 @@
 	    <div class="control-group">
 	      <label class="control-label" for="input01">URL</label>
 	      <div class="controls">
-	        <input type="text" class="input-xlarge" name="url" placeholder="http:flickr.com/image.jpg">
+	        <input type="text" class="input-xlarge"  id="url" name="url" placeholder="http:flickr.com/image.jpg">
 	        <p class="help-block">i.e.  http://www.flickr.com/image.jpg</p>
 	        <button type="button" class="btn">Submit</button>
 	      </div>
@@ -126,11 +126,25 @@
 				
 					$('#images_row a').live('click', function(event) {
 											
-						$.post( window.base_url  + "image_entry/getJsonImagesWherePkIs",
-								{'id':$(this).attr('image_id')},
+						$.getJSON( window.base_url  + "image_entry/getJsonImagesWherePkIs?id=" + $(this).attr('image_id'),
+						
 								function(data) {
+									
 									that.mode = 'update';
-									console.log('****' + data);
+									
+									$.each(data, function(key, val) {
+										
+										$.each(val, function(key2, val2) {
+											
+												if($('#' + key2).length != 0){
+													
+													$('#' + key2).val(val2);
+												}												
+												
+										});
+										
+									});
+									
 									$('#editmode').attr('checked', true);
 								}
 						);		

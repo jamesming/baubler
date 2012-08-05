@@ -52,9 +52,9 @@ class Image_entry extends Controllers_Controller {
 
 	public function getJsonImagesWherePkIs(){
 		
-		$pk = $this->input->post('id');
-		
-		echo json_encode($this->model_images_form->get_images_where($pk));
+		echo json_encode($this->model_images_form->get_images_where(
+			$pk  = $this->input->get('id')
+		));
 		
 	}
 }
