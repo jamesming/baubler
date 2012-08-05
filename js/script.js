@@ -1,0 +1,162 @@
+/* Author: James Ming
+*/
+
+
+core = {
+			init:function(){
+				
+				this.setProperties();
+				this.loadSpinner();
+				
+			}
+			
+			,setProperties:function(){
+	 			this.spinnerDelay = 2000;
+			}
+			
+	 		,loadSpinner:function(){
+	 			
+	 						var  style =''
+	 								,that = this;
+	 								
+							this.loadScript('spinner', window.base_url + 'js/libs/spinner/' + 'spin.min.js', function(){
+								
+									that.loadCSS(window.base_url + 'js/libs/spinner/' + 'spin.css');
+					
+									that.createFixedDiv(
+										 'spinner'
+										, style
+									);
+									
+									that.spinner = new Spinner();
+									that.target = document.getElementById('spinner');
+									
+								});
+							this.processCallbackQueue();
+			}	
+			,scripts: {}
+    	,loadScript : function(name, url, callback){
+    		
+    		this.callbackQueue[name] = {
+    			 scripts:false
+    			,callback:callback	
+    		};
+
+				if( !this.scripts[name]){
+					
+	    		if(    typeof(this.target) !== "undefined" 
+	    				&& typeof(this.spinner) !== "undefined" ){
+	    					
+						this.target.style.display='block';					
+						this.spinner.spin(this.target);	
+	    					
+						this.target.style.display='block';					
+						this.spinner.spin(this.target);	    			
+	    		};					
+					
+					this.scripts[name] = url;
+					
+	    		var  head = document.documentElement
+	    				,script = document.createElement('script');
+	    		
+	    		script.async = false;
+	    		script.src = url;
+	    		
+	    		var 	that = this
+	    				 ,done = false;
+	    		
+	    		script.onload = script.onreadystatechange = function(){
+
+  											
+	    			if( this.readyState != 'loading' ) {  											
+	    											
+	    											done = true;
+
+	    											if( that.callbackQueue[name]){		
+	    												that.callbackQueue[name].scripts = true;
+	    											};
+
+	    											script.onload = script.onreadystatechange = null;
+	    											if( head && script.parentNode ){
+	    												head.removeChild( script );
+	    											};
+	    				
+	    			};
+	    			
+	    		};
+	    		head.insertBefore( script, head.firstChild );					
+					
+				} 
+				else {
+
+					this.callbackQueue[name].scripts = true;
+					
+				}
+    	}
+    	
+			,callbackQueue: {}    	
+    	,processCallbackQueue: function(){
+    		
+	    		var		that = this
+	    		     ,queueIsReady = function(){
+	    		     		var readiness = true;
+					    		for( name in that.callbackQueue){
+					    			if( that.callbackQueue[name].scripts === false){
+					    				readiness = false;
+					    			};
+					    		};
+					    		return readiness;  			
+				    		}
+				    	 ,doWhenReady = function(){
+				    	 	
+				    	 		if( queueIsReady() === false){
+				    	 			setTimeout(function(){
+				    	 				doWhenReady();
+				    	 			}, 10);
+				    	 		}else{
+							    		for( name in that.callbackQueue){
+							    			that.callbackQueue[name].callback();
+							    			delete that.callbackQueue[name];
+							    		};
+							    		that.callbackQueue = {};
+							    		setTimeout(function(){
+							    			if( typeof(that.spinner) !== "undefined"){
+							    				that.spinner.stop();
+							    				that.target.style.display='none';	
+							    			}  
+							    		}, core.spinnerDelay);
+							    		
+				    	 		};
+				    	 };
+				    	 
+				 doWhenReady();
+
+    	}	
+    	
+    	
+			,loadCSS: function( url){
+			
+					var     head = document.getElementsByTagName('head')[0]				    		
+								, link = document.createElement('link')
+							  , path = url + '?v=' + Math.floor(Math.random() * (99999999999999 - 1 + 1)) + 1;			
+							  
+						    link.rel = 'stylesheet';
+						    link.type = 'text/css';
+						    link.href = path;
+						    link.media = 'all';
+						    head.parentNode.insertBefore(link, head);			
+						    $(head).prepend(link);			
+			
+			}
+			,createFixedDiv:function( nameOfId, style ){
+										  var newDiv = document.createElement('div');
+											newDiv.id =  nameOfId;
+											newDiv.innerHTML = style;
+											document.body.insertBefore(newDiv, document.body.firstChild);	
+			}
+    	
+};
+window.onload = function(){
+	core.init();	
+};
+

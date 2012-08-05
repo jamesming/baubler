@@ -1,0 +1,12 @@
+#spinner{
+		-webkit-border-radius: 8px;
+		-moz-border-radius: 8px;
+		border-radius: 8px;	
+		position: fixed;
+		top: 20%;
+		left: 20%;
+		right: 20%;
+		bottom: 20%;
+		z-index: 3;
+		display:none;
+		background-color: rgba(96, 96, 96, 0.5);
