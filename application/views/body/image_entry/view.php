@@ -142,6 +142,9 @@
 										that.getImagesThumbs();
 										that.mode = 'insert';
 										$('#insertmode').attr('checked', true);																			
+										
+										$('#picture').attr('src', 'http://placehold.it/270x300');
+										
 									}, 100);
 									
 								}
