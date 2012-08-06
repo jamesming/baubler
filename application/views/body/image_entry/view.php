@@ -73,10 +73,6 @@
 </style>
 <script type="text/javascript" language="Javascript">
 	$(document).ready(function() {
-
-		core.loadScript('jcrop', window.base_url  + 'js/libs/plugins/jcrop/jcrop.min.js', function(){}); 
-		
-		core.processCallbackQueue();		
 		
 		_.extend(core, {
 			
@@ -85,7 +81,7 @@
 			,image_id: undefined
 			
 			,start:function(){
-			 		
+				
 			 		$('input[type=radio]').click(function(){
 					    return false;
 					});
@@ -291,8 +287,17 @@
 			}
 
 		});
+		
+		core.loadScript('jcrop', window.base_url  + 'js/libs/plugins/jcrop/jcrop.min.js', function(){
 			
-		core.start()			
+			core.start();	
+			
+		}); 
+		
+		core.processCallbackQueue();		
+
+			
+				
 		
 	});
 </script>
