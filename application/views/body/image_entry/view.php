@@ -75,7 +75,9 @@
 	$(document).ready(function() {
 
 		core.loadScript('jcrop', window.base_url  + 'js/libs/plugins/jcrop/jcrop.min.js', function(){}); 
+		
 		core.processCallbackQueue();		
+		
 		_.extend(core, {
 			
 			 mode:'insert'
@@ -87,11 +89,15 @@
 			 		$('input[type=radio]').click(function(){
 					    return false;
 					});
+					
+					this.createJcropDiv();
 			 		
 					this.getImagesThumbs();
 					
-					this.clickToUpdate();
-			 		
+					this.bindClickToUpdate();
+					
+					this.bindClickToLaunchJcrop();
+					
 			 		var that = this;
 			 	
 			 		$('#image_asset_form button').click(function(event) {
@@ -145,7 +151,7 @@
 				
 			}
 			
-			,clickToUpdate:function(){
+			,bindClickToUpdate:function(){
 				
 					var that = this;
 				
@@ -215,6 +221,65 @@
 				
 			}
 			
+			
+			,createJcropDiv: function(){
+				
+											var style = "\
+											<style>\
+													#jcropDiv{\
+															border:1px solid black;\
+															position: fixed;\
+															top: 8%;\
+															left:20%;\
+															right:20%;\
+															bottom: 2%;\
+															z-index: 0;\
+															background-color: white;\
+															padding:10px;\
+															display:none;\
+														  -webkit-border-radius: 5px;\
+														     -moz-border-radius: 5px;\
+														          border-radius: 5px;\
+													}\
+													#jcropDiv div{\
+															float:left;\
+													}\
+													#jcropDiv div input{\
+															float:right;\
+													}\
+											</style>\
+											";
+						
+											this.createFixedDiv(
+												 'jcropDiv'
+												,style
+											);
+											
+											this.jcropDiv = document.getElementById('jcropDiv');
+											
+											var insideContent = document.createElement('div');
+											
+											insideContent.innerHTML = "\
+											<div><img id='jcropThis' src='' ></div>\
+											<div><input  id='closeJcrop' type='button' value='save and close'>\
+											</div>\
+											";
+											
+											this.jcropDiv.insertBefore(insideContent, this.jcropDiv.firstChild);
+											
+			}
+			
+			
+			,bindClickToLaunchJcrop: function(){
+				 
+				 var that = this;
+				 
+				 $('#picture').click(function(event) {
+				 			that.jcropDiv.style.display = 'block';
+				 });	
+				 
+				 
+			}
 
 		});
 			
