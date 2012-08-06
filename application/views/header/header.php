@@ -7,8 +7,7 @@
 	<meta name="author" content="">
 
 	<meta name="viewport" content="width=device-width">
-
-	<link rel="stylesheet" href="<?php  echo base_url()   ?>css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php  echo base_url()   ?>css/bootstrap/bootstrap.css">
 	<style>
 	body {
 	  padding-top: 60px;

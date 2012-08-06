@@ -247,11 +247,6 @@
 													#jcropDiv div{\
 															float:left;\
 													}\
-													#jcropThis{\
-														width:270px;\
-														height:300px;\
-														border:1px solid gray;\
-													}\
 													#jcropDiv div input{\
 															float:right;\
 													}\
@@ -291,7 +286,7 @@
 							};
 				 			
 							$('#jcropThis').parent().html("\
-								<img  id='jcropThis' src=''   />\
+								<img  id='jcropThis' src=''  />\
 							");
 							
 							var  jcropThis = document.getElementById('jcropThis')
@@ -310,6 +305,7 @@
 																							that.coordinates = coordinates;
 
 																					}
+																					
 																					,aspectRatio:  1 
 																					
 											});						
@@ -325,7 +321,7 @@
 			}
 
 		});
-		
+		core.loadCSS(window.base_url  + 'js/libs/plugins/jcrop/jquery.Jcrop.css');
 		core.loadScript('jcrop', window.base_url  + 'js/libs/plugins/jcrop/jcrop.min.js', function(){
 			
 			core.start();	
