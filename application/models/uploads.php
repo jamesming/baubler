@@ -4,7 +4,8 @@ class Models_Uploads {
 		
 		function __construct(){
 		    
-		
+			$this->CI =& get_instance();
+			
 		}
 		
 		/**
@@ -222,10 +223,10 @@ class Models_Uploads {
 							$config['y_axis'] = $y_axis;
 							
 							
-							get_instance()->image_lib->initialize($config); 
-							get_instance()->image_lib->crop();
+							$this->CI->image_lib->initialize($config); 
+							$this->CI->image_lib->crop();
 					
-							get_instance()->image_lib->clear();
+							$this->CI->image_lib->clear();
 							
 							return $new_name;
 							

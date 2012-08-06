@@ -319,7 +319,7 @@
 							that.target.style.display='block';					
 							that.spinner.spin(that.target);	
 							
-					 		that.coordinates.image_id = image_id;
+					 		that.coordinates.image_id = that.image_id;
 					 		that.coordinates.table = 'images';							
 				 			
 				 			console.log(JSON.stringify(that.coordinates));
