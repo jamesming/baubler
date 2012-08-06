@@ -73,4 +73,29 @@ class Image_entry extends Controllers_Controller {
 		));
 		
 	}
+	
+	
+	
+	
+	public function makeSomeCopyOfUrl( $post_array, $pk ){
+		
+		
+			$this->model_uploads_images->cloneFromRemoteURL(
+				 $url = $post_array['url']
+				,$image_id = $pk
+				,$callItFormat = 'raw'
+			);
+			
+			
+			$this->model_uploads_images->cloneAndResizeImage(
+					 $url =  $post_array['url']
+					,$image_id = $pk
+					,$callItFormat = 'image'
+					,$target_width = 600
+					,$target_height = 500
+				);
+		
+	}
+	
+	
 }

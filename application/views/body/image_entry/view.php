@@ -63,6 +63,7 @@
 #images_row div img{
 	margin-right:15px;
 	float:left;
+	cursor:pointer;
 }
 </style>
 <script type="text/javascript" language="Javascript">

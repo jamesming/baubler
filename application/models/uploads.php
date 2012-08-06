@@ -184,6 +184,139 @@ class Models_Uploads {
 		  
 		  return $path;
 		}
+
+
+	function cloneAndResizeImage(
+		 $url
+		,$photo_id
+		,$callItFormat
+		,$target_width
+		,$target_height
+		) {  
+	
+	  $fp = fopen($url, 'rb') or die("Image '$url' not found!");  
+	  $buf = '';  
+	  
+	  while(!feof($fp)){
+	  	$buf .= fgets($fp, 4096); 
+	  }
+	  
+	  $imageFromUrl = imagecreatefromstring($buf);  
+	  
+		$info = getimagesize($url);  
+	      $width = $info[0];  
+	      $height = $info[1];  
+	      $mimetype = $info['mime'];
+	      
+		if( $width > $height){
+
+				$target_height = $this->tools->get_new_size_of (
+											$what = 'height', 
+											$target_width, 
+											$width, 
+											$height 
+											);																
+
+		}else{
+
+				$target_width = $this->tools->get_new_size_of (
+											$what = 'width', 
+											$target_height, 
+											$width, 
+											$height 
+											);				
+
+		};
+	  
+	  $clone = imagecreatetruecolor($target_width, $target_height);
+	  
+	  imagecopyresampled(
+	  	$clone, 
+	  	$imageFromUrl, 0, 0, 0, 0, 
+	  	$target_width, 
+	  	$target_height, 
+	  	$width, 
+	  	$height
+	  ); 
+
+		
+		$path_to_file = $this->createDirAndRetrievePath( $photo_id );
+
+		
+
+//	  header("Content-type: {$mimetype}");  // IF LINE IS ADDED AND $location is null, will send to browser
+	  switch($mimetype) {  
+	      case 'image/jpeg': imagejpeg($clone, $path_to_file . $callItFormat .'.jpg', 100); break;  
+	      case 'image/png': imagepng($clone, $path_to_file . $callItFormat .'.png'); break;  
+	      case 'image/gif': imagegif($clone, $path_to_file . $callItFormat .'.gif'); break;  
+	  } 
+
+		imagedestroy($clone);
+		imagedestroy($imageFromUrl);	  
+	}		
+		
+		
+		
+		
+		
+		
+	function cloneFromRemoteURL(
+		 $url
+		,$photo_id
+		,$callItFormat
+	){
+		
+	  $fp = fopen($url, 'rb') or die("Image '$url' not found!");  
+	  $buf = '';  
+	  
+	  while(!feof($fp)){
+	  	$buf .= fgets($fp, 4096); 
+	  }
+	  
+	  $imageFromUrl = imagecreatefromstring($buf);  
+	  
+		$info = getimagesize($url);  
+	      $width = $info[0];  
+	      $height = $info[1];  
+	      $mimetype = $info['mime'];		
+		
+	  $clone = imagecreatetruecolor($width, $height);
+	  
+	  imagecopyresampled(
+	  	$clone, 
+	  	$imageFromUrl, 0, 0, 0, 0, 
+	  	$width, 
+	  	$height, 
+	  	$width, 
+	  	$height
+	  ); 
+
+		
+		$path_to_file = $this->createDirAndRetrievePath( $photo_id );
+		
+
+//	  header("Content-type: {$mimetype}");  // IF LINE IS ADDED AND $location is null, will send to browser
+	  switch($mimetype) {  
+	      case 'image/jpeg': imagejpeg($clone, $path_to_file . $callItFormat .'.jpg', 100); break;  
+	      case 'image/png': imagepng($clone, $path_to_file . $callItFormat .'.png'); break;  
+	      case 'image/gif': imagegif($clone, $path_to_file . $callItFormat .'.gif'); break;  
+	  } 
+
+		imagedestroy($clone);
+		imagedestroy($imageFromUrl);	
+		
+		
+		
+	}
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		/**
