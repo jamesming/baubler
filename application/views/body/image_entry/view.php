@@ -277,12 +277,40 @@
 				 var that = this;
 				 
 				 $('#picture').click(function(event) {
+				 	
 				 			that.jcropDiv.style.display = 'block';
-				 			$('#jcropThis').attr('src', window.base_url + 'uploads/images/' + $(this).attr('image_id') + '/raw.jpg');
+				 			
+							if( that.hasOwnProperty('jcrop_api')){
+								that.jcrop_api.destroy();  // http://stackoverflow.com/questions/4466333/how-do-i-remove-jcrop
+							};
+				 			
+							$('#jcropThis').parent().html("\
+								<img  class='centered ' id='jcropThis' src=''   >\
+							");
+							
+							var  jcropThis = document.getElementById('jcropThis')
+									,image_id = $(this).attr('image_id');
+							
+							jcropThis.src = window.base_url + 'uploads/images/' + image_id + '/image.jpg';
+				 			
+							jcropThis.onload = function(){
+											that.jcrop_api = $.Jcrop('#jcropThis', {
+																					 onSelect:function(coordinates){
+																					 	
+																					 		coordinates.image_id = image_id;
+																					
+																							that.coordinates = coordinates;
+
+																					}
+																					,aspectRatio:  100/75 
+											});						
+							};
+
 				 });	
 				 
 				 $('#closeJcrop').click(function(event) {
 				 			that.jcropDiv.style.display = 'none';
+				 			console.log(that.coordinates);
 				 });	
 			}
 
