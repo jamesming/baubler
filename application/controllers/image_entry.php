@@ -57,7 +57,28 @@ class Image_entry extends Controllers_Controller {
 			$set_what_array = $post_array
 		);
 		
+		$this->makeSomeCopyOfUrl( $post_array, $pk );
+		
 	}
+	
+	public function makeSomeCopyOfUrl( $post_array, $pk ){
+		
+			$this->model_uploads_images->cloneFromRemoteURL(
+				 $url = $post_array['url']
+				,$image_id = $pk
+				,$callItFormat = 'raw'
+			);
+			
+			$this->model_uploads_images->cloneAndResizeImage(
+					 $url =  $post_array['url']
+					,$image_id = $pk
+					,$callItFormat = 'image'
+					,$target_width = 600
+					,$target_height = 500
+			);
+		
+	}
+	
 	
 	
 	public function getJsonAllImages(){
@@ -74,25 +95,7 @@ class Image_entry extends Controllers_Controller {
 		
 	}
 	
-	public function makeSomeCopyOfUrl( $post_array, $pk ){
-		
-		
-			$this->model_uploads_images->cloneFromRemoteURL(
-				 $url = $post_array['url']
-				,$image_id = $pk
-				,$callItFormat = 'raw'
-			);
-			
-			
-			$this->model_uploads_images->cloneAndResizeImage(
-					 $url =  $post_array['url']
-					,$image_id = $pk
-					,$callItFormat = 'image'
-					,$target_width = 600
-					,$target_height = 500
-				);
-		
-	}
+
 	
 	
 }

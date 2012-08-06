@@ -46,7 +46,7 @@
 	</form>	
 </div>
 <div  class='oh '>
-	<img src="http://placehold.it/270x300">
+	<img  id='picture'  src="http://placehold.it/270x300">
 </div>
 <style>
 #images_row{
@@ -63,6 +63,11 @@
 #images_row div img{
 	margin-right:15px;
 	float:left;
+	cursor:pointer;
+}
+#picture{
+	width:270px;
+	border:1px dotted gray;
 	cursor:pointer;
 }
 </style>
@@ -162,7 +167,9 @@
 													
 													$('#' + key2).val(val2);
 													
-													$('a[image_id=' + image_id + '] img').attr('src', val2);
+													// $('a[image_id=' + image_id + '] img').attr('src', val2);
+													
+													$('#picture').attr({'src':val2});
 													
 												};
 												

@@ -29,32 +29,7 @@ class Models_Uploads {
 		
 		}
 
-		
-		/**
-		 * Sets up directory structure for uploading image file
-		 *
-		 * {@source }
-		 * @package BackEnd
-		 * @uses Unit_test::test_tools_set_directory_for_upload()
-		 * @param array $path_array
-		 */
-		 
-		function set_directory_for_upload ($path_array ){
-			
-			$path = 'uploads';
-			
-			foreach( $path_array as $directory ){
-			
-				$path .= '/' . $directory;
-				
-				if( is_dir($path) == FALSE){		
-					mkdir($path, 0700);
-				};
-				
-			}
-		  
-		  return $path;
-		}
+
 
 
 	function cloneAndResizeImage(
@@ -81,7 +56,7 @@ class Models_Uploads {
 	      
 		if( $width > $height){
 
-				$target_height = $this->tools->get_new_size_of (
+				$target_height = $this->get_new_size_of (
 											$what = 'height', 
 											$target_width, 
 											$width, 
@@ -90,7 +65,7 @@ class Models_Uploads {
 
 		}else{
 
-				$target_width = $this->tools->get_new_size_of (
+				$target_width = $this->get_new_size_of (
 											$what = 'width', 
 											$target_height, 
 											$width, 
@@ -111,16 +86,19 @@ class Models_Uploads {
 	  ); 
 
 		
-		$path_array= 'uploads/images/' . $pk . '/';
+		$path_array = array(
+			 'folder' => 'images'
+			,'image_id' => $pk
+		);
+		
 		
 		$path_to_file = $this->set_directory_for_upload ($path_array );
-		
 
 //	  header("Content-type: {$mimetype}");  // IF LINE IS ADDED AND $location is null, will send to browser
 	  switch($mimetype) {  
-	      case 'image/jpeg': imagejpeg($clone, $path_to_file . $callItFormat .'.jpg', 100); break;  
-	      case 'image/png': imagepng($clone, $path_to_file . $callItFormat .'.png'); break;  
-	      case 'image/gif': imagegif($clone, $path_to_file . $callItFormat .'.gif'); break;  
+	      case 'image/jpeg': imagejpeg($clone, $path_to_file . '/' . $callItFormat .'.jpg', 100); break;  
+	      case 'image/png': imagepng($clone, $path_to_file . '/'. $callItFormat .'.png'); break;  
+	      case 'image/gif': imagegif($clone, $path_to_file . '/'. $callItFormat .'.gif'); break;  
 	  } 
 
 		imagedestroy($clone);
@@ -158,23 +136,56 @@ class Models_Uploads {
 	  	$height
 	  ); 
 
-
-		$path_array= 'uploads/images/' . $pk . '/';
+		
+		$path_array = array(
+			 'folder' => 'images'
+			,'image_id' => $pk
+		);
+		
 		
 		$path_to_file = $this->set_directory_for_upload ($path_array );
 
 
 //	  header("Content-type: {$mimetype}");  // IF LINE IS ADDED AND $location is null, will send to browser
 	  switch($mimetype) {  
-	      case 'image/jpeg': imagejpeg($clone, $path_to_file . $callItFormat .'.jpg', 100); break;  
-	      case 'image/png': imagepng($clone, $path_to_file . $callItFormat .'.png'); break;  
-	      case 'image/gif': imagegif($clone, $path_to_file . $callItFormat .'.gif'); break;  
+	      case 'image/jpeg': imagejpeg($clone, $path_to_file . '/' . $callItFormat .'.jpg', 100); break;  
+	      case 'image/png': imagepng($clone, $path_to_file . '/'. $callItFormat .'.png'); break;  
+	      case 'image/gif': imagegif($clone, $path_to_file . '/'. $callItFormat .'.gif'); break;  
 	  } 
 
 		imagedestroy($clone);
 		imagedestroy($imageFromUrl);	
 		
 	}
+		
+		
+		/**
+		 * Sets up directory structure for uploading image file
+		 *
+		 * {@source }
+		 * @package BackEnd
+		 * @uses Unit_test::test_tools_set_directory_for_upload()
+		 * @param array $path_array
+		 */
+		 
+		function set_directory_for_upload ($path_array ){
+			
+			$path = 'uploads';
+			
+			foreach( $path_array as $directory ){
+			
+				$path .= '/' . $directory;
+				
+				if( is_dir($path) == FALSE){		
+					mkdir($path, 0755);
+				};
+				
+			}
+		  
+		  return $path;
+		}
+		
+		
 		
 		
 		/**
