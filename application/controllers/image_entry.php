@@ -27,9 +27,9 @@ class Image_entry extends Controllers_Controller {
 		
 		$table = $post_array['table'];
 		
-		$this->model_images_form->create_generic_table($table);
+		unset($post_array['table']);		
 		
-		unset($post_array['table']);
+		$this->model_images_form->create_generic_table($table);
 		
 		$this->model_images_form->create_fields_with_post($table, $post_array);
 		
@@ -43,11 +43,11 @@ class Image_entry extends Controllers_Controller {
 		
 		$table = $post_array['table'];
 		
+		unset($post_array['table']);		
+		
 		$pk = $post_array['image_id'];
 		
-		unset($post_array['table']);
-		
-		unset($post_array['image_id']);		
+		unset($post_array['image_id']);
 		
 		echo $this->model_images_form->update_table_where( 
 			$table, 
