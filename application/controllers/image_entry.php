@@ -74,9 +74,6 @@ class Image_entry extends Controllers_Controller {
 		
 	}
 	
-	
-	
-	
 	public function makeSomeCopyOfUrl( $post_array, $pk ){
 		
 		

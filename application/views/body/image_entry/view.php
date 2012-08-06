@@ -145,8 +145,10 @@
 					var that = this;
 				
 					$('#images_row a').live('click', function(event) {
+						
+						var image_id = $(this).attr('image_id');
 											
-						$.getJSON( window.base_url  + "image_entry/getJsonImagesWherePkIs?id=" + $(this).attr('image_id'),
+						$.getJSON( window.base_url  + "image_entry/getJsonImagesWherePkIs?id=" + image_id,
 						
 								function(data) {
 									
@@ -159,6 +161,8 @@
 												if($('#' + key2).length != 0){
 													
 													$('#' + key2).val(val2);
+													
+													$('a[image_id=' + image_id + '] img').attr('src', val2);
 													
 												};
 												
