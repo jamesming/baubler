@@ -175,7 +175,10 @@
 													
 													// $('a[image_id=' + image_id + '] img').attr('src', val2);
 													
-													$('#picture').attr({'src':window.base_url + 'uploads/images/' + image_id + '/image.jpg'});
+													$('#picture').attr({
+															 'src':window.base_url + 'uploads/images/' + image_id + '/image.jpg'
+															,'image_id' : image_id
+														});
 													
 												};
 												
@@ -227,7 +230,7 @@
 											var style = "\
 											<style>\
 													#jcropDiv{\
-															border:1px solid black;\
+															border:3px solid gray;\
 															position: fixed;\
 															top: 8%;\
 															left:20%;\
@@ -276,9 +279,12 @@
 				 
 				 $('#picture').click(function(event) {
 				 			that.jcropDiv.style.display = 'block';
+				 			$('#jcropThis').attr('src', window.base_url + 'uploads/images/' + $(this).attr('image_id') + '/raw.jpg');
 				 });	
 				 
-				 
+				 $('#closeJcrop').click(function(event) {
+				 			that.jcropDiv.style.display = 'none';
+				 });	
 			}
 
 		});
