@@ -292,7 +292,7 @@
 							var  jcropThis = document.getElementById('jcropThis')
 									,image_id = $(this).attr('image_id');
 							
-							jcropThis.src = window.base_url + 'uploads/images/' + image_id + '/image.jpg';
+							jcropThis.src = window.base_url + 'uploads/images/' + image_id + '/raw.jpg';
 				 			
 							jcropThis.onload = function(){
 								
