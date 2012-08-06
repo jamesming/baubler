@@ -73,8 +73,8 @@ class Image_entry extends Controllers_Controller {
 					 $url =  $post_array['url']
 					,$image_id = $pk
 					,$callItFormat = 'image'
-					,$target_width = 600
-					,$target_height = 500
+					,$target_width = 270
+					,$target_height = 300
 			);
 		
 	}

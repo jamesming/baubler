@@ -169,7 +169,7 @@
 													
 													// $('a[image_id=' + image_id + '] img').attr('src', val2);
 													
-													$('#picture').attr({'src':val2});
+													$('#picture').attr({'src':window.base_url + 'uploads/images/' + image_id + '/image.jpg'});
 													
 												};
 												
