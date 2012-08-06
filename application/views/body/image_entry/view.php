@@ -299,8 +299,6 @@
 											that.jcrop_api = $.Jcrop('#jcropThis', {
 												
 																					 onSelect:function(coordinates){
-																					 	
-																					 		coordinates.image_id = image_id;
 																					
 																							that.coordinates = coordinates;
 
@@ -315,8 +313,33 @@
 				 });	
 				 
 				 $('#closeJcrop').click(function(event) {
+				 	
 				 			that.jcropDiv.style.display = 'none';
+				 			
+							that.target.style.display='block';					
+							that.spinner.spin(that.target);	
+							
+					 		that.coordinates.image_id = image_id;
+					 		that.coordinates.table = 'images';							
+				 			
 				 			console.log(JSON.stringify(that.coordinates));
+				 			
+							$.post( window.base_url  + "image_entry/jcrop",
+									that.coordinates,
+									function(data) {
+										setTimeout(function(){
+											
+											console.log(data);
+											
+											that.target.style.display='none';					
+											that.spinner.stop();
+											
+										}, 100);
+										
+									}
+							);		
+				 			
+				 			
 				 });	
 			}
 

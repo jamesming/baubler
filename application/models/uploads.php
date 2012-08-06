@@ -38,6 +38,7 @@ class Models_Uploads {
 		,$callItFormat
 		,$target_width
 		,$target_height
+		,$path_array
 		) {  
 	
 	  $fp = fopen($url, 'rb') or die("Image '$url' not found!");  
@@ -85,13 +86,6 @@ class Models_Uploads {
 	  	$height
 	  ); 
 
-		
-		$path_array = array(
-			 'folder' => 'images'
-			,'image_id' => $pk
-		);
-		
-		
 		$path_to_file = $this->set_directory_for_upload ($path_array );
 
 //	  header("Content-type: {$mimetype}");  // IF LINE IS ADDED AND $location is null, will send to browser
@@ -105,10 +99,20 @@ class Models_Uploads {
 		imagedestroy($imageFromUrl);	  
 	}		
 		
+		
+		
+		
+	/* 	cloneFromRemoteURL
+	*
+	*  
+	*
+	*/
+	
 	function cloneFromRemoteURL(
 		 $url
 		,$pk
 		,$callItFormat
+		,$path_array
 	){
 		
 	  $fp = fopen($url, 'rb') or die("Image '$url' not found!");  
@@ -136,12 +140,6 @@ class Models_Uploads {
 	  	$height
 	  ); 
 
-		
-		$path_array = array(
-			 'folder' => 'images'
-			,'image_id' => $pk
-		);
-		
 		
 		$path_to_file = $this->set_directory_for_upload ($path_array );
 
@@ -185,9 +183,53 @@ class Models_Uploads {
 		  return $path;
 		}
 		
+		function createThumb($dir_path, $post_array){
+	
+			$this->crop_and_name_it(
+				$new_name = 'thumb.jpg', 
+				$full_path = $dir_path . 'image.jpg', 
+				$dir_path, 
+				$width = $post_array['w'],
+				$height = $post_array['h'],
+				$x_axis = $post_array['x'],
+				$y_axis = $post_array['y']
+				);
+		}
+
+		/**
+		 * crop_and_name_it 
+		 *
+		 */
+		 
+		function crop_and_name_it(
+						  $new_name = 'cropped.png'
+						, $full_path
+						, $dir_path
+						, $width = 300
+						, $height = 300
+						, $x_axis = 0
+						, $y_axis = 0
+						){
 		
-		
-		
+							$config['image_library'] = 'gd2';
+							$config['source_image']	= $full_path;
+							$config['new_image'] = $dir_path . $new_name;
+							$config['thumb_marker']	= '';
+							$config['maintain_ratio'] = FALSE;
+							$config['width']	= $width;
+							$config['height']	= $height;
+							$config['x_axis'] = $x_axis;
+							$config['y_axis'] = $y_axis;
+							
+							
+							get_instance()->image_lib->initialize($config); 
+							get_instance()->image_lib->crop();
+					
+							get_instance()->image_lib->clear();
+							
+							return $new_name;
+							
+		}	
 		/**
 		 * Gets missing width or height based on original size and on new width or height
 		 *

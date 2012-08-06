@@ -63,10 +63,16 @@ class Image_entry extends Controllers_Controller {
 	
 	public function makeSomeCopyOfUrl( $post_array, $pk ){
 		
+			$path_array = array(
+				'folder' => 'images'
+				,'image_id' => $pk
+			);
+		
 			$this->model_uploads_images->cloneFromRemoteURL(
 				 $url = $post_array['url']
 				,$image_id = $pk
 				,$callItFormat = 'raw'
+				,$path_array
 			);
 			
 			$this->model_uploads_images->cloneAndResizeImage(
@@ -75,6 +81,7 @@ class Image_entry extends Controllers_Controller {
 					,$callItFormat = 'image'
 					,$target_width = 270
 					,$target_height = 300
+					,$path_array
 			);
 		
 	}
@@ -95,7 +102,23 @@ class Image_entry extends Controllers_Controller {
 		
 	}
 	
+	public function jcrop(){
+		
+		$post_array = $this->input->post();
+		
+		$table = $post_array['table'];
+		
+		unset($post_array['table']);		
+		
+		$pk = $post_array['image_id'];
+		
+		unset($post_array['image_id']);		
+		
+		$dir_path = 'uploads/images/' . $pk . '/';
 
+		$this->model_images_form->createThumb($dir_path, $post_array);
+
+	}
 	
 	
 }
