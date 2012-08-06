@@ -67,6 +67,7 @@
 }
 #picture{
 	width:270px;
+	height:300px;
 	border:1px dotted gray;
 	cursor:pointer;
 }
@@ -246,6 +247,11 @@
 													#jcropDiv div{\
 															float:left;\
 													}\
+													#jcropThis{\
+														width:270px;\
+														height:300px;\
+														border:1px solid gray;\
+													}\
 													#jcropDiv div input{\
 															float:right;\
 													}\
@@ -263,7 +269,7 @@
 											
 											insideContent.innerHTML = "\
 											<div><img id='jcropThis' src='' ></div>\
-											<div><input  id='closeJcrop' type='button' value='save and close'>\
+											<div><button   id='closeJcrop' type='button' class='btn'>Submit</button>\
 											</div>\
 											";
 											
@@ -285,7 +291,7 @@
 							};
 				 			
 							$('#jcropThis').parent().html("\
-								<img  class='centered ' id='jcropThis' src=''   >\
+								<img  id='jcropThis' src=''   />\
 							");
 							
 							var  jcropThis = document.getElementById('jcropThis')
@@ -294,7 +300,9 @@
 							jcropThis.src = window.base_url + 'uploads/images/' + image_id + '/image.jpg';
 				 			
 							jcropThis.onload = function(){
+								
 											that.jcrop_api = $.Jcrop('#jcropThis', {
+												
 																					 onSelect:function(coordinates){
 																					 	
 																					 		coordinates.image_id = image_id;
@@ -302,15 +310,17 @@
 																							that.coordinates = coordinates;
 
 																					}
-																					,aspectRatio:  100/75 
+																					,aspectRatio:  1 
+																					
 											});						
+
 							};
 
 				 });	
 				 
 				 $('#closeJcrop').click(function(event) {
 				 			that.jcropDiv.style.display = 'none';
-				 			console.log(that.coordinates);
+				 			console.log(JSON.stringify(that.coordinates));
 				 });	
 			}
 
