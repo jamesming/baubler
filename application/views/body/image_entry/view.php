@@ -230,11 +230,11 @@
 											var style = "\
 											<style>\
 													#jcropDiv{\
-															border:3px solid gray;\
+															border:1px solid gray;\
 															position: fixed;\
 															top: 8%;\
-															left:20%;\
-															right:20%;\
+															left:5%;\
+															right:5%;\
 															bottom: 2%;\
 															z-index: 0;\
 															background-color: white;\
