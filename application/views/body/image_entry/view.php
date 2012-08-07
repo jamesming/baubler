@@ -396,6 +396,8 @@
 			
 			,switchToInsertMode: function(){
 				
+									$('#url').val('');
+				
 									this.mode = 'insert';
 									
 									$('#insertmode').attr('checked', true);																			
