@@ -9,6 +9,9 @@ class Image_entry extends Controllers_Controller {
 		$this->model_images_form = new Models_Db_Images_Form;
 		$this->model_uploads_images = new Models_Uploads_Images;
 		
+		$this->maxCropWidth = '900';
+		$this->maxCropHeight = '700';
+		
 	}	
 	
 	public function index() {
@@ -65,20 +68,56 @@ class Image_entry extends Controllers_Controller {
 	
 	public function makeSomeCopyOfUrl( $post_array, $pk ){
 		
+			$url = $post_array['url'];
+			
+			$info = getimagesize($url);  
+			
+      $width_of_file = $info[0];  
+      $height_of_file = $info[1];
+      
+			$this->model_images_form->update_table_where( 
+						$table = 'images', 
+						$where_array = array(
+							'id' => $pk
+						), 
+						$set_what_array = 
+							array(
+								 'width' => $width_of_file
+								,'height' => $height_of_file
+								,'cropfile' => 
+										(    $width_of_file  > $this->maxCropWidth 
+											|| $height_of_file > $this->maxCropHeight ? 'crop_ready' : 'raw' ) 
+							)
+					);
+      
+			
 			$path_array = array(
 				'folder' => 'images'
 				,'image_id' => $pk
 			);
 		
 			$this->model_uploads_images->cloneFromRemoteURL(
-				 $url = $post_array['url']
+				 $url
 				,$image_id = $pk
 				,$callItFormat = 'raw'
 				,$path_array
 			);
 			
+			if( $width_of_file > $this->maxCropWidth || $height_of_file > $this->maxCropHeight){
+
+				$this->model_uploads_images->cloneAndResizeImage(
+						 $url
+						,$image_id = $pk
+						,$callItFormat = 'crop_ready'
+						,$target_width = $this->maxCropWidth
+						,$target_height = $this->maxCropHeight
+						,$path_array
+				);			
+				
+			};
+			
 			$this->model_uploads_images->cloneAndResizeImage(
-					 $url =  $post_array['url']
+					 $url
 					,$image_id = $pk
 					,$callItFormat = 'image'
 					,$target_width = 270
@@ -103,9 +142,24 @@ class Image_entry extends Controllers_Controller {
 
 	public function getJsonImagesWherePkIs(){
 		
-		echo json_encode($this->model_images_form->get_images_where(
+		$results = $this->model_images_form->get_images_where(
 			$pk  = $this->input->get('id')
-		));
+		);
+		
+		$results = $this->model_images_form->object_to_array($results);
+		
+//		$foo = array(
+//			'test' => 'test2'
+//		);
+		
+		foreach( $results  as  $key => $result){
+			
+			$foo[$key] = $result;
+			
+		};
+		
+		
+		echo json_encode( $foo );
 		
 	}
 	
@@ -126,7 +180,7 @@ class Image_entry extends Controllers_Controller {
 		$this->model_uploads_images->createThumb(
 			$dir_path, 
 			$post_array, 
-			$image_file = 'raw.jpg'
+			$image_file =  $post_array['cropfile'] . '.jpg'
 		);
 
 	}

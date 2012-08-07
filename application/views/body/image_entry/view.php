@@ -176,11 +176,17 @@
 				
 					$('#images_row a').live('click', function(event) {
 						
-						var image_id = $(this).attr('image_id');
-											
-						$.getJSON( window.base_url  + "image_entry/getJsonImagesWherePkIs?id=" + image_id,
+						that.image_id = $(this).attr('image_id');
+						
+						$('#picture').attr({
+								 'src':window.base_url + 'uploads/images/' + that.image_id + '/image.jpg?v=' + that.getRandoms(1, 1, 10000)
+							});						
+						
+						$.getJSON( window.base_url  + "image_entry/getJsonImagesWherePkIs?id=" + that.image_id,
 						
 								function(data) {
+									
+									console.log(JSON.stringify(data));
 									
 									that.switchToEditMode();
 									
@@ -192,15 +198,11 @@
 													
 													$('#' + key2).val(val2);
 													
-													$('#picture').attr({
-															 'src':window.base_url + 'uploads/images/' + image_id + '/image.jpg?v=' + that.getRandoms(1, 1, 10000)
-														});
-													
 												};
 												
-												if( key2 == 'id'){												
+												if( key2 === 'cropfile'){
 													
-													that.image_id = val2;
+													that.cropfile = val2;
 													
 												};
 												
@@ -314,7 +316,10 @@
 							
 							var  jcropThis = document.getElementById('jcropThis');
 							
-							jcropThis.src = window.base_url + 'uploads/images/' + that.image_id + '/raw.jpg?v=' + that.getRandoms(1, 1, 10000);
+							jcropThis.src = window.base_url 
+															+ 'uploads/images/' 
+															+ that.image_id + '/' + that.cropfile + '.jpg?v=' 
+															+ that.getRandoms(1, 1, 10000);
 				 			
 							jcropThis.onload = function(){
 								
@@ -346,6 +351,7 @@
 							that.spinner.spin(that.target);								
 							
 					 		that.coordinates.image_id = that.image_id;
+					 		that.coordinates.cropfile = that.cropfile;
 					 		that.coordinates.table = 'images';							
 				 			
 							$.post( window.base_url  + "image_entry/jcrop",
