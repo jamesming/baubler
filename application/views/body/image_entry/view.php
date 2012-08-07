@@ -73,6 +73,7 @@
 }
 </style>
 <script type="text/javascript" language="Javascript">
+
 	$(document).ready(function() {
 		
 		_.extend(core, {
@@ -174,7 +175,7 @@
 													$('#' + key2).val(val2);
 													
 													$('#picture').attr({
-															 'src':window.base_url + 'uploads/images/' + image_id + '/image.jpg'
+															 'src':window.base_url + 'uploads/images/' + image_id + '/image.jpg?v=' + that.getRandoms(1, 1, 10000)
 														});
 													
 												};
@@ -199,6 +200,8 @@
 			
 			,getImagesThumbs:function(){
 				
+					var that = this;
+				
 					$.getJSON(window.base_url  + 'image_entry/getJsonAllImages', function(data) {
 						
 							var i= data.length +1
@@ -208,7 +211,7 @@
 							
 							$.each(data, function(key, val) {
 								
-								url = window.base_url  + 'uploads/images/' + val['id'] + '/thumb.jpg';
+								url = window.base_url  + 'uploads/images/' + val['id'] + '/thumb.jpg?v=' + that.getRandoms(1, 1, 10000);
 								
 								imgs_ele += '<a image_id="' + val['id'] + '" ><img  title="'+ val['url'] +'" src="' + url + '"></a>';
 								
@@ -292,7 +295,7 @@
 							
 							var  jcropThis = document.getElementById('jcropThis');
 							
-							jcropThis.src = window.base_url + 'uploads/images/' + that.image_id + '/raw.jpg';
+							jcropThis.src = window.base_url + 'uploads/images/' + that.image_id + '/raw.jpg?v=' + that.getRandoms(1, 1, 10000);
 				 			
 							jcropThis.onload = function(){
 								
@@ -331,7 +334,7 @@
 									function(data) {
 										setTimeout(function(){
 											
-											var url = window.base_url  + 'uploads/images/' + that.image_id + '/thumb.jpg';
+											var url = window.base_url  + 'uploads/images/' + that.image_id + '/thumb.jpg?v=' + that.getRandoms(1, 1, 10000);
 											
 											$('a[image_id=' + that.image_id + '] img').attr('src', url);
 											
@@ -348,6 +351,7 @@
 			}
 
 		});
+		
 		core.loadCSS(window.base_url  + 'js/libs/plugins/jcrop/jquery.Jcrop.css');
 		core.loadScript('jcrop', window.base_url  + 'js/libs/plugins/jcrop/jcrop.min.js', function(){
 			
@@ -361,4 +365,6 @@
 				
 		
 	});
+	
+	
 </script>

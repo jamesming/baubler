@@ -14,6 +14,26 @@ core = {
 	 			this.spinnerDelay = 2000;
 			}
 			
+			,getRandoms: function(numPicks, low, high) {
+				
+				
+					var len = high - low + 1;
+					var nums = new Array(len);
+					var selections = [], i;
+					// initialize the array
+					for (i = 0; i < len; i++) {
+					    nums[i] = i + low;
+					}
+					
+					// randomly pick one from the array
+					for (var i = 0; i < numPicks; i++) {
+					    var index = Math.floor(Math.random() * nums.length);
+					    selections.push(nums[index]);
+					    nums.splice(index, 1);
+					}
+					return(selections);
+			}
+			
 	 		,loadSpinner:function(){
 	 			
 	 						var  style =''
