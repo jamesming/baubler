@@ -205,11 +205,15 @@
 							
 							var i= data.length +1
 							,imgs_ele = ''
-							,widthOfRow = (i * 100);							
+							,widthOfRow = (i * 100)
+							,url;							
 							
 							$.each(data, function(key, val) {
-								//console.log(val['id'] + ' ' + val['url']);
-								imgs_ele += '<a image_id="' + val['id'] + '" ><img  title="'+ val['url'] +'" src="http://placehold.it/100x125"></a>';
+								
+								url = window.base_url  + 'uploads/images/' + val['id'] + '/thumb.jpg';
+								
+								imgs_ele += '<a image_id="' + val['id'] + '" ><img  title="'+ val['url'] +'" src="' + url + '"></a>';
+								
 							});
 							
 							$('#images_row div')
