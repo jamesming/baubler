@@ -8,10 +8,11 @@ class Models_Db_Images_Form extends Database {
 			return $this->select_from_table( 
 				$table = 'images', 
 				$select_what = '*', 
-				$where_array = array()
+				$where_array = array(),
+				$use_order = TRUE,
+				$order_field = 'created',
+				$order_direction = 'desc'
 			);
-			
-			
 		}
 		
 		public function get_images_where($pk){

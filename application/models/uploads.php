@@ -184,28 +184,6 @@ class Models_Uploads {
 		  return $path;
 		}
 		
-		function createThumb($dir_path, $post_array, $image_file){
-			
-			$full_path = $dir_path . $image_file;
-			
-			$this->crop_and_name_it(
-				$new_name = 'thumb.jpg', 
-				$full_path, 
-				$dir_path, 
-				$width = $post_array['w'],
-				$height = $post_array['h'],
-				$x_axis = $post_array['x'],
-				$y_axis = $post_array['y']
-			);
-				
-			$this->resize_this(
-				$full_path = $dir_path . 'thumb.jpg' 
-				,$width  = 100
-				,$height  = 100
-			);
-			
-			
-		}
 
 		/**
 		 * crop_and_name_it 

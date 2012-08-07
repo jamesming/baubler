@@ -33,7 +33,9 @@ class Image_entry extends Controllers_Controller {
 		
 		$this->model_images_form->create_fields_with_post($table, $post_array);
 		
-		$this->model_images_form->insert_table($table, $post_array);
+		$pk = $this->model_images_form->insert_table($table, $post_array);
+		
+		$this->makeSomeCopyOfUrl( $post_array, $pk );
 		
 	}
 	
@@ -83,10 +85,15 @@ class Image_entry extends Controllers_Controller {
 					,$target_height = 300
 					,$path_array
 			);
+			
+			$dir_path = 'uploads/images/' . $pk . '/';
+			
+			$this->model_uploads_images->automaticallyGenerateThumb( 
+				 $dir_path
+				,$image_file = 'raw.jpg'
+			);
 		
 	}
-	
-	
 	
 	public function getJsonAllImages(){
 		

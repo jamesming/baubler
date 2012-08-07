@@ -82,7 +82,7 @@
 			 
 			,image_id: undefined
 			
-			,start:function(){
+			,start: function(){
 				
 			 		$('input[type=radio]').click(function(){
 					    return false;
@@ -96,6 +96,12 @@
 					
 					this.bindClickToLaunchJcrop();
 					
+					this.bindSubmitButton();
+				
+			}
+			
+			,bindSubmitButton: function(){
+				
 			 		var that = this;
 			 	
 			 		$('#image_asset_form button').click(function(event) {
@@ -138,10 +144,7 @@
 										that.target.style.display='none';					
 										that.spinner.stop();
 										that.getImagesThumbs();
-										that.mode = 'insert';
-										$('#insertmode').attr('checked', true);																			
-										
-										$('#picture').attr('src', 'http://placehold.it/270x300');
+										that.switchToInsertMode();
 										
 									}, 100);
 									
@@ -149,7 +152,6 @@
 						);		
 
 			 		});	
-				
 			}
 			
 			,bindClickToUpdate:function(){
@@ -164,7 +166,7 @@
 						
 								function(data) {
 									
-									that.mode = 'update';
+									that.switchToEditMode();
 									
 									$.each(data, function(key, val) {
 										
@@ -190,7 +192,6 @@
 										
 									});
 									
-									$('#editmode').attr('checked', true);
 								}
 						);		
 											
@@ -200,20 +201,25 @@
 			
 			,getImagesThumbs:function(){
 				
+					this.imageLoadFailed = function(){
+							var image = arguments[0];
+							image.src = 'http://placehold.it/100x100';
+					};				
+					
 					var that = this;
-				
+					
 					$.getJSON(window.base_url  + 'image_entry/getJsonAllImages', function(data) {
 						
 							var i= data.length +1
 							,imgs_ele = ''
-							,widthOfRow = (i * 100)
-							,url;							
+							,widthOfRow = (i * 120) + 10
+							,url;
 							
 							$.each(data, function(key, val) {
 								
 								url = window.base_url  + 'uploads/images/' + val['id'] + '/thumb.jpg?v=' + that.getRandoms(1, 1, 10000);
 								
-								imgs_ele += '<a image_id="' + val['id'] + '" ><img  title="'+ val['url'] +'" src="' + url + '"></a>';
+								imgs_ele += '<a image_id="' + val['id'] + '" ><img onerror="core.imageLoadFailed(this)" title="'+ val['url'] +'" src="' + url + '"></a>';
 								
 							});
 							
@@ -223,9 +229,7 @@
 
 					});
 				
-				
 			}
-			
 			
 			,createJcropDiv: function(){
 				
@@ -273,7 +277,6 @@
 											this.jcropDiv.insertBefore(insideContent, this.jcropDiv.firstChild);
 											
 			}
-			
 			
 			,bindClickToLaunchJcrop: function(){
 				 
@@ -341,6 +344,8 @@
 											that.target.style.display='none';					
 											that.spinner.stop();
 											
+											that.switchToInsertMode();
+											
 										}, 100);
 										
 									}
@@ -348,6 +353,22 @@
 				 			
 				 			
 				 });	
+			}
+			
+			,switchToInsertMode: function(){
+				
+									this.mode = 'insert';
+									
+									$('#insertmode').attr('checked', true);																			
+									
+									$('#picture').attr('src', 'http://placehold.it/270x300');
+			}
+			
+			,switchToEditMode: function(){
+				
+									this.mode = 'update';
+									
+									$('#editmode').attr('checked', true);
 			}
 
 		});
