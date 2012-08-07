@@ -34,8 +34,8 @@ class Models_Uploads_Images extends Models_Uploads {
 				$new_name = 'thumb.jpg', 
 				$full_path, 
 				$dir_path, 
-				$width = 100,
-				$height = 100,
+				$width = 300,
+				$height = 300,
 				$x_axis = 0,
 				$y_axis = 0
 			);

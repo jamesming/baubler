@@ -78,15 +78,11 @@
 		
 		_.extend(core, {
 			
-			 mode:'insert'
-			 
-			,image_id: undefined
-			
-			,start: function(){
-				
-			 		$('input[type=radio]').click(function(){
-					    return false;
-					});
+			 start: function(){
+
+					this.formPrep();
+					
+					this.setFormProperties();
 					
 					this.createJcropDiv();
 			 		
@@ -97,6 +93,26 @@
 					this.bindClickToLaunchJcrop();
 					
 					this.bindSubmitButton();
+				
+			}
+			
+			,setFormProperties: function(){
+				
+				this.mode = 'insert';
+				
+				this.image_id = undefined;
+				
+			}
+			
+			,formPrep: function(){
+				
+			 		$('input[type=radio]').click(function(){
+					    return false;
+					});
+					
+					$('#url').click(function(event) {
+								$(this).val('');
+					});					
 				
 			}
 			
@@ -381,9 +397,6 @@
 		}); 
 		
 		core.processCallbackQueue();		
-
-			
-				
 		
 	});
 	
