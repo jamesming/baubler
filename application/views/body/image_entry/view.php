@@ -66,8 +66,8 @@
 	cursor:pointer;
 }
 #picture{
-	width:270px;
-	height:300px;
+/*	width:270px;
+	height:300px;*/
 	border:1px dotted gray;
 	cursor:pointer;
 }
@@ -173,11 +173,8 @@
 													
 													$('#' + key2).val(val2);
 													
-													// $('a[image_id=' + image_id + '] img').attr('src', val2);
-													
 													$('#picture').attr({
 															 'src':window.base_url + 'uploads/images/' + image_id + '/image.jpg'
-															,'image_id' : image_id
 														});
 													
 												};
@@ -281,6 +278,8 @@
 				 	
 				 			that.jcropDiv.style.display = 'block';
 				 			
+				 			delete that.coordinates;
+				 			
 							if( that.hasOwnProperty('jcrop_api')){
 								that.jcrop_api.destroy();  // http://stackoverflow.com/questions/4466333/how-do-i-remove-jcrop
 							};
@@ -289,10 +288,9 @@
 								<img  id='jcropThis' src=''  />\
 							");
 							
-							var  jcropThis = document.getElementById('jcropThis')
-									,image_id = $(this).attr('image_id');
+							var  jcropThis = document.getElementById('jcropThis');
 							
-							jcropThis.src = window.base_url + 'uploads/images/' + image_id + '/raw.jpg';
+							jcropThis.src = window.base_url + 'uploads/images/' + that.image_id + '/raw.jpg';
 				 			
 							jcropThis.onload = function(){
 								
@@ -315,21 +313,25 @@
 				 $('#closeJcrop').click(function(event) {
 				 	
 				 			that.jcropDiv.style.display = 'none';
-				 			
+							
+							if( typeof( that.coordinates  ) === "undefined"){
+									return;
+							};
+							
 							that.target.style.display='block';					
-							that.spinner.spin(that.target);	
+							that.spinner.spin(that.target);								
 							
 					 		that.coordinates.image_id = that.image_id;
 					 		that.coordinates.table = 'images';							
-				 			
-				 			console.log(JSON.stringify(that.coordinates));
 				 			
 							$.post( window.base_url  + "image_entry/jcrop",
 									that.coordinates,
 									function(data) {
 										setTimeout(function(){
 											
-											console.log(data);
+											var url = window.base_url  + 'uploads/images/' + that.image_id + '/thumb.jpg';
+											
+											$('a[image_id=' + that.image_id + '] img').attr('src', url);
 											
 											that.target.style.display='none';					
 											that.spinner.stop();

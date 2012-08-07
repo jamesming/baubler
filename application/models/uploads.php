@@ -184,17 +184,27 @@ class Models_Uploads {
 		  return $path;
 		}
 		
-		function createThumb($dir_path, $post_array){
-	
+		function createThumb($dir_path, $post_array, $image_file){
+			
+			$full_path = $dir_path . $image_file;
+			
 			$this->crop_and_name_it(
 				$new_name = 'thumb.jpg', 
-				$full_path = $dir_path . 'image.jpg', 
+				$full_path, 
 				$dir_path, 
 				$width = $post_array['w'],
 				$height = $post_array['h'],
 				$x_axis = $post_array['x'],
 				$y_axis = $post_array['y']
-				);
+			);
+				
+			$this->resize_this(
+				$full_path = $dir_path . 'thumb.jpg' 
+				,$width  = 100
+				,$height  = 100
+			);
+			
+			
 		}
 
 		/**
@@ -262,6 +272,69 @@ class Models_Uploads {
 		
 		}
 		
+		function resize_this($full_path, $width, $height){
+			
+							$config['image_library'] = 'gd2';
+							$config['source_image']	= $full_path;
+							$config['create_thumb'] = FALSE;
+							$config['maintain_ratio'] = TRUE;
+							$config['width']	= $width;
+							$config['height']	= $height;
+							
+							$this->CI->image_lib->initialize($config); 
+							
+							$this->CI->image_lib->resize();
+					
+							$this->CI->image_lib->clear();
+		 
+		}	
 		
-    
+		/**
+		 * clone_and_resize_append_name_of PNG image
+		 *
+		 */
+		 
+		function clone_and_resize_append_name_of($appended_suffix, $full_path, $width, $height){
+			
+							$config['image_library'] = 'gd2';
+							$config['source_image']	= $full_path;
+							$config['create_thumb'] = TRUE;
+							$config['maintain_ratio'] = TRUE;
+							$config['width']	= $width;
+							$config['height']	= $height;
+							
+							$config['thumb_marker']	= $appended_suffix;
+							
+							$this->CI->image_lib->initialize($config); 
+							
+							$this->CI->image_lib->resize();
+					
+							$this->CI->image_lib->clear();
+							
+		}
+		
+		
+		
+		/**
+		 * Rotates a file according to direction passed
+		 *
+		 */
+		 
+		function rotate($full_path, $rotation){
+			
+		
+					$config['image_library'] = 'gd2';
+					$config['source_image']	= $full_path;
+					
+					if( $rotation == 'right'){
+						$config['rotation_angle'] = '270';
+					}else{
+						$config['rotation_angle'] = '90';
+					};
+					
+					$this->CI->image_lib->initialize($config);
+					$this->CI->image_lib->rotate();
+					$this->CI->image_lib->clear();
+		
+		}  
 }

@@ -116,7 +116,11 @@ class Image_entry extends Controllers_Controller {
 		
 		$dir_path = 'uploads/images/' . $pk . '/';
 
-		$this->model_uploads_images->createThumb($dir_path, $post_array);
+		$this->model_uploads_images->createThumb(
+			$dir_path, 
+			$post_array, 
+			$image_file = 'raw.jpg'
+		);
 
 	}
 	

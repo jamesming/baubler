@@ -14,6 +14,7 @@
 	  padding-bottom: 40px;
 	}
 	</style>
+	
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>css/bootstrap/bootstrap-responsive.min.css">
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>css/style.css">
 
