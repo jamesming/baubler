@@ -106,9 +106,15 @@
 			
 			,formPrep: function(){
 				
-			 		$('input[type=radio]').click(function(){
+					var that = this;
+				
+			 		$('#editmode').click(function(){
 					    return false;
 					});
+					
+			 		$('#insertmode').click(function(){
+					    that.switchToInsertMode();
+					});					
 					
 					$('#url').click(function(event) {
 								$(this).val('');
@@ -159,7 +165,18 @@
 										
 										that.target.style.display='none';					
 										that.spinner.stop();
-										that.getImagesThumbs();
+										
+										if( that.mode === 'update'){
+											
+											var url = window.base_url  + 'uploads/images/' + that.image_id + '/thumb.jpg?v=' + that.getRandoms(1, 1, 10000);
+											
+											$('a[image_id=' + that.image_id + '] img').attr('src', url);											
+											
+										}else{
+											that.getImagesThumbs();
+										};
+										
+										
 										that.switchToInsertMode();
 										
 									}, 100);

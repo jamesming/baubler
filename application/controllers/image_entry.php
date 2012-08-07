@@ -14,6 +14,7 @@ class Image_entry extends Controllers_Controller {
 		
 	}	
 	
+
 	public function index() {
 		
 		$this->_data->images = $this->model_images_form->get_all_images();
@@ -103,6 +104,8 @@ class Image_entry extends Controllers_Controller {
 				,$path_array
 			);
 			
+			
+			
 			if( $width_of_file > $this->maxCropWidth || $height_of_file > $this->maxCropHeight){
 
 				$this->model_uploads_images->cloneAndResizeImage(
@@ -112,7 +115,13 @@ class Image_entry extends Controllers_Controller {
 						,$target_width = $this->maxCropWidth
 						,$target_height = $this->maxCropHeight
 						,$path_array
-				);			
+				);
+				
+				$cropfile = 'crop_ready.jpg';		
+				
+			}else{
+				
+				$cropfile = 'raw.jpg';
 				
 			};
 			
@@ -129,7 +138,7 @@ class Image_entry extends Controllers_Controller {
 			
 			$this->model_uploads_images->automaticallyGenerateThumb( 
 				 $dir_path
-				,$image_file = 'raw.jpg'
+				,$image_file = $cropfile
 			);
 		
 	}
