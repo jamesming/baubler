@@ -20,4 +20,51 @@ class Controllers_Controller extends CI_Controller
 			$this->_data->footer = "footer/footer";
 
 	}
+	
+	
+	
+	
+	
+		function create_table(){
+			
+			$table = $this->input->get('table');
+			
+			$this->model_products_form = new Models_Db_Products_Form;
+			
+			$this->model_products_form->create_generic_table($table); 
+			
+			
+			$fields_array = array(/*
+			                      'name' => array(
+			                                               'type' => 'varchar(255)'
+			                                    ),
+			                                    
+			                                    
+			                      'product_id' => array(
+			                                               'type' => 'int(11)'
+			                                    ),*/
+			                      'tabs_type_id' => array(
+			                                               'type' => 'int(11)'
+			                                    )			                                    
+			                                    
+			                                    /*,
+			                      'county' => array(
+			                                               'type' => 'varchar(255)'
+			                                    ),
+			                      'city' => array(
+			                                               'type' => 'varchar(255)'
+			                                    ),
+			                      'state' => array(
+			                                               'type' => 'varchar(255)'
+			                                    )*/
+			              ); 
+			              
+			echo '<pre>';print_r(  $fields_array   );echo '</pre>';   
+			$this->model_products_form->add_column_to_table_if_not_exist(
+				$table, 
+				$fields_array
+			);
+	   
+	
+	}
 }
