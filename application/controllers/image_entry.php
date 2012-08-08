@@ -21,6 +21,8 @@ class Image_entry extends Controllers_Controller {
 		
 		$this->_data->body = "body/image_entry/view";
 		
+		$this->_data->nav_selected = "nav_image_entry";		
+		
 		$this->load->view('index', $this->_data);	
 	}
 

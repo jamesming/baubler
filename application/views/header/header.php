@@ -19,11 +19,23 @@
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>css/style.css">
 
 	<script type="text/javascript" language="Javascript">
+		
 		(function(){
+			
 			var  href = window.location.href
-					,href_array = href.split("?");
-			window.base_url = href_array[0];			
+			
+					,href_array = href.split("?")
+					
+					,basePortion_array = href_array[0].split("//")
+					
+					,protocol= basePortion_array[0]
+					
+					,host_array =  basePortion_array[1].split("/");
+					
+			window.base_url = protocol + '//' + host_array[0] + '/' + host_array[1] + '/';			
+			
 		})();
+		
 	</script>
 
 	<script src="<?php  echo base_url()   ?>js/libs/modernizr/modernizr-2.5.3-respond-1.1.0.min.js"></script>
