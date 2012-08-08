@@ -6,18 +6,18 @@ class Search extends Controllers_Controller {
 		
 		parent::__construct();
 		
-		$this->model_images_form = new Models_Db_Images_Form;
+		$this->model_products_form = new Models_Db_Products_Form;
 		
 	}	
 	
 	
 	function index(){
 		
-		$this->_data->images = $this->model_images_form->get_all_images();
+		$this->_data->products = $this->model_products_form->get_all_products();
 		
 		$this->_data->body = "body/search/view";
 		
-		$this->_data->nav_selected = "nav_image_search";
+		$this->_data->nav_selected = "nav_product_search";
 		
 		$this->load->view('index', $this->_data);	  
 	}

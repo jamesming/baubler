@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "image_entry";
+$route['default_controller'] = "product_entry";
 $route['404_override'] = '';
 
 

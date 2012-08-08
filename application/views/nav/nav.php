@@ -11,8 +11,8 @@
             <ul class="nav">
               <li><a href="#">Home</a></li>
               <li><a href="#about">About</a></li>
-              <li  id='nav_image_search' ><a href="<?php echo base_url()     ?>search">Search</a></li>
-              <li  id='nav_image_entry' class="active"><a href="<?php echo base_url()     ?>image_entry">Image Entry</a></li>
+              <li  id='nav_product_search' ><a href="<?php echo base_url()     ?>search">Search</a></li>
+              <li  id='nav_product_entry' class="active"><a href="<?php echo base_url()     ?>product_entry">Product Entry</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

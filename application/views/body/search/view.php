@@ -49,10 +49,10 @@
 <div id="container">
 	
 
-	<?php foreach( $images  as  $key => $image):?>
+	<?php foreach( $products  as  $key => $product):?>
 	
 	    <div class="box photo ">
-      	<a href="#" title=""><img src="<?php  echo base_url()   ?>uploads/images/<?php   echo $image->id;  ?>/image.jpg" alt="" /></a>
+      	<a href="#" title=""><img src="<?php  echo base_url()   ?>uploads/products/<?php   echo $product->id;  ?>/image.jpg" alt="" /></a>
    		</div>
    		
 	<?php endforeach; ?>
