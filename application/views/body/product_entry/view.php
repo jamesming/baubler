@@ -35,7 +35,7 @@
 	padding-left:5px;
 	margin-bottom:70px;
 }
-#tags_container .box{
+#tags_container .colors .box{
 	width:30px;
 	height:30px;
 	margin-right:5px;
@@ -46,32 +46,65 @@
 	padding:4px;
 	font-weight:bold;
 }
+
+#tags_container .articles .box{
+	width:130px;
+	height:30px;
+	margin-right:5px;
+	border:1px dotted gray;
+	cursor:pointer;
+	text-align:center;
+	box-sizing:border-box;
+	padding:4px;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
 </style>
 <div  id='tags_container' >
-	<?php  foreach( $tags  as  $key => $tag_array): ?>
-	
-
-			<div  class='box_wrapper clearfix' >
-			<?php if( $key === 'color' ){?>
-
-				<?php foreach( $tag_array  as  $key => $tag):?>
-				
-						<div  class='box fl' tag_id='<?php  echo  $tag['tag_id'];   ?>'  style='background:<?php  echo  $tag['tag_name'];   ?>'  >
-							&nbsp;
-						</div>						
-				
-				<?php endforeach; ?>
-				
+	<form  class="form-horizontal" >
+		<fieldset>
 		
-						
-			<?php } ?>
-			</div>	
-			
-			
-
+		
+		<?php  foreach( $tags  as  $key => $tag_array): ?>
+		
 	
-
-	<?php endforeach; ?>
+				
+				<?php if( $key === 'color' ){?>
+					<div class="control-group colors">
+							<label class="control-label">Choose Color</label>
+							<div  class='box_wrapper controls' >
+								<?php foreach( $tag_array  as  $key => $tag):?>
+								
+										<div  class='box fl' tag_id='<?php  echo  $tag['tag_id'];   ?>'  style='background:<?php  echo  $tag['tag_name'];   ?>'  >
+											&nbsp;
+										</div>						
+								
+								<?php endforeach; ?>
+							</div>
+					</div>			
+				<?php } ?>
+				
+				<?php if( $key === 'article' ){?>
+					<div class="control-group articles">
+							<label class="control-label">Choose Article</label>
+							<div  class='box_wrapper controls' >
+								<?php foreach( $tag_array  as  $key => $tag):?>
+								
+										<div  class='box fl' tag_id='<?php  echo  $tag['tag_id'];   ?>'  >
+											<?php echo $tag['tag_name'];    ?>
+										</div>						
+								
+								<?php endforeach; ?>
+							</div>
+					</div>			
+				<?php } ?>
+	
+		<?php endforeach; ?>
+		
+		
+	</fieldset>
+</form>
 </div>
 <div  class='oh clearfix' >
 	<form  id='product_asset_form' class="form-horizontal" method="post" accept-charset="utf-8">
@@ -173,7 +206,7 @@
 				
 					var that = this;
 				
-					$('.box').click(function(event) {
+					$('.colors .box').click(function(event) {
 						
 						if( $(this).data('checked') === true ){
 							var idx = that.tags.indexOf($(this).attr('tag_id'));
@@ -191,7 +224,7 @@
 			}
 			
 			,clear_tags:function(){
-				this.tags = []; $('.box').empty().data('checked', false);
+				this.tags = []; $('.colors .box').empty().data('checked', false);
 			}
 			
 			,bindSubmitButton: function(){

@@ -137,27 +137,4 @@ class Models_Db_Products_Form extends Database {
 		}
 		
 		
-		/* 
-					$join_array = array(
-												'tags' => 'tags_types.id = tags.tags_type_id'
-												);
-					
-					return  $this->select_from_table( 
-						$table = 'tags_types' 
-						,$select_what = '
-									 tags.id as tag_id
-									,tags.name as tag_name
-									,tags_types.id as tags_type_id
-									,tags_types.name as tags_type_name
-							'
-						,$where_array = array() 
-						,$use_order = TRUE 
-						,$order_field = 'tags_type_id' 
-						,$order_direction = 'asc'
-						,$limit = -1
-						,$use_join = TRUE
-						,$join_array
-						);
-		*/
-		
 }
