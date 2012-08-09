@@ -315,4 +315,7 @@ class Models_Uploads {
 					$this->CI->image_lib->clear();
 		
 		}  
+		
+		
+		
 }

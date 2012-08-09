@@ -1,6 +1,17 @@
 <?php
 
 class Models_Db_Products_Form extends Database {
+	
+		public function get_all_tags_colors(){
+			
+			return $this->select_from_table( 
+				$table = 'tags', 
+				$select_what = '*', 
+				$where_array = array(
+					'tags_type_id' => 1
+				)
+			);
+		}	
 		
 		
 		public function get_all_products(){

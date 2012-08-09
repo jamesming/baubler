@@ -17,7 +17,7 @@ class Product_entry extends Controllers_Controller {
 
 	public function index() {
 		
-		$this->_data->products = $this->model_products_form->get_all_products();
+		$this->_data->colors = $this->model_products_form->get_all_tags_colors();
 		
 		$this->_data->body = "body/product_entry/view";
 		
@@ -65,7 +65,7 @@ class Product_entry extends Controllers_Controller {
 			$set_what_array = $post_array
 		);
 		
-		$this->makeSomeCopyOfUrl( $post_array, $pk );
+		// $this->makeSomeCopyOfUrl( $post_array, $pk );
 		
 	}
 	

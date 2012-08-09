@@ -1,3 +1,27 @@
+<style>
+#products_row{
+	width:100%;
+	height:125px;
+	overflow-x:scroll;
+	overflow-y:hidden;
+	background:red;
+}
+#products_row div{
+	width:2000px;
+	height:125px;
+}
+#products_row div img{
+	margin-right:15px;
+	float:left;
+	cursor:pointer;
+}
+#picture{
+/*	width:270px;
+	height:300px;*/
+	border:1px dotted gray;
+	cursor:pointer;
+}
+</style>
 <legend>Remote Product 	Asset</legend>
 
 <div  id='products_row'   >
@@ -6,8 +30,26 @@
 
 <br />
 <br />
-
-<div  class='oh ' >
+<style>
+#tags_container{
+	padding-left:5px;
+	margin-bottom:70px;
+}
+#tags_container .box{
+	width:50px;
+	height:50px;
+	margin-right:5px;
+	border:1px dotted gray;
+}
+</style>
+<div  id='tags_container' >
+	<?php  foreach( $colors  as  $color): ?>
+			<div  class='box fl'   style='background:<?php  echo  $color->name;   ?>'  >
+				&nbsp;
+			</div>
+	<?php endforeach; ?>
+</div>
+<div  class='oh clearfix' >
 	<form  id='product_asset_form' class="form-horizontal" method="post" accept-charset="utf-8">
 	  <fieldset>
 	  	
@@ -48,30 +90,7 @@
 <div  class='oh '>
 	<img  id='picture'  src="http://placehold.it/270x300">
 </div>
-<style>
-#products_row{
-	width:100%;
-	height:125px;
-	overflow-x:scroll;
-	overflow-y:hidden;
-	background:red;
-}
-#products_row div{
-	width:2000px;
-	height:125px;
-}
-#products_row div img{
-	margin-right:15px;
-	float:left;
-	cursor:pointer;
-}
-#picture{
-/*	width:270px;
-	height:300px;*/
-	border:1px dotted gray;
-	cursor:pointer;
-}
-</style>
+
 <script type="text/javascript" language="Javascript">
 
 	$(document).ready(function() {
