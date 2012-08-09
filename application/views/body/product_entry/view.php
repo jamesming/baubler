@@ -171,6 +171,10 @@
 				
 			}
 			
+			,clear_tags:function(){
+				this.colors = []; $('.box').empty().data('checked', false);
+			}
+			
 			,bindSubmitButton: function(){
 				
 			 		var that = this;
@@ -188,6 +192,7 @@
 						});
 						
 						post_array.table = 'products';
+						post_array.colors = that.colors;
 						
 						if( that.mode == 'update'){
 							
@@ -227,6 +232,7 @@
 										
 										
 										that.switchToInsertMode();
+										that.clear_tags();
 										
 									}, 100);
 									
@@ -248,17 +254,30 @@
 								 'src':window.base_url + 'uploads/products/' + that.product_id + '/image.jpg?v=' + that.getRandoms(1, 1, 10000)
 							});
 							
-						that.colors = []; $('.box').empty().data('checked', false);						
+						that.clear_tags();						
 						
 						$.getJSON( window.base_url  + "product_entry/getJsonProductsWherePkIs?id=" + that.product_id,
 						
 								function(data) {
-									
-									console.log(JSON.stringify(data));
-									
+
 									that.switchToEditMode();
 									
-									$.each(data, function(key, val) {
+									that.populate_form_for_update.populate_fields(data);
+									
+									that.populate_form_for_update.populate_tags(data);
+									
+								}
+						);		
+											
+					});	
+				
+			}
+			
+			,populate_form_for_update: {
+				
+						populate_fields:function(data){
+				
+									$.each(data.product, function(key, val) {
 										
 										$.each(val, function(key2, val2) {
 											
@@ -270,19 +289,43 @@
 												
 												if( key2 === 'cropfile'){
 													
-													that.cropfile = val2;
+													this.cropfile = val2;
 													
 												};
 												
 										});
 										
-									});
-									
-								}
-						);		
-											
-					});	
+									});	
 				
+						}
+						
+						,populate_tags:function(data){
+							
+								var  tag_id;
+							
+								$.each(data.tags, function(key, val) {
+									
+										$.each(val, function(key2, val2) {									
+												
+												if( key2 === 'tag_id'){
+													
+													tag_id = val2;
+													
+													console.log( key2 + ' -  ' + tag_id);
+													
+													$('.box[tag_id=' + tag_id + ']').data('checked', true ).html('&#10003')
+													
+													core.colors.push(tag_id); 
+							
+												};
+													
+												
+										});									
+																		
+								});
+								
+						}
+						
 			}
 			
 			,getProductsThumbs:function(){

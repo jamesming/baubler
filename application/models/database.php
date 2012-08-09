@@ -339,7 +339,7 @@ class Database extends CI_Model  {
 		
 		
 		
-		function check_if_exist($where_array, $table ){
+		function check_if_exist( $table, $where_array ){
 			
 			$this->db->select('id');
 			$this->db->from($table);

@@ -17,7 +17,7 @@ class Product_entry extends Controllers_Controller {
 
 	public function index() {
 		
-		$this->_data->colors = $this->model_products_form->get_all_tags_colors();
+		$this->_data->colors = $this->model_products_form->get_all_tags();
 		
 		$this->_data->body = "body/product_entry/view";
 		
@@ -53,19 +53,25 @@ class Product_entry extends Controllers_Controller {
 		
 		unset($post_array['table']);		
 		
-		$pk = $post_array['product_id'];
+		$product_id = $post_array['product_id'];
 		
 		unset($post_array['product_id']);
+		
+		$this->model_products_form->insert_products_tags( 
+			$product_id
+			,$tags = $post_array['colors']
+		);
+		
+		unset($post_array['colors']);	 
 		
 		echo $this->model_products_form->update_table_where( 
 			$table, 
 			$where_array = array(
-				'id' => $pk
+				'id' => $product_id
 			), 
 			$set_what_array = $post_array
 		);
-		
-		// $this->makeSomeCopyOfUrl( $post_array, $pk );
+
 		
 	}
 	
@@ -153,24 +159,20 @@ class Product_entry extends Controllers_Controller {
 
 	public function getJsonProductsWherePkIs(){
 		
-		$results = $this->model_products_form->get_products_where(
-			$pk  = $this->input->get('id')
+		$product_id  = $this->input->get('id');
+		
+		$tags =  $this->model_products_form->get_all_tags_for_product_id( $product_id );
+		
+		$product = $this->model_products_form->get_products_where(
+			$product_id 
 		);
+
 		
-		$results = $this->model_products_form->object_to_array($results);
-		
-//		$foo = array(
-//			'test' => 'test2'
-//		);
-		
-		foreach( $results  as  $key => $result){
-			
-			$foo[$key] = $result;
-			
-		};
+		$product_info['product'] = $product;
+		$product_info['tags'] = $tags;
 		
 		
-		echo json_encode( $foo );
+		echo json_encode( $product_info );
 		
 	}
 	
