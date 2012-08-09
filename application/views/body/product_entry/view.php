@@ -246,7 +246,9 @@
 						
 						$('#picture').attr({
 								 'src':window.base_url + 'uploads/products/' + that.product_id + '/image.jpg?v=' + that.getRandoms(1, 1, 10000)
-							});						
+							});
+							
+						that.colors = []; $('.box').empty().data('checked', false);						
 						
 						$.getJSON( window.base_url  + "product_entry/getJsonProductsWherePkIs?id=" + that.product_id,
 						
