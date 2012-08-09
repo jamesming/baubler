@@ -36,15 +36,20 @@
 	margin-bottom:70px;
 }
 #tags_container .box{
-	width:50px;
-	height:50px;
+	width:30px;
+	height:30px;
 	margin-right:5px;
 	border:1px dotted gray;
+	cursor:pointer;
+	text-align:center;
+	box-sizing:border-box;
+	padding:4px;
+	font-weight:bold;
 }
 </style>
 <div  id='tags_container' >
 	<?php  foreach( $colors  as  $color): ?>
-			<div  class='box fl'   style='background:<?php  echo  $color->name;   ?>'  >
+			<div  class='box fl' tag_id='<?php  echo  $color->id;   ?>'  style='background:<?php  echo  $color->name;   ?>'  >
 				&nbsp;
 			</div>
 	<?php endforeach; ?>
@@ -109,6 +114,8 @@
 					
 					this.bindClickToUpdate();
 					
+					this.bindClickToChooseColor();
+					
 					this.bindClickToLaunchJcrop();
 					
 					this.bindSubmitButton();
@@ -120,6 +127,8 @@
 				this.mode = 'insert';
 				
 				this.product_id = undefined;
+				
+				this.colors = [];
 				
 			}
 			
@@ -138,6 +147,27 @@
 					$('#url').click(function(event) {
 								$(this).val('');
 					});					
+				
+			}
+			
+			,bindClickToChooseColor: function(){
+				
+					var that = this;
+				
+					$('.box').click(function(event) {
+						
+						if( $(this).data('checked') === true ){
+							var idx = that.colors.indexOf($(this).attr('tag_id'));
+							that.colors.splice(idx, 1);
+							$(this).data('checked', false ).html('');
+						}else{
+							that.colors.push($(this).attr('tag_id')); 
+							$(this).data('checked', true ).html('&#10003');
+						};
+						
+						console.log(that.colors);
+						
+					});	
 				
 			}
 			
