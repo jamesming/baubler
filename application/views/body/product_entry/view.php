@@ -289,7 +289,7 @@
 												
 												if( key2 === 'cropfile'){
 													
-													this.cropfile = val2;
+													core.cropfile = val2;
 													
 												};
 												

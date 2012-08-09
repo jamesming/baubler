@@ -39,9 +39,18 @@ class Product_entry extends Controllers_Controller {
 		
 		$this->model_products_form->create_fields_with_post($table, $post_array);
 		
-		$pk = $this->model_products_form->insert_table($table, $post_array);
+		$colors = $post_array['colors'];
 		
-		$this->makeSomeCopyOfUrl( $post_array, $pk );
+		unset($post_array['colors']);	
+		
+		$product_id = $this->model_products_form->insert_table($table, $post_array);
+		
+		$this->model_products_form->insert_products_tags( 
+			$product_id
+			,$tags = $colors
+		);
+		
+		$this->makeSomeCopyOfUrl( $post_array, $product_id );
 		
 	}
 	
@@ -72,7 +81,7 @@ class Product_entry extends Controllers_Controller {
 			$set_what_array = $post_array
 		);
 
-		
+		$this->makeSomeCopyOfUrl( $post_array, $product_id );
 	}
 	
 	public function makeSomeCopyOfUrl( $post_array, $pk ){
