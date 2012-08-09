@@ -17,8 +17,8 @@ class Product_entry extends Controllers_Controller {
 
 	public function index() {
 		
-		$this->_data->colors = $this->model_products_form->get_all_tags();
-		
+		$this->_data->tags = $this->model_products_form->get_all_tags();
+//		echo '<pre>';print_r(  $this->_data->tags  );echo '</pre>';  exit;		
 		$this->_data->body = "body/product_entry/view";
 		
 		$this->_data->nav_selected = "nav_product_entry";		

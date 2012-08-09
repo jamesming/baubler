@@ -48,10 +48,29 @@
 }
 </style>
 <div  id='tags_container' >
-	<?php  foreach( $colors  as  $color): ?>
-			<div  class='box fl' tag_id='<?php  echo  $color->id;   ?>'  style='background:<?php  echo  $color->name;   ?>'  >
-				&nbsp;
-			</div>
+	<?php  foreach( $tags  as  $key => $tag_array): ?>
+	
+
+			<div  class='box_wrapper clearfix' >
+			<?php if( $key === 'color' ){?>
+
+				<?php foreach( $tag_array  as  $key => $tag):?>
+				
+						<div  class='box fl' tag_id='<?php  echo  $tag['tag_id'];   ?>'  style='background:<?php  echo  $tag['tag_name'];   ?>'  >
+							&nbsp;
+						</div>						
+				
+				<?php endforeach; ?>
+				
+		
+						
+			<?php } ?>
+			</div>	
+			
+			
+
+	
+
 	<?php endforeach; ?>
 </div>
 <div  class='oh clearfix' >
@@ -128,7 +147,7 @@
 				
 				this.product_id = undefined;
 				
-				this.colors = [];
+				this.tags = [];
 				
 			}
 			
@@ -157,22 +176,22 @@
 					$('.box').click(function(event) {
 						
 						if( $(this).data('checked') === true ){
-							var idx = that.colors.indexOf($(this).attr('tag_id'));
-							that.colors.splice(idx, 1);
+							var idx = that.tags.indexOf($(this).attr('tag_id'));
+							that.tags.splice(idx, 1);
 							$(this).data('checked', false ).html('');
 						}else{
-							that.colors.push($(this).attr('tag_id')); 
+							that.tags.push($(this).attr('tag_id')); 
 							$(this).data('checked', true ).html('&#10003');
 						};
 						
-						console.log(that.colors);
+						console.log(that.tags);
 						
 					});	
 				
 			}
 			
 			,clear_tags:function(){
-				this.colors = []; $('.box').empty().data('checked', false);
+				this.tags = []; $('.box').empty().data('checked', false);
 			}
 			
 			,bindSubmitButton: function(){
@@ -192,7 +211,7 @@
 						});
 						
 						post_array.table = 'products';
-						post_array.colors = that.colors;
+						post_array.tags = that.tags;
 						
 						if( that.mode == 'update'){
 							
@@ -313,7 +332,7 @@
 													
 													$('.box[tag_id=' + tag_id + ']').data('checked', true ).html('&#10003')
 													
-													core.colors.push(tag_id); 
+													core.tags.push(tag_id); 
 							
 												};
 													
