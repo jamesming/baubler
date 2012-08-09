@@ -168,6 +168,8 @@
 					
 					this.bindClickToChooseColor();
 					
+					this.bindClickToChooseArticle();
+					
 					this.bindClickToLaunchJcrop();
 					
 					this.bindSubmitButton();
@@ -220,6 +222,31 @@
 						console.log(that.tags);
 						
 					});	
+				
+			}
+			
+			,bindClickToChooseArticle:function(){
+				
+					var that = this;
+				
+					$('.articles .box').click(function(event) {
+						
+						$('.articles .box').data('checked', false ).css({background:'white'});
+						
+						if( $(this).data('checked') === true ){
+
+							$(this).data('checked', false ).css({background:'white'});
+							
+						}else{
+
+							$(this).data('checked', true ).css({background:'yellow'});
+							
+						};
+						
+						console.log(that.tags);
+						
+					});					
+				
 				
 			}
 			
