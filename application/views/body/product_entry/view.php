@@ -311,8 +311,6 @@
 													
 													tag_id = val2;
 													
-													console.log( key2 + ' -  ' + tag_id);
-													
 													$('.box[tag_id=' + tag_id + ']').data('checked', true ).html('&#10003')
 													
 													core.colors.push(tag_id); 
