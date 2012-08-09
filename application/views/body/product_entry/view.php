@@ -287,6 +287,9 @@
 						that.target.style.display='block';					
 						that.spinner.spin(that.target);	
 						
+						
+						console.log(JSON.stringify(post_array));
+						
 						$.post( window.base_url  + "product_entry/" + that.mode,
 								post_array,
 								function(data) {

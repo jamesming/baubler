@@ -18,7 +18,7 @@ class Product_entry extends Controllers_Controller {
 	public function index() {
 		
 		$this->_data->tags = $this->model_products_form->get_all_tags();
-//		echo '<pre>';print_r(  $this->_data->tags  );echo '</pre>';  exit;		
+	
 		$this->_data->body = "body/product_entry/view";
 		
 		$this->_data->nav_selected = "nav_product_entry";		
@@ -39,15 +39,15 @@ class Product_entry extends Controllers_Controller {
 		
 		$this->model_products_form->create_fields_with_post($table, $post_array);
 		
-		$colors = $post_array['colors'];
+		$tags = $post_array['tags'];
 		
-		unset($post_array['colors']);	
+		unset($post_array['tags']);	
 		
 		$product_id = $this->model_products_form->insert_table($table, $post_array);
 		
 		$this->model_products_form->insert_products_tags( 
 			$product_id
-			,$tags = $colors
+			,$tags = $tags
 		);
 		
 		$this->makeSomeCopyOfUrl( $post_array, $product_id );
@@ -68,10 +68,10 @@ class Product_entry extends Controllers_Controller {
 		
 		$this->model_products_form->insert_products_tags( 
 			$product_id
-			,$tags = $post_array['colors']
+			,$tags = $post_array['tags']
 		);
 		
-		unset($post_array['colors']);	 
+		unset($post_array['tags']);	 
 		
 		echo $this->model_products_form->update_table_where( 
 			$table, 

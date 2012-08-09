@@ -32,6 +32,7 @@ class Models_Db_Products_Form extends Database {
 					$tags_types_ids = array();
 					$tags_types_names = array();
 					
+					// get unique elements in nested array.
 					foreach ( $_tags_types  as $_tags_type){
 						if (!in_array($_tags_type['tags_type_id'], $tags_types_ids)){
 							 array_push($tags_types_ids, $_tags_type['tags_type_id']);
