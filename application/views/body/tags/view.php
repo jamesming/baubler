@@ -114,7 +114,15 @@ $(document).ready(function() {
 											$(this).data('checked', true ).html('&#10003');
 										};
 										
-										console.log(that.tags);
+										// console.log(that.tags);
+										
+										
+										if( that.hasOwnProperty('getProducts')){
+											
+											that.getProducts();
+											
+										};
+										
 										
 									});	
 								
@@ -138,7 +146,7 @@ $(document).ready(function() {
 											
 										};
 										
-										console.log(that.tags);
+										//console.log(that.tags);
 										
 									});					
 								

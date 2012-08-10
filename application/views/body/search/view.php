@@ -69,7 +69,14 @@
 			}
 			,getProducts: function(){
 				
-						$.getJSON( window.base_url  + "search/getJsonProducts",
+				
+				
+				
+				
+				
+						$.getJSON( window.base_url  + 'search/getJsonProducts',
+						
+								{ tags: this.tags.join(",")},
 						
 								function(data) {
 									
@@ -115,6 +122,72 @@
 									
 								}
 						);
+				
+				
+				
+				
+				
+				return;
+					
+				
+						$.ajax({
+							url: window.base_url  + 'search/getJsonProducts',
+							data: { 'tags': this.tags.join(",") },
+							traditional: true,
+							success: function(data) {
+								
+								console.log(data);
+								
+
+												
+
+												
+//																var  boxes = ''
+//																		,id;										
+//							
+//																$.each(data, function(key, val) {
+//																	
+//																	
+//																	
+//																	$.each(val, function(key2, val2) {
+//																			
+//																			if( key2 === 'product_id'){
+//																				
+//																				product_id = val2;
+//																				
+//																				boxes += '\
+//																			    <div class="box photo ">\
+//																		      	<a href="#" title=""><img src="' + window.base_url + 'uploads/products/' + product_id + '/image.jpg" alt="" /></a>\
+//																		   		</div>\
+//																				';
+//																				
+//																			};
+//																			
+//																			
+//																	});
+//																	
+//																});	
+//																
+//																
+//																$('.results.container').html(boxes);
+//																
+//																$('.photo').addClass('col2');
+//																
+//																var $container = $('.results.container');
+//																
+//														    $container.imagesLoaded( function(){
+//														      $container.masonry({
+//														        itemSelector : '.box'
+//														      });
+//														    });									
+												
+												
+												
+											 }
+						});
+				
+				
+
 						
 			}
 			
