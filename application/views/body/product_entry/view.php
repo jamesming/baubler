@@ -94,10 +94,6 @@
 					
 					this.bindClickToUpdate();
 					
-					this.bindClickToChooseColor();
-					
-					this.bindClickToChooseArticle();
-					
 					this.bindClickToLaunchJcrop();
 					
 					this.bindSubmitButton();

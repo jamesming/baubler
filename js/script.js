@@ -7,6 +7,10 @@ core = {
 				
 				this.setProperties();
 				
+				this.bindClickToChooseColor();
+				
+				this.bindClickToChooseArticle();				
+				
 				this.loadSpinner();
 				
 			}
@@ -230,7 +234,7 @@ core = {
 			}
 			
 			,clear_tags:function(){
-				this.tags = []; $('.colors .box').empty().data('checked', false);
+				this.tags = []; $('.tags.container .colors .box').empty().data('checked', false);
 			}
 			
 			

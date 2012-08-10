@@ -88,9 +88,11 @@
 		});
 		
 //		core.loadCSS(window.base_url  + 'js/libs/masonry/jquery.masonry.min.js');
-		core.loadScript('jcrop', window.base_url  + 'js/libs/masonry/jquery.masonry.min.js', function(){
+		core.loadScript('masonry', window.base_url  + 'js/libs/masonry/jquery.masonry.min.js', function(){
 			
 			core.start();	
+			
+			console.log(core);
 			
 		}); 
 		
