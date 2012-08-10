@@ -30,6 +30,7 @@ class Search extends Controllers_Controller {
 		
 		$tags = explode(',', $tags);
 		
+
 		echo json_encode($this->model_products_form->get_all_products_from_tags($tags));
 		
 	}
