@@ -82,11 +82,11 @@
 		
 		_.extend(core, {
 			
-			 start: function(){
+			 init_product_entry: function(){
 
 					this.formPrep();
 					
-					this.setFormProperties();
+					this.setProductEntryProperties();
 					
 					this.createJcropDiv();
 			 		
@@ -100,7 +100,7 @@
 				
 			}
 			
-			,setFormProperties: function(){
+			,setProductEntryProperties: function(){
 				
 				this.mode = 'insert';
 				
@@ -463,7 +463,7 @@
 		core.loadCSS(window.base_url  + 'js/libs/plugins/jcrop/jquery.Jcrop.css');
 		core.loadScript('jcrop', window.base_url  + 'js/libs/plugins/jcrop/jcrop.min.js', function(){
 			
-			core.start();	
+			core.init_product_entry();	
 			
 		}); 
 		

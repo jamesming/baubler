@@ -74,3 +74,86 @@
 	</fieldset>
 </form>
 </div>
+
+<script type="text/javascript" language="Javascript">
+
+
+$(document).ready(function() {
+						
+				_.extend(core, {
+							
+							  init_tags:function(){
+							  	
+							  this.setTagsProperties();
+								
+								this.bindClickToChooseColor();
+								
+								this.bindClickToChooseArticle();				
+								
+								
+							}
+			
+							,setTagsProperties:function(){
+					 			
+					 			this.tags = [];
+					 			
+							}
+											
+							,bindClickToChooseColor: function(){
+								
+									var that = this;
+								
+									$('.tags.container .colors .box').click(function(event) {
+										
+										if( $(this).data('checked') === true ){
+											var idx = that.tags.indexOf($(this).attr('tag_id'));
+											that.tags.splice(idx, 1);
+											$(this).data('checked', false ).html('');
+										}else{
+											that.tags.push($(this).attr('tag_id')); 
+											$(this).data('checked', true ).html('&#10003');
+										};
+										
+										console.log(that.tags);
+										
+									});	
+								
+							}
+							
+							,bindClickToChooseArticle:function(){
+								
+									var that = this;
+								
+									$('.tags.container .articles .box').click(function(event) {
+										
+										$('.articles .box').data('checked', false ).css({background:'white'});
+										
+										if( $(this).data('checked') === true ){
+				
+											$(this).data('checked', false ).css({background:'white'});
+											
+										}else{
+				
+											$(this).data('checked', true ).css({background:'yellow'});
+											
+										};
+										
+										console.log(that.tags);
+										
+									});					
+								
+								
+							}
+							
+							,clear_tags:function(){
+								this.tags = []; $('.tags.container .colors .box').empty().data('checked', false);
+							}
+							
+						
+				});
+				
+				core.init_tags();
+});
+		
+
+</script>
