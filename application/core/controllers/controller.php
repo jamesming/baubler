@@ -6,7 +6,9 @@ class Controllers_Controller extends CI_Controller
 	
 	function __construct() {
 		
-		parent::__construct();		
+		parent::__construct();
+		
+			$this->model_products_form = new Models_Db_Products_Form;				
 		
 			$this->_data = new stdClass;
 			
@@ -16,8 +18,11 @@ class Controllers_Controller extends CI_Controller
 
 			$this->_data->header = "header/header";
 			$this->_data->nav = "nav/nav";
+			$this->_data->tags_container = "body/tags/view";
 			$this->_data->company = "footer/company";			
 			$this->_data->footer = "footer/footer";
+			
+			$this->_data->tags = $this->model_products_form->get_all_tags();			
 
 	}
 	

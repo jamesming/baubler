@@ -5,13 +5,13 @@ class Search extends Controllers_Controller {
 	function __construct() {
 		
 		parent::__construct();
-		
-		$this->model_products_form = new Models_Db_Products_Form;
+
 		
 	}	
 	
 	
 	function index(){
+
 		
 		$this->_data->products = $this->model_products_form->get_all_products();
 		

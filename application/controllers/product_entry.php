@@ -6,7 +6,6 @@ class Product_entry extends Controllers_Controller {
 		
 		parent::__construct();
 		
-		$this->model_products_form = new Models_Db_Products_Form;
 		$this->model_uploads_products = new Models_Uploads_Products;
 		
 		$this->maxCropWidth = '900';
@@ -17,8 +16,6 @@ class Product_entry extends Controllers_Controller {
 
 	public function index() {
 		
-		$this->_data->tags = $this->model_products_form->get_all_tags();
-	
 		$this->_data->body = "body/product_entry/view";
 		
 		$this->_data->nav_selected = "nav_product_entry";		

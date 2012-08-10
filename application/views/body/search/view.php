@@ -1,5 +1,5 @@
 <style>
-#container {
+.results.container {
   background: #FFF;
   padding: 5px;
   margin-bottom: 20px;
@@ -13,7 +13,7 @@
 .centered { margin: 0 auto; }
 
 
-.box {
+.results.container .box {
   margin: 5px;
   padding: 5px;
   background: #D8D5D2;
@@ -27,7 +27,7 @@
 
 
 
-.box img{
+.results.container .box img{
   display: block;
   width: 100%;
 }
@@ -46,8 +46,10 @@
 .col5 img { max-width: 480px; }
 </style>
 
-<div id="container">
-	
+
+<?php $this->load->view($tags_container); ?>
+
+<div class="results container">
 
 	<?php foreach( $products  as  $key => $product):?>
 	
@@ -56,9 +58,6 @@
    		</div>
    		
 	<?php endforeach; ?>
-	
-	
-
 
 </div> <!-- #container -->
 
@@ -71,7 +70,7 @@
 			
 			 start: function(){
 
-					    var $container = $('#container');
+					    var $container = $('.results.container');
 					    
 					    $('.photo').addClass('col2');
 					  

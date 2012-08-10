@@ -18,7 +18,7 @@ class Models_Db_Products_Form extends Database {
 									, tags.name as tag_name '
 								,$where_array = array()
 								,$use_order = TRUE
-								,$order_field = 'tags_types.id, tag_id'
+								,$order_field = 'tags_types.name'
 								,$order_direction = 'asc'
 								,$limit = -1
 								,$use_join = TRUE
