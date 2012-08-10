@@ -48,13 +48,7 @@
 
 <div class="results container">
 
-	<?php foreach( $products  as  $key => $product):?>
-	
-	    <div class="box photo ">
-      	<a href="#" title=""><img src="<?php  echo base_url()   ?>uploads/products/<?php   echo $product->id;  ?>/image.jpg" alt="" /></a>
-   		</div>
-   		
-	<?php endforeach; ?>
+
 
 </div> <!-- #container -->
 
@@ -65,21 +59,63 @@
 		
 		_.extend(core, {
 			
-			 start: function(){
+			 init_search: function(){
 
 					    var $container = $('.results.container');
-					    
-					    $('.photo').addClass('col2');
-					  
-					    $container.imagesLoaded( function(){
-					      $container.masonry({
-					        itemSelector : '.box'
-					      });
-					    });
+				    
+					    this.getProducts();
+
 				
 			}
-			,test:function(){
+			,getProducts: function(){
 				
+						$.getJSON( window.base_url  + "search/getJsonProducts",
+						
+								function(data) {
+									
+									var  boxes = ''
+											,id;										
+
+									$.each(data, function(key, val) {
+										
+										$.each(val, function(key2, val2) {
+												
+												if( key2 === 'id'){
+													
+													console.log();
+													
+													id = val2;
+													
+													boxes += '\
+												    <div class="box photo ">\
+											      	<a href="#" title=""><img src="' + window.base_url + 'uploads/products/' + id + '/image.jpg" alt="" /></a>\
+											   		</div>\
+													';
+													
+												};
+												
+												
+										});
+										
+									});	
+									
+									
+									$('.results.container').html(boxes);
+									
+									$('.photo').addClass('col2');
+									
+									var $container = $('.results.container');
+									
+							    $container.imagesLoaded( function(){
+							      $container.masonry({
+							        itemSelector : '.box'
+							      });
+							    });									
+									
+									
+								}
+						);
+						
 			}
 			
 		});
@@ -87,7 +123,7 @@
 //		core.loadCSS(window.base_url  + 'js/libs/masonry/jquery.masonry.min.js');
 		core.loadScript('masonry', window.base_url  + 'js/libs/masonry/jquery.masonry.min.js', function(){
 			
-			core.start();	
+			core.init_search();	
 			
 		}); 
 		

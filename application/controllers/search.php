@@ -22,5 +22,12 @@ class Search extends Controllers_Controller {
 		$this->load->view('index', $this->_data);	  
 	}
 
-	
+
+
+
+	function getJsonProducts(){
+		
+		echo json_encode($this->model_products_form->get_all_products());
+		
+	}
 }
