@@ -10,9 +10,6 @@
           border-radius: 5px;
 }
 
-.centered { margin: 0 auto; }
-
-
 .results.container .box {
   margin: 5px;
   padding: 5px;
@@ -91,8 +88,6 @@
 		core.loadScript('masonry', window.base_url  + 'js/libs/masonry/jquery.masonry.min.js', function(){
 			
 			core.start();	
-			
-			console.log(core);
 			
 		}); 
 		
