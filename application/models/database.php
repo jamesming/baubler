@@ -247,7 +247,8 @@ class Database extends CI_Model  {
 			$use_join = FALSE, 
 			$join_array = array(), 
 			$group_by_array = array(),
-			$or_where_array = array()
+			$or_where_array = array(),
+			$where_in_array = array()
 			){
 			
 		
@@ -260,6 +261,13 @@ class Database extends CI_Model  {
 					$this->db->where($field, $value);
 				}		
 				
+			};
+			
+			
+			if( count($where_in_array) > 0){
+				
+					$this->db->where_in($where_in_array['field'], $where_in_array['ids']);				
+					
 			};
 			
 		

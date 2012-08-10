@@ -98,6 +98,42 @@ class Models_Db_Products_Form extends Database {
 			);
 		}
 		
+		public function get_all_products_from_tags($tags){
+
+					$where_array = array();
+			
+					$join_array = array(
+												 'products' => 'products.id = products_tags.product_id'
+												,'tags' => 'tags.id = products_tags.tag_id'
+												);	
+					
+					return  $this->select_from_table_left_join( 
+								 $table = 'products_tags' 
+								,$select_what = '
+												 products.id as product_id
+												,products.url as product_url
+												,products_tags.tag_id as products_tags_tag_id
+												,tags.name as tags_name
+											'
+								,$where_array 
+								,$use_order = TRUE
+								,$order_field = 'products.id'
+								,$order_direction = 'asc'
+								,$limit = -1
+								,$use_join = TRUE
+								,$join_array 
+								,$group_by_array = array('product_id')
+								,$or_where_array = array()
+								,$where_in_array = array(
+									 'field' => 'tag_id'
+									,'ids' => $tags
+								)
+							);
+								
+
+			
+		}
+		
 		public function get_products_where($product_id){
 			
 			return $this->select_from_table( 

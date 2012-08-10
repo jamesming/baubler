@@ -80,15 +80,15 @@
 										
 										$.each(val, function(key2, val2) {
 												
-												if( key2 === 'id'){
+												if( key2 === 'product_id'){
 													
 													console.log();
 													
-													id = val2;
+													product_id = val2;
 													
 													boxes += '\
 												    <div class="box photo ">\
-											      	<a href="#" title=""><img src="' + window.base_url + 'uploads/products/' + id + '/image.jpg" alt="" /></a>\
+											      	<a href="#" title=""><img src="' + window.base_url + 'uploads/products/' + product_id + '/image.jpg" alt="" /></a>\
 											   		</div>\
 													';
 													

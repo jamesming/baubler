@@ -27,7 +27,24 @@ class Search extends Controllers_Controller {
 
 	function getJsonProducts(){
 		
-		echo json_encode($this->model_products_form->get_all_products());
+		$tags = array(1, 2);
+		
+		echo json_encode($this->model_products_form->get_all_products_from_tags($tags));
 		
 	}
+	
+	
+	
+	
+	function test(){
+		
+		$tags = array(1, 2);
+		
+		echo '<pre>';print_r(  $this->model_products_form->get_all_products_from_tags($tags)  );echo '</pre>';  exit;
+		
+		
+	}
+	
+	
+	
 }
