@@ -60,10 +60,16 @@
 		_.extend(core, {
 			
 			 init_search: function(){
+			 	
+						var container = $('.results.container');			 	
 
-					    var $container = $('.results.container');
-				    
-					    this.getProducts();
+				    container.imagesLoaded( function(){
+				    	
+					    container.masonry({
+				        itemSelector : '.box'
+				      });										    	
+				    	
+				    });		
 
 				
 			}
@@ -106,15 +112,18 @@
 											
 											$('.photo').addClass('col2');
 											
-											var $container = $('.results.container');
+											var container = $('.results.container');
+
+
+											//container.masonry( 'remove');
 											
-									    $container.imagesLoaded( function(){
-									      $container.masonry({
-									        itemSelector : '.box'
-									      });
-									    });									
-											
-											
+									    container.imagesLoaded( function(){
+										    	
+									    	container.masonry('reload');
+									    	
+									      
+									    });					
+									    
 										}
 								);							
 							

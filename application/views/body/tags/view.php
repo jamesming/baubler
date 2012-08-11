@@ -134,7 +134,6 @@ $(document).ready(function() {
 														
 													});
 													
-//													console.log(JSON.stringify(that.all_tags));	
 													
 												}
 										);	
@@ -191,6 +190,11 @@ $(document).ready(function() {
 											
 										};
 										
+										if( that.hasOwnProperty('getProducts')){
+											
+											that.getProducts();
+											
+										};										
 										
 									});					
 								
