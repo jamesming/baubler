@@ -28,10 +28,12 @@ class Search extends Controllers_Controller {
 		
 		$tags = $this->input->get('tags');
 		
-		$tags = explode(',', $tags);
+		if( !empty($tags)){
+			
+			echo json_encode($this->model_products_form->get_distinct_products_where_string_tags_are($tags) );
+			
+		};
 		
-
-		echo json_encode($this->model_products_form->get_all_products_from_tags($tags));
 		
 	}
 	
@@ -40,15 +42,9 @@ class Search extends Controllers_Controller {
 	
 	function test(){
 		
-		
 		$tags = $this->input->get('tags');
 		
-		
-		echo '<pre>';print_r(  $tags   );echo '</pre>';  exit;
-		
-		$tags = array(1);
-		
-		echo '<pre>';print_r(  $this->model_products_form->get_all_products_from_tags($tags)  );echo '</pre>';  exit;
+		echo '<pre>';print_r(  $this->model_products_form->get_distinct_products_where_string_tags_are($tags)  );echo '</pre>';  exit;
 		
 		
 	}

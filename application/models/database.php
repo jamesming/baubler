@@ -147,6 +147,10 @@ class Database extends CI_Model  {
 		}
 		
 		
+		function select_from_query($query){
+			return $this->db->query($query)->result_array();
+		}
+		
 		
 		function select_from_table( 
 			$table, 
@@ -248,12 +252,25 @@ class Database extends CI_Model  {
 			$join_array = array(), 
 			$group_by_array = array(),
 			$or_where_array = array(),
-			$where_in_array = array()
+			$where_in_array = array(),
+			$whereFieldIsSame = array()
 			){
 			
 		
 			
 			$this->db->select($select_what);
+			
+			
+			
+			if( count($whereFieldIsSame) > 0 ){
+				
+				foreach( $whereFieldIsSame['ids'] as $id ){
+					$this->db->where($whereFieldIsSame['field'], $id);
+					echo 'where ' . $whereFieldIsSame['field'] . ' = ' . $id."<br />";
+				}		
+				
+			};
+			
 			
 			if( count($where_array) > 0 ){
 				
