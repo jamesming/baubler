@@ -160,7 +160,7 @@
 						that.spinner.spin(that.target);	
 						
 						
-						console.log(JSON.stringify(post_array));
+//						console.log(JSON.stringify(post_array));
 						
 						$.post( window.base_url  + "product_entry/" + that.mode,
 								post_array,

@@ -24,6 +24,7 @@ class Product_entry extends Controllers_Controller {
 	}
 
 
+
 	public function insert(){
 		
 		$post_array = $this->input->post();

@@ -88,7 +88,9 @@ $(document).ready(function() {
 								
 								this.bindClickToChooseColor();
 								
-								this.bindClickToChooseArticle();				
+								this.bindClickToChooseArticle();	
+								
+								this.getAllTags();			
 								
 								
 							}
@@ -97,6 +99,47 @@ $(document).ready(function() {
 					 			
 					 			this.tags = [];
 					 			
+					 			this.all_tags = {};
+					 			
+							}
+							
+							,getAllTags:function(){
+								
+										var that = this;
+								
+										$.getJSON( 
+										
+												window.base_url  + 'tags',
+								
+												{ },
+										
+												function(data) {
+				
+													$.each(data, function(key, val) {
+														
+														that.all_tags[key] = [];
+														
+														$.each(val, function(key2, val2) {
+															
+																	$.each(val2, function(key3, val3) {
+																		
+																			if( key3 === 'tag_id'){
+																				
+																				that.all_tags[key].push(val3);
+																				
+																			};
+																	});
+																	
+														});
+														
+													});
+													
+//													console.log(JSON.stringify(that.all_tags));	
+													
+												}
+										);	
+										
+										
 							}
 											
 							,bindClickToChooseColor: function(){
@@ -113,8 +156,6 @@ $(document).ready(function() {
 											that.tags.push($(this).attr('tag_id')); 
 											$(this).data('checked', true ).html('&#10003');
 										};
-										
-										// console.log(that.tags);
 										
 										
 										if( that.hasOwnProperty('getProducts')){
@@ -136,17 +177,20 @@ $(document).ready(function() {
 										
 										$('.articles .box').data('checked', false ).css({background:'white'});
 										
+										that.clear_articles_in_chosen_tags();		
+										
 										if( $(this).data('checked') === true ){
-				
+											
 											$(this).data('checked', false ).css({background:'white'});
 											
 										}else{
+											
+											that.tags.push($(this).attr('tag_id'));
 				
 											$(this).data('checked', true ).css({background:'yellow'});
 											
 										};
 										
-										//console.log(that.tags);
 										
 									});					
 								
@@ -157,6 +201,26 @@ $(document).ready(function() {
 								this.tags = []; $('.tags.container .colors .box').empty().data('checked', false);
 							}
 							
+							
+							,clear_articles_in_chosen_tags:function(){
+								
+											var that = this;
+								
+											$.each(this.all_tags['article'], function(key, tag_id) {
+											
+												var idx = that.tags.indexOf( tag_id );
+												
+												if( idx != -1){
+													
+													that.tags.splice(idx, 1);
+													
+												};
+											
+											});	
+								
+
+								
+							}
 						
 				});
 				
