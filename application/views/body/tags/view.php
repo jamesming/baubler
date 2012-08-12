@@ -15,7 +15,10 @@
 	font-weight:bold;
 }
 
-.tags.container .articles .box{
+ .tags.container .articles .box
+,.tags.container .typeOf .box
+,.tags.container .custom .box
+{
 	width:130px;
 	height:30px;
 	margin-right:5px;
@@ -36,7 +39,7 @@
 		
 		<?php  foreach( $tags  as  $key => $tag_array): ?>
 		
-				<?php if( $key === 'article' ){?>
+				<?php if( $key === 'articles' ){?>
 					<div class="control-group articles non_color">
 							<label class="control-label">Choose Article</label>
 							<div  class='box_wrapper controls' >
@@ -66,7 +69,35 @@
 					</div>			
 				<?php } ?>
 				
-
+				<?php if( $key === 'typeOf' ){?>
+					<div class="control-group typeOf non_color">
+							<label class="control-label">Choose Type</label>
+							<div  class='box_wrapper controls' >
+								<?php foreach( $tag_array  as  $key => $tag):?>
+								
+										<div  class='box fl' tag_id='<?php  echo  $tag['tag_id'];   ?>'  >
+											<?php echo $tag['tag_name'];    ?>
+										</div>						
+								
+								<?php endforeach; ?>
+							</div>
+					</div>			
+				<?php } ?>					
+				
+				<?php if( $key === 'custom' ){?>
+					<div class="control-group custom non_color">
+							<label class="control-label">Choose Custom</label>
+							<div  class='box_wrapper controls' >
+								<?php foreach( $tag_array  as  $key => $tag):?>
+								
+										<div  class='box fl' tag_id='<?php  echo  $tag['tag_id'];   ?>'  >
+											<?php echo $tag['tag_name'];    ?>
+										</div>						
+								
+								<?php endforeach; ?>
+							</div>
+					</div>			
+				<?php } ?>	
 	
 		<?php endforeach; ?>
 		
@@ -88,7 +119,7 @@ $(document).ready(function() {
 								
 								this.bindClickToChooseColor();
 								
-								this.bindClickToChooseArticle();	
+								this.bindClickToChooseNonColorTags();	
 								
 								this.getAllTags();			
 								
@@ -136,6 +167,8 @@ $(document).ready(function() {
 														
 													});
 													
+//													console.log(JSON.stringify(that.all_tags));
+													
 												}
 										);	
 										
@@ -171,35 +204,47 @@ $(document).ready(function() {
 								
 							}
 							
-							,bindClickToChooseArticle:function(){
+							,bindClickToChooseNonColorTags:function(){
 								
-									var that = this;
+									var that = this
+											,categories = [
+																			 'articles'
+																			,'typeOf'
+																			,'custom'
+																		];
+											
+											$.each(categories, function(key, category) {
+											
+														$('.tags.container .' + category + ' .box').click(function(event) {
+															
+															$('.' + category + ' .box').data('checked', false ).css({background:'white'});
+															
+															that.clear_noncolor_in_chosen_tags(category);		
+															
+															if( $(this).data('checked') === true ){
+																
+																$(this).data('checked', false ).css({background:'white'});
+																
+															}else{
+																
+																that.tags.push($(this).attr('tag_id'));
+									
+																$(this).data('checked', true ).css({background:'yellow'});
+																
+															};
+															
+															if( that.hasOwnProperty('getProducts')){
+																
+																that.getProducts();
+																
+															};										
+															
+														});	
+											
+											});	
 								
-									$('.tags.container .articles .box').click(function(event) {
-										
-										$('.articles .box').data('checked', false ).css({background:'white'});
-										
-										that.clear_articles_in_chosen_tags();		
-										
-										if( $(this).data('checked') === true ){
-											
-											$(this).data('checked', false ).css({background:'white'});
-											
-										}else{
-											
-											that.tags.push($(this).attr('tag_id'));
+								
 				
-											$(this).data('checked', true ).css({background:'yellow'});
-											
-										};
-										
-										if( that.hasOwnProperty('getProducts')){
-											
-											that.getProducts();
-											
-										};										
-										
-									});					
 								
 								
 							}
@@ -210,11 +255,11 @@ $(document).ready(function() {
 							}
 							
 							
-							,clear_articles_in_chosen_tags:function(){
+							,clear_noncolor_in_chosen_tags:function( category ){
 								
 											var that = this;
 								
-											$.each(this.all_tags['article'], function(key, tag_id) {
+											$.each(this.all_tags[category], function(key, tag_id) {
 											
 												var idx = that.tags.indexOf( tag_id );
 												
