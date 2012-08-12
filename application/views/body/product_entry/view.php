@@ -281,7 +281,7 @@
 												
 													if( idx === -1 ){
 														
-														$('.box[tag_id=' + tag_id + ']').css({background:'yellow'});
+														$('.box[tag_id=' + tag_id + ']').data('checked', true ).css({background:'yellow'});
 														
 													};
 													
