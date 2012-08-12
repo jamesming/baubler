@@ -366,6 +366,7 @@ $(document).ready(function() {
 																							});
 																							
 																							$('.' + tags_type_name + ' .box_wrapper').html(tag_box);
+																							tag_box = '';
 																							
 																						});
 																						
