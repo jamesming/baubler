@@ -37,7 +37,7 @@
 		<?php  foreach( $tags  as  $key => $tag_array): ?>
 		
 				<?php if( $key === 'article' ){?>
-					<div class="control-group articles">
+					<div class="control-group articles non_color">
 							<label class="control-label">Choose Article</label>
 							<div  class='box_wrapper controls' >
 								<?php foreach( $tag_array  as  $key => $tag):?>
@@ -101,6 +101,8 @@ $(document).ready(function() {
 					 			
 					 			this.all_tags = {};
 					 			
+					 			this.numberOfColors = 0;
+					 			
 							}
 							
 							,getAllTags:function(){
@@ -134,7 +136,6 @@ $(document).ready(function() {
 														
 													});
 													
-													
 												}
 										);	
 										
@@ -151,9 +152,11 @@ $(document).ready(function() {
 											var idx = that.tags.indexOf($(this).attr('tag_id'));
 											that.tags.splice(idx, 1);
 											$(this).data('checked', false ).html('');
+											that.numberOfColors--;
 										}else{
 											that.tags.push($(this).attr('tag_id')); 
 											$(this).data('checked', true ).html('&#10003');
+											that.numberOfColors++;
 										};
 										
 										
@@ -203,6 +206,7 @@ $(document).ready(function() {
 							
 							,clear_tags:function(){
 								this.tags = []; $('.tags.container .colors .box').empty().data('checked', false);
+								this.numberOfColors = 0;
 							}
 							
 							

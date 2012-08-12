@@ -90,7 +90,7 @@
 					
 					this.createJcropDiv();
 			 		
-					this.getProductsThumbs();
+					this.getProductsThumbNailImages();
 					
 					this.bindClickToUpdate();
 					
@@ -216,9 +216,9 @@
 
 									that.switchToEditMode();
 									
-									that.populate_form_for_update.populate_fields(data);
+									that.populate_form_for_update.populate_fields_chosen_for_product(data);
 									
-									that.populate_form_for_update.populate_tags(data);
+									that.populate_form_for_update.populate_tags_chosen_for_product(data);
 									
 								}
 						);		
@@ -229,7 +229,7 @@
 			
 			,populate_form_for_update: {
 				
-						populate_fields:function(data){
+						populate_fields_chosen_for_product:function(data){
 				
 									$.each(data.product, function(key, val) {
 										
@@ -253,9 +253,37 @@
 				
 						}
 						
-						,populate_tags:function(data){
+						,populate_tags_chosen_for_product:function(data){
 							
-								var  tag_id;
+								var    tag_id
+											,clearAllNonColorBoxesOfYellowHighlight = function(){
+												
+													$('.non_color .box').css({background:'white'});
+												
+											}
+											,markThisColorTagWithCheck = function( tag_id ){
+												
+													var idx = core.all_tags.color.indexOf( tag_id );
+													
+													if( idx !== -1 ){
+														
+														$('.box[tag_id=' + tag_id + ']').data('checked', true ).html('&#10003');
+														
+													};
+											}
+											,highlightThisTagYellow = function(tag_id){
+												
+													var idx = core.all_tags.color.indexOf( tag_id );
+												
+													if( idx === -1 ){
+														
+														$('.box[tag_id=' + tag_id + ']').css({background:'yellow'});
+														
+													};
+													
+											};
+											
+								clearAllNonColorBoxesOfYellowHighlight();
 							
 								$.each(data.tags, function(key, val) {
 									
@@ -265,7 +293,9 @@
 													
 													tag_id = val2;
 													
-													$('.box[tag_id=' + tag_id + ']').data('checked', true ).html('&#10003')
+													markThisColorTagWithCheck(tag_id);
+													
+													highlightThisTagYellow(tag_id);
 													
 													core.tags.push(tag_id); 
 							
@@ -280,7 +310,7 @@
 						
 			}
 			
-			,getProductsThumbs:function(){
+			,getProductsThumbNailImages:function(){
 				
 					this.imageLoadFailed = function(){
 							var image = arguments[0];

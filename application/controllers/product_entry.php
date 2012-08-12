@@ -79,7 +79,7 @@ class Product_entry extends Controllers_Controller {
 			$set_what_array = $post_array
 		);
 
-		$this->makeSomeCopyOfUrl( $post_array, $product_id );
+//		$this->makeSomeCopyOfUrl( $post_array, $product_id );
 	}
 	
 	public function makeSomeCopyOfUrl( $post_array, $pk ){

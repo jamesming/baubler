@@ -229,3 +229,8 @@ class Models_Db_Products_Form extends Database {
 		
 		
 }
+
+
+/* 
+SELECT DISTINCT product_id, tag_id FROM  products_tags  where tag_id in (1, 7 ) group by product_id having count(*) = 2  ORDER BY tag_id
+*/
