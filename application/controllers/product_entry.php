@@ -31,7 +31,7 @@ class Product_entry extends Controllers_Controller {
 		
 		$table = 'products';
 		
-		$numberOfColors = 'numberOfColors';
+		$numberOfColors = $post_array['numberOfColors'];
 		
 		unset($post_array['numberOfColors']);
 		
@@ -48,7 +48,7 @@ class Product_entry extends Controllers_Controller {
 		$this->model_products_form->insert_products_tags( 
 			$product_id
 			,$tags = $tags
-			,$numberOfColors = $post_array['numberOfColors']
+			,$numberOfColors = $numberOfColors
 		);
 		
 		$this->makeSomeCopyOfUrl( $post_array, $product_id );
