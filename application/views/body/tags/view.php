@@ -236,9 +236,9 @@ $(document).ready(function() {
 																		
 																		if( category === 'articles'){
 																			
+//																			$('.tags.container .colors .box').empty().data('checked', false);
+//																			$('.tags.container .typeOf .box, .tags.container .custom .box').data('checked', false);
 																			that.getTypeOfAndCustomTagsForChosenArticle($(this));
-																			
-																			that.clear_tags();
 																			
 																		};																		
 																																		
