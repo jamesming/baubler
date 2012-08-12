@@ -77,11 +77,12 @@
 				
 						if( this.tags.length > 0){
 							
-								console.log(this.tags);
-							
 								$.getJSON( window.base_url  + 'search/getJsonProducts',
 								
-										{ tags: this.tags.join(",")},
+										{
+											 tags: this.tags.join(",")
+											,numberOfColors: this.numberOfColors
+										},
 								
 										function(data) {
 											

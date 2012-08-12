@@ -215,10 +215,11 @@ class Models_Db_Products_Form extends Database {
 		}
 		
 		
-		public function get_distinct_products_where_string_tags_are( $tags ){
+		public function get_distinct_products_where_string_tags_are( $tags, $numberOfColors ){
 			
 			$query = "SELECT DISTINCT product_id\n"
 	    . "FROM `products_tags` where tag_id in (" . $tags . ")\n"
+	    . "and numberOfColors = " . $numberOfColors . "\n"
 	    . "group by product_id\n"
 	    . "having count(*) = " . count( explode(',', $tags) )  .  "\n"
 	    . "ORDER BY tag_id";
