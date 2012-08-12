@@ -202,7 +202,7 @@ $(document).ready(function() {
 											
 											$.each(categories, function(key, category) {
 											
-														$('.tags.container .' + category + ' .box').live('click', function(event) {
+														$('.tags.container .' + category + ' .box').bind('click', function(event) {
 															
 															if( $(this).data('checked') === true ){
 																
@@ -272,7 +272,7 @@ $(document).ready(function() {
 											
 											$.each(categories, function(key, category) {
 											
-														$('.tags.container .' + category + ' .box').live('click', function(event) {
+														$('.tags.container .' + category + ' .box').bind('click', function(event) {
 															
 															
 															if( $(this).data('checked') === true ){
