@@ -209,12 +209,18 @@ $(document).ready(function() {
 																		var idx = that.tags.indexOf($(this).attr('tag_id'));
 																		that.tags.splice(idx, 1);
 																		$(this).data('checked', false ).css({background:'white'});
+																		
+																		if( category === 'articles'){
+																			
+																			that.clearTypeOfAndCustomChoices();
+																			
+																		};		
 																
 															}else{
 																
 																		$('.' + category + ' .box').data('checked', false ).css({background:'white'});
 																		
-																		that.clear_noncolor_in_chosen_tags(category);		
+																		// that.clear_noncolor_in_chosen_tags(category);		
 																		
 																		if( $(this).data('checked') === true ){
 																			
@@ -226,82 +232,18 @@ $(document).ready(function() {
 												
 																			$(this).data('checked', true ).css({background:'yellow'});
 																			
-																		};																
-																
-																
+																		};
+																		
+																		if( category === 'articles'){
+																			
+																			that.getTypeOfAndCustomTagsForChosenArticle($(this));
+																			
+																		};																		
+																																		
 																
 															};
 															
-															if( category === 'articles'){
-																
-																
-																			var  tag_id
-																					,tag_name
-																					,tags_type_name
-																					,tag_box = '';
 
-																			$.getJSON( 
-																			
-																					window.base_url  + 'tags/getJsonTagsWhereParentTagId',
-																	
-																					{'parent_tag_id': $(this).attr('tag_id') },
-																			
-																					function(data) {
-													
-																						if( data.length === 0){
-																							
-																							$('.typeOf .box_wrapper, .custom .box_wrapper').empty();
-																							
-																						};
-													
-																						$.each(data, function(key, val) {
-																							
-																						
-																							
-																							$.each(val, function(key2, val2) {
-																								
-																										$.each(val2, function(key3, val3) {
-																											
-																												if( key3 === 'tag_id'){
-																													
-																													tag_id = val3;
-																													
-																												};
-																												
-																												if( key3 === 'tag_name'){
-																													
-																													tag_name= val3;
-																													
-																												};
-																												
-																												if( key3 === 'tags_type_name'){
-																													
-																													tags_type_name=val3;
-																													
-																												};							
-																												
-																												
-																										});
-																										
-																										tag_box +="\
-																											<div  class='box fl' tag_id='" + tag_id  + "'  >" + tag_name + "</div>\
-																										";
-																																				
-										
-																										
-																							});
-																							
-																							console.log(tags_type_name);
-																							$('.' + tags_type_name + ' .box_wrapper').html(tag_box);
-																							
-																						});
-																						
-									
-																						
-																					}
-																			);	
-																
-															};
 															
 															if( that.hasOwnProperty('getProducts')){
 																
@@ -363,6 +305,76 @@ $(document).ready(function() {
 								
 							}
 							
+							
+							,getTypeOfAndCustomTagsForChosenArticle: function($this){
+
+																			var	 that = this
+																					,tag_id
+																					,tag_name
+																					,tags_type_name
+																					,tag_box = '';
+
+																			$.getJSON( 
+																			
+																					window.base_url  + 'tags/getJsonTagsWhereParentTagId',
+																	
+																					{'parent_tag_id': $this.attr('tag_id') },
+																			
+																					function(data) {
+													
+																						if( data.length === 0){
+																							
+																							that.clearTypeOfAndCustomChoices();
+																							
+																						};
+													
+																						$.each(data, function(key, val) {
+																							
+																						
+																							
+																							$.each(val, function(key2, val2) {
+																								
+																										$.each(val2, function(key3, val3) {
+																											
+																												if( key3 === 'tag_id'){
+																													
+																													tag_id = val3;
+																													
+																												};
+																												
+																												if( key3 === 'tag_name'){
+																													
+																													tag_name= val3;
+																													
+																												};
+																												
+																												if( key3 === 'tags_type_name'){
+																													
+																													tags_type_name=val3;
+																													
+																												};							
+																												
+																												
+																										});
+																										
+																										tag_box +="\
+																											<div  class='box fl' tag_id='" + tag_id  + "'  >" + tag_name + "</div>\
+																										";
+																																				
+										
+																										
+																							});
+																							
+																							$('.' + tags_type_name + ' .box_wrapper').html(tag_box);
+																							
+																						});
+																						
+									
+																						
+																					}
+																			);	
+							}
+							
 							,clear_tags:function(){
 								this.tags = []; 
 								$('.tags.container .colors .box').empty().data('checked', false);
@@ -370,6 +382,11 @@ $(document).ready(function() {
 								this.numberOfColors = 0;
 							}
 							
+							
+							,clearTypeOfAndCustomChoices: function(){
+									this.clear_tags();
+									$('.typeOf .box_wrapper, .custom .box_wrapper').empty();
+							}
 							
 							,clear_noncolor_in_chosen_tags:function( category ){
 								
