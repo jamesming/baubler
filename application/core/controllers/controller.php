@@ -29,7 +29,12 @@ class Controllers_Controller extends CI_Controller
 	}
 	
 	
-	
+	function testing(){
+		
+		echo '<pre>';print_r(  $this->_data->tags  );echo '</pre>';  exit;
+		
+		
+	}
 	
 	
 		function create_table(){

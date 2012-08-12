@@ -246,7 +246,57 @@ $(document).ready(function() {
 																
 															};
 															
+															if( category === 'articles'){
 
+																			$.getJSON( 
+																			
+																					window.base_url  + 'tags/getJsonTagsWhereParentTagId',
+																	
+																					{'parent_tag_id': $(this).attr('tag_id') },
+																			
+																					function(data) {
+													
+																						// console.log('data: ' + JSON.stringify(data));
+													
+																						$.each(data, function(key, val) {
+																							
+																						
+																							
+																							$.each(val, function(key2, val2) {
+																								
+																										$.each(val2, function(key3, val3) {
+																											
+																												if( key3 === 'tag_id'){
+																													
+																												console.log(val3);
+																													
+																												};
+																												
+																												if( key3 === 'tag_name'){
+																													
+																												console.log(val3);
+																													
+																												};
+																												
+																												if( key3 === 'tags_type_name'){
+																													
+																												console.log(val3);
+																													
+																												};							
+																												
+																												
+																										});
+																										
+																							});
+																							
+																						});
+																						
+									
+																						
+																					}
+																			);	
+																
+															};
 															
 															if( that.hasOwnProperty('getProducts')){
 																
@@ -304,7 +354,7 @@ $(document).ready(function() {
 											
 											});
 											
-									console.log(JSON.stringify(this.tags));
+//									console.log(JSON.stringify(this.tags));
 								
 							}
 							
