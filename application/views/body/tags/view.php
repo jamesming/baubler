@@ -218,21 +218,35 @@ $(document).ready(function() {
 											
 														$('.tags.container .' + category + ' .box').click(function(event) {
 															
-															$('.' + category + ' .box').data('checked', false ).css({background:'white'});
-															
-															that.clear_noncolor_in_chosen_tags(category);		
-															
 															if( $(this).data('checked') === true ){
 																
-																$(this).data('checked', false ).css({background:'white'});
+																		var idx = that.tags.indexOf($(this).attr('tag_id'));
+																		that.tags.splice(idx, 1);
+																		$(this).data('checked', false ).css({background:'white'});
 																
 															}else{
 																
-																that.tags.push($(this).attr('tag_id'));
-									
-																$(this).data('checked', true ).css({background:'yellow'});
+																		$('.' + category + ' .box').data('checked', false ).css({background:'white'});
+																		
+																		that.clear_noncolor_in_chosen_tags(category);		
+																		
+																		if( $(this).data('checked') === true ){
+																			
+																			$(this).data('checked', false ).css({background:'white'});
+																			
+																		}else{
+																			
+																			that.tags.push($(this).attr('tag_id'));
+												
+																			$(this).data('checked', true ).css({background:'yellow'});
+																			
+																		};																
+																
+																
 																
 															};
+															
+
 															
 															if( that.hasOwnProperty('getProducts')){
 																
