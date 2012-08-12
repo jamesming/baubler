@@ -290,7 +290,9 @@ $(document).ready(function() {
 							}
 							
 							,clear_tags:function(){
-								this.tags = []; $('.tags.container .colors .box').empty().data('checked', false);
+								this.tags = []; 
+								$('.tags.container .colors .box').empty().data('checked', false);
+								$('.tags.container .custom .box').data('checked', false).css({background:'white'});
 								this.numberOfColors = 0;
 							}
 							
