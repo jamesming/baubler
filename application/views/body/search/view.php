@@ -101,7 +101,7 @@
 															
 															boxes += '\
 														    <div class="box photo ">\
-													      	<a href="#" title=""><img src="' + window.base_url + 'uploads/products/' + product_id + '/image.jpg" alt="" /></a>\
+													      	<a href="#" title=""><img  src="' + window.base_url + 'uploads/products/' + product_id + '/image.jpg" alt="" /></a>\
 													   		</div>\
 															';
 															
