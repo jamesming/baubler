@@ -33,12 +33,20 @@ class Search extends Controllers_Controller {
 			
 			echo json_encode($this->model_products_form->get_distinct_products_where_string_tags_are($tags, $numberOfColors ) );
 			
+		}else{
+			
+			echo json_encode($this->model_products_form->get_all_products() );
 		};
 		
 		
 	}
 	
-	
+	function test2(){
+		
+		
+		echo '<pre>';print_r( $this->model_products_form->get_all_products()   );echo '</pre>';  exit;
+		
+	}
 	
 	
 	function test(){

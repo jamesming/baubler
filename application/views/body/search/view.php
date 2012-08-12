@@ -61,6 +61,8 @@
 			
 			 init_search: function(){
 			 	
+			 			core.getProducts();
+			 	
 						var container = $('.results.container');			 	
 
 				    container.imagesLoaded( function(){
