@@ -12,7 +12,7 @@ class Search extends Controllers_Controller {
 	
 	function index(){
 		
-		$this->_data->products = $this->model_products_form->get_all_products();
+		$this->_data->products = $this->model_products_model->get_all_products();
 		
 		$this->_data->body = "body/search/view";
 		
@@ -31,11 +31,11 @@ class Search extends Controllers_Controller {
 		
 		if( !empty($tags)){
 			
-			echo json_encode($this->model_products_form->get_distinct_products_where_string_tags_are($tags, $numberOfColors ) );
+			echo json_encode($this->model_products_tags_model->get_distinct_products_where_string_tags_are($tags, $numberOfColors ) );
 			
 		}else{
 			
-			echo json_encode($this->model_products_form->get_all_products_tags() );
+			echo json_encode($this->model_products_tags_model->get_all_products_tags() );
 		};
 		
 		
@@ -44,7 +44,7 @@ class Search extends Controllers_Controller {
 	function test2(){
 		
 		
-		echo '<pre>';print_r( $this->model_products_form->get_all_products_tags()   );echo '</pre>';  exit;
+		echo '<pre>';print_r( $this->model_products_model->get_all_products_tags()   );echo '</pre>';  exit;
 		
 	}
 	
@@ -54,7 +54,7 @@ class Search extends Controllers_Controller {
 		$tags = $this->input->get('tags');
 		$numberOfColors = $this->input->get('numberOfColors');
 		
-		echo '<pre>';print_r(  $this->model_products_form->get_distinct_products_where_string_tags_are($tags, $numberOfColors)  );echo '</pre>';  exit;
+		echo '<pre>';print_r(  $this->model_products_tags_model->get_distinct_products_where_string_tags_are($tags, $numberOfColors)  );echo '</pre>';  exit;
 		
 		
 	}

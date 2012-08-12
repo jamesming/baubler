@@ -8,7 +8,8 @@ class Controllers_Controller extends CI_Controller
 		
 		parent::__construct();
 		
-			$this->model_products_form = new Models_Db_Products_Form;				
+			$this->model_products_model = new Models_Db_Products_Model;				
+			$this->model_products_tags_model = new Models_Db_Products_Tags_Model;				
 		
 			$this->_data = new stdClass;
 			
@@ -22,7 +23,8 @@ class Controllers_Controller extends CI_Controller
 			$this->_data->company = "footer/company";			
 			$this->_data->footer = "footer/footer";
 			
-			$this->_data->tags = $this->model_products_form->get_all_tags();			
+			$this->models_tags_model = new Models_Db_Tags_Model;
+			$this->_data->tags = $this->models_tags_model->get_all_tags();				
 
 	}
 	
@@ -34,9 +36,9 @@ class Controllers_Controller extends CI_Controller
 			
 			$table = $this->input->get('table');
 			
-			$this->model_products_form = new Models_Db_Products_Form;
+			$this->model_products_model = new Models_Db_Products_Form;
 			
-			$this->model_products_form->create_generic_table($table); 
+			$this->model_products_model->create_generic_table($table); 
 			
 			
 			$fields_array = array(/*
@@ -65,7 +67,7 @@ class Controllers_Controller extends CI_Controller
 			              ); 
 			              
 			echo '<pre>';print_r(  $fields_array   );echo '</pre>';   
-			$this->model_products_form->add_column_to_table_if_not_exist(
+			$this->model_products_model->add_column_to_table_if_not_exist(
 				$table, 
 				$fields_array
 			);

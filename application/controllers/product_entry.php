@@ -35,17 +35,17 @@ class Product_entry extends Controllers_Controller {
 		
 		unset($post_array['numberOfColors']);
 		
-		$this->model_products_form->create_generic_table($table);
+		$this->model_products_model->create_generic_table($table);
 		
-		$this->model_products_form->create_fields_with_post($table, $post_array);
+		$this->model_products_model->create_fields_with_post($table, $post_array);
 		
 		$tags = $post_array['tags'];
 		
 		unset($post_array['tags']);	
 		
-		$product_id = $this->model_products_form->insert_table($table, $post_array);
+		$product_id = $this->model_products_model->insert_table($table, $post_array);
 		
-		$this->model_products_form->insert_products_tags( 
+		$this->model_products_tags_model->insert_products_tags( 
 			$product_id
 			,$tags = $tags
 			,$numberOfColors = $numberOfColors
@@ -65,7 +65,7 @@ class Product_entry extends Controllers_Controller {
 		
 		unset($post_array['product_id']);
 		
-		$this->model_products_form->insert_products_tags( 
+		$this->model_products_tags_model->insert_products_tags( 
 			$product_id
 			,$tags = $post_array['tags']
 			,$numberOfColors = $post_array['numberOfColors']
@@ -74,7 +74,7 @@ class Product_entry extends Controllers_Controller {
 		unset($post_array['tags']);	 
 		unset($post_array['numberOfColors']);	 
 		
-		echo $this->model_products_form->update_table_where( 
+		echo $this->model_products_model->update_table_where( 
 			$table, 
 			$where_array = array(
 				'id' => $product_id
@@ -94,7 +94,7 @@ class Product_entry extends Controllers_Controller {
       $width_of_file = $info[0];  
       $height_of_file = $info[1];
       
-			$this->model_products_form->update_table_where( 
+			$this->model_products_model->update_table_where( 
 						$table = 'products', 
 						$where_array = array(
 							'id' => $pk
@@ -163,7 +163,7 @@ class Product_entry extends Controllers_Controller {
 	
 	public function getJsonAllProducts(){
 		
-		echo json_encode($this->model_products_form->get_all_products());
+		echo json_encode($this->model_products_model->get_all_products());
 		
 	}
 
@@ -171,9 +171,9 @@ class Product_entry extends Controllers_Controller {
 		
 		$product_id  = $this->input->get('id');
 		
-		$tags =  $this->model_products_form->get_all_tags_for_product_id( $product_id );
+		$tags =  $this->model_products_tags_model->get_all_tags_for_product_id( $product_id );
 		
-		$product = $this->model_products_form->get_products_where(
+		$product = $this->model_products_model->get_products_where(
 			$product_id 
 		);
 

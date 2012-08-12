@@ -6,18 +6,34 @@ class Tags extends Controllers_Controller {
 		
 		parent::__construct();
 		
+
+		
 	}	
 	
 
 	public function index() {
 		
+		
 			echo json_encode(  $this->_data->tags  );
 			
 	}
 	
+	function getJsonTagsWhereParentTagId(){
+		
+		$parent_tag_id = $this->input->get('parent_tag_id');
+		
+			
+		echo json_encode($this->models_tags_model->getTagsWhereParentTagId($parent_tag_id ) );
+			
+		
+	}
+	
+	
 	function test(){
 		
-		echo '<pre>';print_r(  $this->_data->tags    );echo '</pre>';  exit;
+		$parent_tag_id = $this->input->get('parent_tag_id');
+		
+		echo '<pre>';print_r(  $this->models_tags_model->getTagsWhereParentTagId($parent_tag_id )   );echo '</pre>';  exit;
 		
 	}
 	

@@ -276,9 +276,7 @@ $(document).ready(function() {
 														$('.tags.container .' + category + ' .box').click(function(event) {
 															
 															
-															
 															if( $(this).data('checked') === true ){
-																
 
 																
 																var idx = that.tags.indexOf($(this).attr('tag_id'));
