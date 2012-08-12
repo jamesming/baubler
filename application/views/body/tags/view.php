@@ -236,6 +236,8 @@ $(document).ready(function() {
 																		
 																		if( category === 'articles'){
 																			
+																			that.clearTypeOfAndCustomChoices();
+																			
 																			that.getTypeOfAndCustomTagsForChosenArticle($(this));
 																			
 																		};																		
