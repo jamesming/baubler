@@ -41,7 +41,11 @@ class Models_Db_Tags_Model extends Database {
 								, $join_array
 								);
 								
-								
+					if( empty($_tags_types) ){
+						return array();
+					};
+					
+					
 					$_tags_types = $this->object_to_array($_tags_types);
 					
 					

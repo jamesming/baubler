@@ -73,13 +73,6 @@
 					<div class="control-group typeOf non_color">
 							<label class="control-label">Choose Type</label>
 							<div  class='box_wrapper controls' >
-								<?php foreach( $tag_array  as  $key => $tag):?>
-								
-										<div  class='box fl' tag_id='<?php  echo  $tag['tag_id'];   ?>'  >
-											<?php echo $tag['tag_name'];    ?>
-										</div>						
-								
-								<?php endforeach; ?>
 							</div>
 					</div>			
 				<?php } ?>					
@@ -88,13 +81,6 @@
 					<div class="control-group custom non_color">
 							<label class="control-label">Choose Custom</label>
 							<div  class='box_wrapper controls' >
-								<?php foreach( $tag_array  as  $key => $tag):?>
-								
-										<div  class='box fl' tag_id='<?php  echo  $tag['tag_id'];   ?>'  >
-											<?php echo $tag['tag_name'];    ?>
-										</div>						
-								
-								<?php endforeach; ?>
 							</div>
 					</div>			
 				<?php } ?>	
@@ -216,7 +202,7 @@ $(document).ready(function() {
 											
 											$.each(categories, function(key, category) {
 											
-														$('.tags.container .' + category + ' .box').click(function(event) {
+														$('.tags.container .' + category + ' .box').live('click', function(event) {
 															
 															if( $(this).data('checked') === true ){
 																
@@ -247,6 +233,12 @@ $(document).ready(function() {
 															};
 															
 															if( category === 'articles'){
+																
+																
+																			var  tag_id
+																					,tag_name
+																					,tags_type_name
+																					,tag_box = '';
 
 																			$.getJSON( 
 																			
@@ -256,7 +248,11 @@ $(document).ready(function() {
 																			
 																					function(data) {
 													
-																						// console.log('data: ' + JSON.stringify(data));
+																						if( data.length === 0){
+																							
+																							$('.typeOf .box_wrapper, .custom .box_wrapper').empty();
+																							
+																						};
 													
 																						$.each(data, function(key, val) {
 																							
@@ -268,26 +264,35 @@ $(document).ready(function() {
 																											
 																												if( key3 === 'tag_id'){
 																													
-																												console.log(val3);
+																													tag_id = val3;
 																													
 																												};
 																												
 																												if( key3 === 'tag_name'){
 																													
-																												console.log(val3);
+																													tag_name= val3;
 																													
 																												};
 																												
 																												if( key3 === 'tags_type_name'){
 																													
-																												console.log(val3);
+																													tags_type_name=val3;
 																													
 																												};							
 																												
 																												
 																										});
 																										
+																										tag_box +="\
+																											<div  class='box fl' tag_id='" + tag_id  + "'  >" + tag_name + "</div>\
+																										";
+																																				
+										
+																										
 																							});
+																							
+																							console.log(tags_type_name);
+																							$('.' + tags_type_name + ' .box_wrapper').html(tag_box);
 																							
 																						});
 																						
@@ -323,7 +328,7 @@ $(document).ready(function() {
 											
 											$.each(categories, function(key, category) {
 											
-														$('.tags.container .' + category + ' .box').click(function(event) {
+														$('.tags.container .' + category + ' .box').live('click', function(event) {
 															
 															
 															if( $(this).data('checked') === true ){
