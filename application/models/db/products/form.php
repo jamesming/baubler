@@ -186,7 +186,7 @@ class Models_Db_Products_Form extends Database {
 			
 		}
 		
-		public function insert_products_tags( $product_id, $tags ){
+		public function insert_products_tags( $product_id, $tags, $numberOfColors ){
 
 			$table = 'products_tags';			
 			
@@ -202,6 +202,7 @@ class Models_Db_Products_Form extends Database {
 				$what_array  = array(
 								 'product_id' => $product_id
 								,'tag_id' => $tag_id
+								,'numberOfColors' => $numberOfColors
 							);
 				
 				$this->insert_table(

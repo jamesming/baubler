@@ -29,9 +29,11 @@ class Product_entry extends Controllers_Controller {
 		
 		$post_array = $this->input->post();
 		
-		$table = $post_array['table'];
+		$table = 'products';
 		
-		unset($post_array['table']);		
+		$numberOfColors = 'numberOfColors';
+		
+		unset($post_array['numberOfColors']);
 		
 		$this->model_products_form->create_generic_table($table);
 		
@@ -46,6 +48,7 @@ class Product_entry extends Controllers_Controller {
 		$this->model_products_form->insert_products_tags( 
 			$product_id
 			,$tags = $tags
+			,$numberOfColors = $post_array['numberOfColors']
 		);
 		
 		$this->makeSomeCopyOfUrl( $post_array, $product_id );
@@ -56,9 +59,7 @@ class Product_entry extends Controllers_Controller {
 		
 		$post_array = $this->input->post();
 		
-		$table = $post_array['table'];
-		
-		unset($post_array['table']);		
+		$table = 'products';		
 		
 		$product_id = $post_array['product_id'];
 		
@@ -67,9 +68,11 @@ class Product_entry extends Controllers_Controller {
 		$this->model_products_form->insert_products_tags( 
 			$product_id
 			,$tags = $post_array['tags']
+			,$numberOfColors = $post_array['numberOfColors']
 		);
 		
 		unset($post_array['tags']);	 
+		unset($post_array['numberOfColors']);	 
 		
 		echo $this->model_products_form->update_table_where( 
 			$table, 

@@ -48,7 +48,7 @@ class Controllers_Controller extends CI_Controller
 			                      'product_id' => array(
 			                                               'type' => 'int(11)'
 			                                    ),*/
-			                      'tabs_type_id' => array(
+			                      'numberOfColors' => array(
 			                                               'type' => 'int(11)'
 			                                    )			                                    
 			                                    

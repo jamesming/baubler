@@ -142,8 +142,8 @@
 									post_array[$(this).attr('name')]= $(this).val();
 						});
 						
-						post_array.table = 'products';
 						post_array.tags = that.tags;
+						post_array.numberOfColors = that.numberOfColors;
 						
 						if( that.mode == 'update'){
 							
@@ -255,6 +255,8 @@
 						
 						,populate_tags_chosen_for_product:function(data){
 							
+								core.numberOfColors = 0;
+							
 								var    tag_id
 											,clearAllNonColorBoxesOfYellowHighlight = function(){
 												
@@ -266,6 +268,8 @@
 													var idx = core.all_tags.color.indexOf( tag_id );
 													
 													if( idx !== -1 ){
+														
+														core.numberOfColors++;
 														
 														$('.box[tag_id=' + tag_id + ']').data('checked', true ).html('&#10003');
 														
