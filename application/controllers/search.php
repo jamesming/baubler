@@ -35,7 +35,7 @@ class Search extends Controllers_Controller {
 			
 		}else{
 			
-			echo json_encode($this->model_products_form->get_all_products() );
+			echo json_encode($this->model_products_form->get_all_products_tags() );
 		};
 		
 		
@@ -44,7 +44,7 @@ class Search extends Controllers_Controller {
 	function test2(){
 		
 		
-		echo '<pre>';print_r( $this->model_products_form->get_all_products()   );echo '</pre>';  exit;
+		echo '<pre>';print_r( $this->model_products_form->get_all_products_tags()   );echo '</pre>';  exit;
 		
 	}
 	

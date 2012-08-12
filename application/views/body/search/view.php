@@ -77,7 +77,7 @@
 			}
 			,getProducts: function(){
 				
-						if( this.tags.length > 0){
+
 							
 								$.getJSON( window.base_url  + 'search/getJsonProducts',
 								
@@ -132,13 +132,7 @@
 										}
 								);							
 							
-						}else{
-							
-							
-								$('.results.container').empty();
-							
-							
-						};
+
 				
 				return;
 					

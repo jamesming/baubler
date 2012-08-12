@@ -85,6 +85,21 @@ class Models_Db_Products_Form extends Database {
 			);
 		}
 
+		public function get_all_products_tags(){
+			
+			return $this->object_to_array($this->select_from_table( 
+				$table = 'products_tags'
+				,$select_what = 'product_id'
+				,$where_array = array()
+				,$use_order = TRUE
+				,$order_field = 'created'
+				,$order_direction = 'asc'
+				,$limit = -1
+				,$use_join = FALSE
+				,$join_array = array()
+				,$group_by_array = array('product_id')
+			));
+		}
 
 		public function get_all_products(){
 			
