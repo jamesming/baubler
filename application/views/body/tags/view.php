@@ -279,6 +279,7 @@ $(document).ready(function() {
 															
 															if( $(this).data('checked') === true ){
 																
+
 																
 																var idx = that.tags.indexOf($(this).attr('tag_id'));
 																
@@ -288,7 +289,7 @@ $(document).ready(function() {
 																
 															}else{
 																
-																
+
 																that.tags.push($(this).attr('tag_id'));
 									
 																$(this).data('checked', true ).css({background:'yellow'});
