@@ -242,12 +242,6 @@ class Models_Db_Products_Form extends Database {
 	    
 	    . ( $numberOfColors == 0  ?  '':    " and numberOfColors = " . $numberOfColors ) 
 	    
-	    
-	    
-//	    . " or tag_id in (" . $tags . ")"
-	    
-	    
-	    
 	    . " group by product_id "
 	    
 	    . " having count(*) = " . count( explode(',', $tags) )  
