@@ -107,8 +107,6 @@ $(document).ready(function() {
 								
 								this.bindClickToChooseOneChoiceNonColorTags();	
 								
-								this.bindClickToChooseMultipleChoicesNonColorTags();	
-								
 								this.getAllTags();			
 								
 								
@@ -194,17 +192,15 @@ $(document).ready(function() {
 							
 							,bindClickToChooseOneChoiceNonColorTags:function(){
 								
-									var that = this
-											,categories = [
-																			 'articles'
-																		]
-																		
+									var  that = this
 											,callback_bind_typeOf_click = function(){
 												
 														$('.tags.container .typeOf .box').unbind('click');
 														$('.tags.container .typeOf .box').bind('click', function(event) {
 															
 															if( $(this).data('checked') === true ){
+																
+																		console.log($(this).html()+ ' clicking off') ;
 																
 																		var idx = that.tags.indexOf($(this).attr('tag_id'));
 																		that.tags.splice(idx, 1);
@@ -213,9 +209,11 @@ $(document).ready(function() {
 																
 															}else{
 																
+																		console.log($(this).html() + ' clicking on');
+																
 																		$('.typeOf .box').data('checked', false ).css({background:'white'});
 																		
-																		// that.clear_noncolor_in_chosen_tags(category);		
+																		that.clear_tags_from_category('typeOf');		
 																		
 																		if( $(this).data('checked') === true ){
 																			
@@ -232,7 +230,7 @@ $(document).ready(function() {
 																
 															};
 															
-
+															
 															
 															if( that.hasOwnProperty('getProducts')){
 																
@@ -243,54 +241,56 @@ $(document).ready(function() {
 														});	
 											};
 											
-											$.each(categories, function(key, category) {
-											
-														$('.tags.container .' + category + ' .box').bind('click', function(event) {
-															
-															if( $(this).data('checked') === true ){
+											$('.tags.container .articles .box').bind('click', function(event) {
 																
-																		var idx = that.tags.indexOf($(this).attr('tag_id'));
-																		that.tags.splice(idx, 1);
-																		$(this).data('checked', false ).css({background:'white'});
-																		
-																			
-																		that.clearTypeOfAndCustomChoices();
-																			
-																
-															}else{
-																
-																		$('.' + category + ' .box').data('checked', false ).css({background:'white'});
-																		
-																		// that.clear_noncolor_in_chosen_tags(category);		
-																		
-																		if( $(this).data('checked') === true ){
-																			
+																if( $(this).data('checked') === true ){
+																	
+																			var idx = that.tags.indexOf($(this).attr('tag_id'));
+																			that.tags.splice(idx, 1);
 																			$(this).data('checked', false ).css({background:'white'});
 																			
-																		}else{
+																			that.clear_tags_from_category('color');
+																			that.clear_tags_from_category('custom');		
+																			that.clear_tags_from_category('typeOf');	
+																				
+																	
+																}else{
+																	
+																			$('.articles .box').data('checked', false ).css({background:'white'});
 																			
-																			that.tags.push($(this).attr('tag_id'));
-												
-																			$(this).data('checked', true ).css({background:'yellow'});
+																					
+																			that.clear_tags_from_category('articles');		
+																			that.clear_tags_from_category('custom');		
+																			that.clear_tags_from_category('typeOf');		
+																			that.clear_tags_from_category('color');
 																			
-																		};
-																		
+																			if( $(this).data('checked') === true ){
+																				
+																				$(this).data('checked', false ).css({background:'white'});
+																				
+																			}else{
+																				
+																				that.tags.push($(this).attr('tag_id'));
+													
+																				$(this).data('checked', true ).css({background:'yellow'});
+																				
+																			};
+																			
 //																			$('.tags.container .colors .box').empty().data('checked', false);
 //																			$('.tags.container .typeOf .box, .tags.container .custom .box').data('checked', false);
-																		that.getTypeOfAndCustomTagsForChosenArticle($(this), callback_bind_typeOf_click);
-																			
+																			that.getTypeOfAndCustomTagsForChosenArticle($(this), callback_bind_typeOf_click);
+																				
+																	
+																};
 																
-															};
-															
+				
+																
+																if( that.hasOwnProperty('getProducts')){
+																	
+																	that.getProducts();
+																	
+																};										
 
-															
-															if( that.hasOwnProperty('getProducts')){
-																
-																that.getProducts();
-																
-															};										
-															
-														});	
 											
 											});	
 								
@@ -300,45 +300,39 @@ $(document).ready(function() {
 							
 							,bindClickToChooseMultipleChoicesNonColorTags: function(){
 								
-									var that = this
-											,categories = [
-																			'custom'
-																		];
+									var that = this;
 											
-											$.each(categories, function(key, category) {
-											
-														$('.tags.container .' + category + ' .box').bind('click', function(event) {
-															
-															
-															if( $(this).data('checked') === true ){
 
-																
-																var idx = that.tags.indexOf($(this).attr('tag_id'));
-																
-																that.tags.splice(idx, 1);
-																
-																$(this).data('checked', false ).css({background:'white'});
-																
-															}else{
-																
+									$('.tags.container .custom .box').unbind('click');
+									$('.tags.container .custom .box').bind('click', function(event) {
+										
+										
+										if( $(this).data('checked') === true ){
 
-																that.tags.push($(this).attr('tag_id'));
-									
-																$(this).data('checked', true ).css({background:'yellow'});
-																
-															};
-															
-															if( that.hasOwnProperty('getProducts')){
-																
-																that.getProducts();
-																
-															};										
-															
-														});	
 											
-											});
+											var idx = that.tags.indexOf($(this).attr('tag_id'));
 											
-//									console.log(JSON.stringify(this.tags));
+											that.tags.splice(idx, 1);
+											
+											$(this).data('checked', false ).css({background:'white'});
+											
+										}else{
+											
+
+											that.tags.push($(this).attr('tag_id'));
+				
+											$(this).data('checked', true ).css({background:'yellow'});
+											
+										};
+										
+										if( that.hasOwnProperty('getProducts')){
+											
+											that.getProducts();
+											
+										};										
+										
+									});	
+
 								
 							}
 							
@@ -361,7 +355,9 @@ $(document).ready(function() {
 													
 																						if( data.length === 0){
 																							
-																							that.clearTypeOfAndCustomChoices();
+																								that.clear_tags_from_category('color');
+																								that.clear_tags_from_category('custom');		
+																								that.clear_tags_from_category('typeOf');	
 																							
 																						};
 													
@@ -410,27 +406,30 @@ $(document).ready(function() {
 									
 																						
 																					}
-																			).complete(function() { callback(); });
+																			).complete(function() { 
+																				callback(); 
+																				core.bindClickToChooseMultipleChoicesNonColorTags();	
+																				
+																			});
 																			
 																			
 							}
 							
-							,clear_tags:function(){
-								this.tags = []; 
-								$('.tags.container .colors .box').empty().data('checked', false);
-								$('.tags.container .non_color .box').data('checked', false).css({background:'white'});
-								this.numberOfColors = 0;
-							}
+
+
 							
-							
-							,clearTypeOfAndCustomChoices: function(){
-									this.clear_tags();
-									$('.typeOf .box_wrapper, .custom .box_wrapper').empty();
-							}
-							
-							,clear_noncolor_in_chosen_tags:function( category ){
+							,clear_tags_from_category:function( category ){
 								
 											var that = this;
+											
+											console.log('within ' + category + ': '+ JSON.stringify(this.all_tags[category]));
+											
+											if( category === 'color'){
+												$('.tags.container .colors .box').empty().data('checked', false);
+												this.numberOfColors = 0;
+											}else{
+												$('.tags.container .' + category + ' .box').data('checked', false).css({background:'white'});
+											};
 								
 											$.each(this.all_tags[category], function(key, tag_id) {
 											

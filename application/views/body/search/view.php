@@ -77,7 +77,8 @@
 			}
 			,getProducts: function(){
 				
-
+								console.log('within tags: ' + JSON.stringify(this.tags));
+								console.log('within numberOfColors: ' + JSON.stringify(this.numberOfColors));
 							
 								$.getJSON( window.base_url  + 'search/getJsonProducts',
 								
