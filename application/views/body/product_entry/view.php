@@ -186,7 +186,10 @@
 										
 										
 										that.switchToInsertMode();
-										that.clear_tags();
+										that.clear_tags_from_category('articles');
+										that.clear_tags_from_category('color');
+										that.clear_tags_from_category('custom');		
+										that.clear_tags_from_category('typeOf');	
 										
 									}, 100);
 									
@@ -208,7 +211,10 @@
 								 'src':window.base_url + 'uploads/products/' + that.product_id + '/image.jpg?v=' + that.getRandoms(1, 1, 10000)
 							});
 							
-						that.clear_tags();						
+						that.clear_tags_from_category('articles');
+						that.clear_tags_from_category('color');
+						that.clear_tags_from_category('custom');		
+						that.clear_tags_from_category('typeOf');						
 						
 						$.getJSON( window.base_url  + "product_entry/getJsonProductsWherePkIs?id=" + that.product_id,
 						

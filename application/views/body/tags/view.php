@@ -298,7 +298,7 @@ $(document).ready(function() {
 											
 							}
 							
-							,bindClickToChooseMultipleChoicesNonColorTags: function(){
+							,bindClickToCustomTags: function(){
 								
 									var that = this;
 											
@@ -408,7 +408,7 @@ $(document).ready(function() {
 																					}
 																			).complete(function() { 
 																				callback(); 
-																				core.bindClickToChooseMultipleChoicesNonColorTags();	
+																				core.bindClickToCustomTags();	
 																				
 																			});
 																			
