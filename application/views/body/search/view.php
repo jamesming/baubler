@@ -80,8 +80,6 @@
 								console.log('post_array: ' + JSON.stringify(this.tags));
 								console.log('numberOfColors: ' + JSON.stringify(this.numberOfColors));
 								
-								$('  .typeOf .box_wrapper,.custom .box_wrapper').empty();
-										
 								$.getJSON( window.base_url  + 'search/getJsonProducts',
 								
 										{

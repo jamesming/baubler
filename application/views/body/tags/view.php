@@ -243,6 +243,8 @@ $(document).ready(function() {
 											};
 											
 											$('.tags.container .articles .box').bind('click', function(event) {
+												
+																$('  .typeOf .box_wrapper,.custom .box_wrapper').empty();
 																
 																if( $(this).data('checked') === true ){
 																	
@@ -276,6 +278,9 @@ $(document).ready(function() {
 																			
 //																			$('.tags.container .colors .box').empty().data('checked', false);
 //																			$('.tags.container .typeOf .box, .tags.container .custom .box').data('checked', false);
+
+
+
 																			that.getTypeOfAndCustomTagsForChosenArticle($(this), callback_bind_typeOf_click);
 																				
 																	
