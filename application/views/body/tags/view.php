@@ -22,6 +22,7 @@
 	width:130px;
 	height:30px;
 	margin-right:5px;
+	margin-bottom:5px;
 	border:1px dotted gray;
 	cursor:pointer;
 	text-align:center;
@@ -259,10 +260,7 @@ $(document).ready(function() {
 																			$('.articles .box').data('checked', false ).css({background:'white'});
 																			
 																					
-																			that.clear_tags_from_category('articles');		
-																			that.clear_tags_from_category('custom');		
-																			that.clear_tags_from_category('typeOf');		
-																			that.clear_tags_from_category('color');
+																			that.clearAllTags();
 																			
 																			if( $(this).data('checked') === true ){
 																				
@@ -416,13 +414,19 @@ $(document).ready(function() {
 							}
 							
 
-
+							,clearAllTags: function(){
+								
+											this.clear_tags_from_category('articles');		
+											this.clear_tags_from_category('custom');		
+											this.clear_tags_from_category('typeOf');		
+											this.clear_tags_from_category('color');
+							}
 							
 							,clear_tags_from_category:function( category ){
 								
 											var that = this;
 											
-											console.log('within ' + category + ': '+ JSON.stringify(this.all_tags[category]));
+//											console.log('within ' + category + ': '+ JSON.stringify(this.all_tags[category]));
 											
 											if( category === 'color'){
 												$('.tags.container .colors .box').empty().data('checked', false);
