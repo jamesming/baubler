@@ -193,54 +193,7 @@ $(document).ready(function() {
 							
 							,bindClickToChooseOneChoiceNonColorTags:function(){
 								
-									var  that = this
-											,callback_bind_typeOf_click = function(){
-												
-														$('.tags.container .typeOf .box').unbind('click');
-														$('.tags.container .typeOf .box').bind('click', function(event) {
-															
-															if( $(this).data('checked') === true ){
-																
-																		console.log($(this).html()+ ' clicking off') ;
-																
-																		var idx = that.tags.indexOf($(this).attr('tag_id'));
-																		that.tags.splice(idx, 1);
-																		$(this).data('checked', false ).css({background:'white'});
-																		
-																
-															}else{
-																
-																		console.log($(this).html() + ' clicking on');
-																
-																		$('.typeOf .box').data('checked', false ).css({background:'white'});
-																		
-																		that.clear_tags_from_category('typeOf');		
-																		
-																		if( $(this).data('checked') === true ){
-																			
-																			$(this).data('checked', false ).css({background:'white'});
-																			
-																		}else{
-																			
-																			that.tags.push($(this).attr('tag_id'));
-												
-																			$(this).data('checked', true ).css({background:'yellow'});
-																			
-																		};
-																		
-																
-															};
-															
-															
-															
-															if( that.hasOwnProperty('getProducts')){
-																
-																that.getProducts();
-																
-															};										
-															
-														});	
-											};
+									var  that = this;
 											
 											$('.tags.container .articles .box').bind('click', function(event) {
 												
@@ -281,7 +234,7 @@ $(document).ready(function() {
 
 
 
-																			that.getTypeOfAndCustomTagsForChosenArticle($(this), callback_bind_typeOf_click);
+																			that.getTypeOfAndCustomTagsForChosenArticle($(this));
 																				
 																	
 																};
@@ -340,7 +293,7 @@ $(document).ready(function() {
 							}
 							
 							
-							,getTypeOfAndCustomTagsForChosenArticle: function($this, callback){
+							,getTypeOfAndCustomTagsForChosenArticle: function($this){
 
 																			var	 that = this
 																					,tag_id
@@ -410,7 +363,7 @@ $(document).ready(function() {
 																						
 																					}
 																			).complete(function() { 
-																				callback(); 
+																				core.callback_bind_typeOf_click();
 																				core.bindClickToCustomTags();	
 																				
 																			});
@@ -418,6 +371,55 @@ $(document).ready(function() {
 																			
 							}
 							
+							,callback_bind_typeOf_click: function(){
+								
+										var that = this;
+								
+										$('.tags.container .typeOf .box').unbind('click');
+										$('.tags.container .typeOf .box').bind('click', function(event) {
+											
+											if( $(this).data('checked') === true ){
+												
+														console.log($(this).html()+ ' clicking off') ;
+												
+														var idx = that.tags.indexOf($(this).attr('tag_id'));
+														that.tags.splice(idx, 1);
+														$(this).data('checked', false ).css({background:'white'});
+														
+												
+											}else{
+												
+														console.log($(this).html() + ' clicking on');
+												
+														$('.typeOf .box').data('checked', false ).css({background:'white'});
+														
+														that.clear_tags_from_category('typeOf');		
+														
+														if( $(this).data('checked') === true ){
+															
+															$(this).data('checked', false ).css({background:'white'});
+															
+														}else{
+															
+															that.tags.push($(this).attr('tag_id'));
+								
+															$(this).data('checked', true ).css({background:'yellow'});
+															
+														};
+														
+												
+											};
+											
+											
+											
+											if( that.hasOwnProperty('getProducts')){
+												
+												that.getProducts();
+												
+											};										
+											
+										});	
+							}
 
 							,clearAllTags: function(){
 								
