@@ -216,6 +216,9 @@
 
 									that.switchToEditMode();
 									
+									console.log(JSON.stringify(data));
+									console.log(JSON.stringify(core.all_tags));
+									
 									that.populate_form_for_update.populate_fields_chosen_for_product(data);
 									
 									that.populate_form_for_update.populate_tags_chosen_for_product(data);

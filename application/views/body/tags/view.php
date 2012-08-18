@@ -205,17 +205,19 @@ $(document).ready(function() {
 																			that.tags.splice(idx, 1);
 																			$(this).data('checked', false ).css({background:'white'});
 																			
-																			that.clear_tags_from_category('color');
-																			that.clear_tags_from_category('custom');		
-																			that.clear_tags_from_category('typeOf');	
+//																			that.clear_tags_from_category('color');
+//																			that.clear_tags_from_category('custom');		
+//																			that.clear_tags_from_category('typeOf');	
 																				
 																	
 																}else{
 																	
 																			$('.articles .box').data('checked', false ).css({background:'white'});
 																			
-																					
-																			that.clearAllTags();
+																			that.clear_tags_from_category('articles');
+																			that.clear_tags_from_category('custom');		
+																			that.clear_tags_from_category('typeOf');																			
+																			// that.clearAllTags();
 																			
 																			if( $(this).data('checked') === true ){
 																				
@@ -311,7 +313,7 @@ $(document).ready(function() {
 													
 																						if( data.length === 0){
 																							
-																								that.clear_tags_from_category('color');
+//																								that.clear_tags_from_category('color');
 																								that.clear_tags_from_category('custom');		
 																								that.clear_tags_from_category('typeOf');	
 																							

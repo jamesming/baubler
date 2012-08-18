@@ -77,8 +77,8 @@
 			}
 			,getProducts: function(){
 				
-								console.log('post_array: ' + JSON.stringify(this.tags));
 								console.log('numberOfColors: ' + JSON.stringify(this.numberOfColors));
+								console.log('post_array: ' + JSON.stringify(this.tags));
 								
 								$.getJSON( window.base_url  + 'search/getJsonProducts',
 								
