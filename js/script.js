@@ -178,6 +178,26 @@ core = {
 											document.body.insertBefore(newDiv, document.body.firstChild);	
 			}
 			
+			
+			,in_array: function (needle, haystack){
+				    var  count = 0
+				    	,len = haystack.length;
+				    for (var i=0; i<len; i++) {
+				        if (haystack[i] == needle) return true;
+				        count++;
+				    }
+				    return false;
+			}
+				
+				
+			,addToDom: function( element, id, parent, callback ){
+				var  el =   document.createElement(element)
+					,parent = document.getElementById(parent);
+				el.id = id;
+				parent.insertBefore( el, parent.firstChild);
+				callback(document.getElementById(id));
+			}				
+
 
     	
 };

@@ -216,12 +216,26 @@
 
 									that.switchToEditMode();
 									
-									console.log(JSON.stringify(data));
-									console.log(JSON.stringify(core.all_tags));
+									// console.log(JSON.stringify(data.tags[0].tag_id));
+									// console.log(JSON.stringify(core.all_tags.articles));
 									
-									that.populate_form_for_update.populate_fields_chosen_for_product(data);
+									for(var key in data.tags){
+//										console.log('cycling: ' + data.tags[key].tag_id);
+										if( core.in_array(data.tags[key].tag_id, core.all_tags.articles) ){
+											var article_tag = data.tags[key].tag_id;
+											core.getTypeOfAndCustomTagsBasedOnTheArticleTagFor( 'Product Entry', 	article_tag, 
+											
+												function(){
+
+													core.populate_form_for_update.populate_fields_chosen_for_product(data);
+													core.populate_form_for_update.populate_tags_chosen_for_product(data);	
+													
+												}
+											
+											);
+										};
+									}
 									
-									that.populate_form_for_update.populate_tags_chosen_for_product(data);
 									
 								}
 						);		

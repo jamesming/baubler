@@ -106,7 +106,7 @@ $(document).ready(function() {
 								
 								this.bindClickToChooseColor();
 								
-								this.bindClickToChooseOneChoiceNonColorTags();	
+								this.bindClickToChooseArticle();	
 								
 								this.getAllTags();			
 								
@@ -191,7 +191,7 @@ $(document).ready(function() {
 								
 							}
 							
-							,bindClickToChooseOneChoiceNonColorTags:function(){
+							,bindClickToChooseArticle:function(){
 								
 									var  that = this;
 											
@@ -234,9 +234,7 @@ $(document).ready(function() {
 //																			$('.tags.container .colors .box').empty().data('checked', false);
 //																			$('.tags.container .typeOf .box, .tags.container .custom .box').data('checked', false);
 
-
-
-																			that.getTypeOfAndCustomTagsForChosenArticle($(this));
+																			that.getTypeOfAndCustomTagsBasedOnTheArticleTagFor( 'search',  $(this).attr('tag_id'), function(){});
 																				
 																	
 																};
@@ -295,7 +293,7 @@ $(document).ready(function() {
 							}
 							
 							
-							,getTypeOfAndCustomTagsForChosenArticle: function($this){
+							,getTypeOfAndCustomTagsBasedOnTheArticleTagFor: function( which, tag_id, callback ){
 
 																			var	 that = this
 																					,tag_id
@@ -307,7 +305,7 @@ $(document).ready(function() {
 																			
 																					window.base_url  + 'tags/getJsonTagsWhereParentTagId',
 																	
-																					{'parent_tag_id': $this.attr('tag_id') },
+																					{'parent_tag_id': tag_id },
 																			
 																					function(data) {
 													
@@ -365,10 +363,15 @@ $(document).ready(function() {
 																						
 																					}
 																			).complete(function() { 
-																				core.callback_bind_typeOf_click();
-																				core.bindClickToCustomTags();	
 																				
-																			});
+																						if( which ==='search' ){
+																							core.callback_bind_typeOf_click();
+																							core.bindClickToCustomTags();	
+																						}else if( which ==='Product Entry'){
+																							callback();
+																						};
+																					
+																				});	
 																			
 																			
 							}
