@@ -166,7 +166,7 @@ $(document).ready(function() {
 								
 									var that = this;
 								
-									$('.tags.container .colors .box').click(function(event) {
+									$('.tags.container .colors .box').live('click', function(event) {
 										
 										if( $(this).data('checked') === true ){
 											var idx = that.tags.indexOf($(this).attr('tag_id'));
@@ -205,11 +205,6 @@ $(document).ready(function() {
 																			that.tags.splice(idx, 1);
 																			$(this).data('checked', false ).css({background:'white'});
 																			
-//																			that.clear_tags_from_category('color');
-//																			that.clear_tags_from_category('custom');		
-//																			that.clear_tags_from_category('typeOf');	
-																				
-																	
 																}else{
 																	
 																			$('.articles .box').data('checked', false ).css({background:'white'});
@@ -217,7 +212,6 @@ $(document).ready(function() {
 																			that.clear_tags_from_category('articles');
 																			that.clear_tags_from_category('custom');		
 																			that.clear_tags_from_category('typeOf');																			
-																			// that.clearAllTags();
 																			
 																			if( $(this).data('checked') === true ){
 																				
@@ -231,10 +225,14 @@ $(document).ready(function() {
 																				
 																			};
 																			
-//																			$('.tags.container .colors .box').empty().data('checked', false);
-//																			$('.tags.container .typeOf .box, .tags.container .custom .box').data('checked', false);
-
-																			that.getTypeOfAndCustomTagsBasedOnTheArticleTagFor( 'search',  $(this).attr('tag_id'), function(){});
+																			that.getTypeOfAndCustomTagsButtonsBasedOnTheArticleTag($(this).attr('tag_id'),
+																			
+																						function(){
+																							core.bind_typeOf_click();
+																							core.bindClickToCustomTags();	
+																						}
+																			
+																			);
 																				
 																	
 																};
@@ -293,7 +291,7 @@ $(document).ready(function() {
 							}
 							
 							
-							,getTypeOfAndCustomTagsBasedOnTheArticleTagFor: function( which, tag_id, callback ){
+							,getTypeOfAndCustomTagsButtonsBasedOnTheArticleTag: function(tag_id, callback ){
 
 																			var	 that = this
 																					,tag_id
@@ -363,20 +361,13 @@ $(document).ready(function() {
 																						
 																					}
 																			).complete(function() { 
-																				
-																						if( which ==='search' ){
-																							core.callback_bind_typeOf_click();
-																							core.bindClickToCustomTags();	
-																						}else if( which ==='Product Entry'){
-																							callback();
-																						};
-																					
-																				});	
+																				callback();
+																			});	
 																			
 																			
 							}
 							
-							,callback_bind_typeOf_click: function(){
+							,bind_typeOf_click: function(){
 								
 										var that = this;
 								
