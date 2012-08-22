@@ -197,7 +197,7 @@ $(document).ready(function() {
 											
 											$('.tags.container .articles .box').bind('click', function(event) {
 												
-																$('  .typeOf .box_wrapper,.custom .box_wrapper').empty();
+																$('.typeOf .box_wrapper, .custom .box_wrapper').empty();
 																
 																if( $(this).data('checked') === true ){
 																	
@@ -290,7 +290,6 @@ $(document).ready(function() {
 								
 							}
 							
-							
 							,getTypeOfAndCustomTagsButtonsBasedOnTheArticleTag: function(tag_id, callback ){
 
 																			var	 that = this
@@ -309,15 +308,12 @@ $(document).ready(function() {
 													
 																						if( data.length === 0){
 																							
-//																								that.clear_tags_from_category('color');
 																								that.clear_tags_from_category('custom');		
 																								that.clear_tags_from_category('typeOf');	
 																							
 																						};
 													
 																						$.each(data, function(key, val) {
-																							
-																						
 																							
 																							$.each(val, function(key2, val2) {
 																								

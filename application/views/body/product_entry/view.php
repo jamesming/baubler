@@ -206,7 +206,9 @@
 								 'src':window.base_url + 'uploads/products/' + that.product_id + '/image.jpg?v=' + that.getRandoms(1, 1, 10000)
 							});
 							
-						that.clearAllTags();					
+						that.clearAllTags();
+						
+						$('.typeOf .box_wrapper, .custom .box_wrapper').empty();					
 						
 						$.getJSON( window.base_url  + "product_entry/getJsonProductsWherePkIs?id=" + that.product_id,
 						
@@ -217,16 +219,18 @@
 									for(var key in data.tags){
 
 										if( core.in_array(data.tags[key].tag_id, core.all_tags.articles) ){
+											
 											var article_tag = data.tags[key].tag_id;
+											
 											core.getTypeOfAndCustomTagsButtonsBasedOnTheArticleTag( article_tag, 
 											
 												function(){
-
-													core.populate_form_for_update.populate_fields_chosen_for_product(data);
-													core.populate_form_for_update.populate_tags_chosen_for_product(data);	
-													
+	
 													core.bind_typeOf_click();
 													core.bindClickToCustomTags();
+
+													core.populate_form_for_update.populate_fields_chosen_for_product(data);
+													core.populate_form_for_update.populate_tags_chosen_for_product(data);													
 													
 												}
 											
