@@ -31,12 +31,14 @@
 				if( $(this).data('mode') === 1){
 					$(this).html('Entry').data('mode', 0);
 					core.mode = 0;
-					core.bindColorAtricles();
+					
+					core.unbindTypeCustom();
 					
 				}else{
 					$(this).html('Update').data('mode', 1);
 					core.mode = 1;
-					core.unbindAll();
+					core.unbindTypeCustom();
+					core.bindTypeCustomForEditMode();
 				};
 				
 		});	

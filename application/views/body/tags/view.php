@@ -153,8 +153,6 @@ $(document).ready(function() {
 											
 										});
 										
-	//													console.log(JSON.stringify(that.all_tags));
-										
 									}
 							);	
 							
@@ -444,19 +442,20 @@ $(document).ready(function() {
 					
 				}
 				
-				,unbindAll: function(){
-				
-					$('.tags.container .box').unbind('click');
+				,unbindTypeCustom: function(){
+					
+					$('.typeOf .box_wrapper .box, .custom .box_wrapper .box').die();
 					
 				}
 				
-				,bindColorAtricles: function(){
+				,bindTypeCustomForEditMode: function(){
 				
-					this.bindClickToChooseColor();
-					
-					this.bindClickToChooseArticle();	
+					$('.typeOf .box_wrapper .box, .custom .box_wrapper .box').live('click', function(){
+						alert($(this).attr('tag_id'));
+					});
 					
 				}
+
 	
 			
 	});
