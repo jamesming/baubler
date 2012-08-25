@@ -58,104 +58,103 @@ core = {
 							this.processCallbackQueue();
 			}	
 			,scripts: {}
-    	,loadScript : function(name, url, callback){
-    		
-    		this.callbackQueue[name] = {
-    			 scripts:false
-    			,callback:callback	
-    		};
-
-				if( !this.scripts[name]){
-					
-	    		if(    typeof(this.target) !== "undefined" 
-	    				&& typeof(this.spinner) !== "undefined" ){
-	    					
-						this.target.style.display='block';					
-						this.spinner.spin(this.target);	
-	    					
-						this.target.style.display='block';					
-						this.spinner.spin(this.target);	    			
-	    		};					
-					
-					this.scripts[name] = url;
-					
-	    		var  head = document.documentElement
-	    				,script = document.createElement('script');
+	    	,loadScript : function(name, url, callback){
 	    		
-	    		script.async = false;
-	    		script.src = url;
-	    		
-	    		var 	that = this
-	    				 ,done = false;
-	    		
-	    		script.onload = script.onreadystatechange = function(){
-
-  											
-	    			if( this.readyState != 'loading' ) {  											
-	    											
-	    											done = true;
-
-	    											if( that.callbackQueue[name]){		
-	    												that.callbackQueue[name].scripts = true;
-	    											};
-
-	    											script.onload = script.onreadystatechange = null;
-	    											if( head && script.parentNode ){
-	    												head.removeChild( script );
-	    											};
-	    				
-	    			};
-	    			
+	    		this.callbackQueue[name] = {
+	    			 scripts:false
+	    			,callback:callback	
 	    		};
-	    		head.insertBefore( script, head.firstChild );					
-					
-				} 
-				else {
-
-					this.callbackQueue[name].scripts = true;
-					
-				}
-    	}
-    	
+	
+					if( !this.scripts[name]){
+						
+		    		if(    typeof(this.target) !== "undefined" 
+		    				&& typeof(this.spinner) !== "undefined" ){
+		    					
+							this.target.style.display='block';					
+							this.spinner.spin(this.target);	
+		    					
+							this.target.style.display='block';					
+							this.spinner.spin(this.target);	    			
+		    		};					
+						
+						this.scripts[name] = url;
+						
+		    		var  head = document.documentElement
+		    				,script = document.createElement('script');
+		    		
+		    		script.async = false;
+		    		script.src = url;
+		    		
+		    		var 	that = this
+		    				 ,done = false;
+		    		
+		    		script.onload = script.onreadystatechange = function(){
+	
+	  											
+		    			if( this.readyState != 'loading' ) {  											
+		    											
+		    											done = true;
+	
+		    											if( that.callbackQueue[name]){		
+		    												that.callbackQueue[name].scripts = true;
+		    											};
+	
+		    											script.onload = script.onreadystatechange = null;
+		    											if( head && script.parentNode ){
+		    												head.removeChild( script );
+		    											};
+		    				
+		    			};
+		    			
+		    		};
+		    		head.insertBefore( script, head.firstChild );					
+						
+					} 
+					else {
+	
+						this.callbackQueue[name].scripts = true;
+						
+					}
+	    	}
+	    	
 			,callbackQueue: {}    	
-    	,processCallbackQueue: function(){
-    		
-	    		var		that = this
-	    		     ,queueIsReady = function(){
-	    		     		var readiness = true;
-					    		for( name in that.callbackQueue){
-					    			if( that.callbackQueue[name].scripts === false){
-					    				readiness = false;
-					    			};
-					    		};
-					    		return readiness;  			
-				    		}
-				    	 ,doWhenReady = function(){
-				    	 	
-				    	 		if( queueIsReady() === false){
-				    	 			setTimeout(function(){
-				    	 				doWhenReady();
-				    	 			}, 10);
-				    	 		}else{
-							    		for( name in that.callbackQueue){
-							    			that.callbackQueue[name].callback();
-							    			delete that.callbackQueue[name];
-							    		};
-							    		that.callbackQueue = {};
-							    		setTimeout(function(){
-							    			if( typeof(that.spinner) !== "undefined"){
-							    				that.spinner.stop();
-							    				that.target.style.display='none';	
-							    			}  
-							    		}, core.spinnerDelay);
-							    		
-				    	 		};
-				    	 };
-				    	 
-				 doWhenReady();
-
-    	}	
-    	
+	    	,processCallbackQueue: function(){
+	    		
+		    		var		that = this
+		    		     ,queueIsReady = function(){
+		    		     		var readiness = true;
+						    		for( name in that.callbackQueue){
+						    			if( that.callbackQueue[name].scripts === false){
+						    				readiness = false;
+						    			};
+						    		};
+						    		return readiness;  			
+					    		}
+					    	 ,doWhenReady = function(){
+					    	 	
+					    	 		if( queueIsReady() === false){
+					    	 			setTimeout(function(){
+					    	 				doWhenReady();
+					    	 			}, 10);
+					    	 		}else{
+								    		for( name in that.callbackQueue){
+								    			that.callbackQueue[name].callback();
+								    			delete that.callbackQueue[name];
+								    		};
+								    		that.callbackQueue = {};
+								    		setTimeout(function(){
+								    			if( typeof(that.spinner) !== "undefined"){
+								    				that.spinner.stop();
+								    				that.target.style.display='none';	
+								    			}  
+								    		}, core.spinnerDelay);
+								    		
+					    	 		};
+					    	 };
+					    	 
+					 doWhenReady();
+	
+	    	}	
     	
 			,loadCSS: function( url){
 			

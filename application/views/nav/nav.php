@@ -22,27 +22,8 @@
 	
 	$(document).ready(function() { 
 		
-		
-		
 		$('.nav li').removeClass('active');
 		$('#<?php echo $nav_selected;    ?>').addClass('active');
-		
-		$('#mode').click(function(event) {
-				if( $(this).data('mode') === 1){
-					$(this).html('Entry').data('mode', 0);
-					core.mode = 0;
-					
-					core.unbindTypeCustom();
-					
-				}else{
-					$(this).html('Update').data('mode', 1);
-					core.mode = 1;
-					core.unbindTypeCustom();
-					core.bindTypeCustomForEditMode();
-				};
-				
-		});	
-		
 		
 	});
 

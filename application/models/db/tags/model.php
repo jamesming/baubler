@@ -20,8 +20,8 @@ class Models_Db_Tags_Model extends Database {
 		private function getTheTagsInsider($where_array){
 			
 				$join_array = array(
-												'tags' => 'tags.tags_type_id = tags_types.id'
-												);	
+								'tags' => 'tags.tags_type_id = tags_types.id'
+								);	
 														
 					
 					$_tags_types =  $this->select_from_table_left_join( 

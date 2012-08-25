@@ -1,9 +1,31 @@
 
-<!-- scripts concatenated and minified via ant build script-->
+
+
+
 <script src="<?php echo base_url()    ?>js/libs/bootstrap/bootstrap.min.js"></script>
 
 <script src="<?php echo base_url()    ?>js/plugins.js?v=<?php echo rand()    ?>"></script>
 <script src="<?php echo base_url()    ?>js/script.js?v=<?php echo rand()    ?>"></script>
+
+<script src="<?php echo base_url()    ?>js/nav.js?v=<?php echo rand()    ?>"></script>
+<?php 
+
+switch($body) {
+    case "body/product_entry/view":
+         ?>
+         <script src="<?php echo base_url()    ?>js/product_entry.js?v=<?php echo rand()    ?>"></script>
+         <?php
+        break;
+    case "body/search/view":
+         ?>
+         <script src="<?php echo base_url()    ?>js/search.js?v=<?php echo rand()    ?>"></script>
+         <?php    
+        break;
+}
+
+?>
+<script src="<?php echo base_url()    ?>js/tags.js?v=<?php echo rand()    ?>"></script>
+
 
 <script>
 	var _gaq=[['_setAccount','<?php echo $GA_account;    ?>'],['_trackPageview']];

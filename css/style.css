@@ -15,7 +15,16 @@ float:right;
 /* ===== Primary Styles ========================================================
    Author:
    ========================================================================== */
+   
 
+.tag_field{
+	width: 128px;
+	padding: 3px;
+	box-sizing: border-box;
+	border: 1px solid gray;
+	margin-right: 8px;
+	margin-bottom: 9px;
+}
 
 
 

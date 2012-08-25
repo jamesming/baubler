@@ -38,10 +38,10 @@
 		
 	</script>
 
-	<script src="<?php  echo base_url()   ?>js/libs/modernizr/modernizr-2.5.3-respond-1.1.0.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
-	<script>window.jQuery || document.write('<script src="' + window.base_url + 'js/libs/jquery/jquery-1.7.2.min.js"><\/script>')</script>
-	<script>window._ || document.write('<script src="' + window.base_url + 'js/libs/underscore/underscore-min.1.3.3.js"><\/script>')</script>
+<script src="<?php  echo base_url()   ?>js/libs/modernizr/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
+<script>window.jQuery || document.write('<script src="' + window.base_url + 'js/libs/jquery/jquery-1.7.2.min.js"><\/script>')</script>
+<script>window._ || document.write('<script src="' + window.base_url + 'js/libs/underscore/underscore-min.1.3.3.js"><\/script>')</script>
 
 </head>
