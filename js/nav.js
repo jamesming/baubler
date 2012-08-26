@@ -33,15 +33,18 @@
 		$('.tags.container input[type=button]').live('click', function(){
 			
 			$.post( window.base_url  + "product_entry/crud_tags",
+			
 					{'post_array': that.update_array},
+					
 					function(data) {
 						
 						console.log(data);
 						
+						that.returnToEntryModeWithFreshlyUpdatedTags();
+						
 					}
 			);		
 
-			that.returnToEntryModeWithFreshlyUpdatedTags();
 		
 		});		
 		

@@ -91,5 +91,34 @@ class Models_Db_Tags_Model extends Database {
 			return $tags;
 		}
 		
+		
+		
+		public function updateTagWhereTagId( $tag_id, $name ){
+			
+				$this->update_table( 
+					$table = 'tags', 
+					$primary_key = $tag_id, 
+					$set_what_array = array(
+						'name' => $name
+					) 
+				);
+			
+			
+		}
+		
+		
+		public function insertTag( $name, $parent_tag_id, $tags_type_id){
+			
+			$this->insert_table(
+				$table = 'tags', 
+				$insert_what = array(
+					 'name' => $name
+					,'parent_tag_id' => $parent_tag_id
+					,'tags_type_id' => $tags_type_id
+				)
+			);
+			
+		}
+		
 }
 

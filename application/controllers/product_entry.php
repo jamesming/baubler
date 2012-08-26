@@ -213,7 +213,26 @@ class Product_entry extends Controllers_Controller {
 		
 		$post_array = $this->input->post('post_array');
 		
-		print_r(  $post_array  );
+		
+		print_r(  $post_array    );
+		
+		foreach( $post_array  as  $post){
+			
+			if( $post['CRUD'] == 'insert'){
+
+				$this->models_tags_model->insertTag( 
+					 $post['name'] 
+					,$post['parent_tag_id']
+					,$post['tags_type_id']
+				);
+				
+			}elseif (  $post['CRUD'] == 'update' ){
+				
+				$this->models_tags_model->updateTagWhereTagId( $post['tag_id'], $post['name']);
+				
+			};
+			
+		}
 		
 	}
 	
