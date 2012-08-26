@@ -22,7 +22,7 @@ float:right;
 	height: 28px;
 	padding: 2px;
 	box-sizing: border-box;
-	border: 1px solid gray;
+	border: 1px dotted gray;
 	margin-right: 8px;
 	margin-bottom: 9px;
 }
