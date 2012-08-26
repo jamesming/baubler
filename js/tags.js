@@ -213,6 +213,8 @@
 						
 				$('.tags.container .articles .box').bind('click', function(event) {
 					
+					that.article_tag_id = $(this).attr('tag_id');
+					
 					$('.typeOf .box_wrapper, .custom .box_wrapper').empty();
 					
 					if( $(this).data('checked') === true ){

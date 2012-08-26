@@ -209,4 +209,12 @@ class Product_entry extends Controllers_Controller {
 	}
 	
 	
+	public function crud_tags(){
+		
+		$post_array = $this->input->post('post_array');
+		
+		print_r(  $post_array  );
+		
+	}
+	
 }
