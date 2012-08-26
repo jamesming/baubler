@@ -19,7 +19,8 @@ float:right;
 
 .tag_field{
 	width: 128px;
-	padding: 3px;
+	height: 28px;
+	padding: 2px;
 	box-sizing: border-box;
 	border: 1px solid gray;
 	margin-right: 8px;

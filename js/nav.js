@@ -23,7 +23,7 @@
 				var  input_box;
 			
 				if( $(this).data('mode') === 1){
-					$(this).html('Entry').data('mode', 0);
+					$(this).html('Update').data('mode', 0);
 					core.mode = 0;
 					
 					
@@ -31,7 +31,7 @@
 
 					
 				}else{
-					$(this).html('Update').data('mode', 1);
+					$(this).html('Entry').data('mode', 1);
 					
 					
 					core.mode = 1;
@@ -179,7 +179,7 @@
 		$('.control-group.typeOf div.box_wrapper input').remove();
 		$('.control-group.custom div.box_wrapper input').remove();	
 		
-		$('#mode').html('Entry').data('mode', 0);
+		$('#mode').html('Update').data('mode', 0);
 		core.mode = 0;		
 		
 		var that = this;				

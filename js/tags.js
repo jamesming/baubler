@@ -215,6 +215,10 @@
 					
 					that.article_tag_id = $(this).attr('tag_id');
 					
+					$('#mode').html('Update').data('mode', 0);
+					
+					core.mode = 0;
+					
 					$('.typeOf .box_wrapper, .custom .box_wrapper').empty();
 					
 					if( $(this).data('checked') === true ){

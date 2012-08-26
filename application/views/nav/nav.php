@@ -9,10 +9,10 @@
           <a class="brand" href="#">Baubler Admin</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li><a  id='mode' href="#">Entry</a></li>
               <li><a href="#about">About</a></li>
               <li  id='nav_product_search' ><a href="<?php echo base_url()     ?>search">Search</a></li>
               <li  id='nav_product_entry' class="active"><a href="<?php echo base_url()     ?>product_entry">Product Entry</a></li>
+              <li><a  id='mode' href="#">Update</a></li>              
             </ul>
           </div><!--/.nav-collapse -->
         </div>
