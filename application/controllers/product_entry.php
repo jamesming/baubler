@@ -213,9 +213,6 @@ class Product_entry extends Controllers_Controller {
 		
 		$post_array = $this->input->post('post_array');
 		
-		
-		print_r(  $post_array    );
-		
 		foreach( $post_array  as  $post){
 			
 			if( $post['CRUD'] == 'insert'){
