@@ -67,7 +67,6 @@ class Search extends Controllers_Controller {
 		background-color:F6F4F5;	
 		}
 		#main{
-			width: 940px;
 			margin: 0 auto;
 			/*background:url(http://cgt256.files.wordpress.com/2011/03/layout_grid.gif) no-repeat;*/
 			min-height: 640px;
