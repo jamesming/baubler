@@ -60,5 +60,36 @@ class Search extends Controllers_Controller {
 	}
 	
 	
+	function testing(){?>
+		
+	<style>
+		#main{
+			width: 940px;
+			margin: 0 auto;
+			background:gray;
+			min-height: 640px;
+			position: relative;
+		}
+		ul#theContainer{
+		}
+		ul#theContainer li{
+			list-style: none;
+			float:left;
+		}	
+	</style>
+	<div  id='main' >
+		<ul  id='theContainer' >
+		</ul>		
+	</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="<?php  echo base_url()   ?>js/libs/masonry/jquery.masonry.min.js"></script>
+	<script src="<?php  echo base_url()   ?>js/test.js"></script>
+
+		
+		
+	<?php     	
+	}
+	
 	
 }

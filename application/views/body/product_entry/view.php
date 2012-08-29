@@ -1,27 +1,3 @@
-<style>
-#products_row{
-	width:100%;
-	height:125px;
-	overflow-x:scroll;
-	overflow-y:hidden;
-	background:red;
-}
-#products_row div{
-	width:2000px;
-	height:125px;
-}
-#products_row div img{
-	margin-right:15px;
-	float:left;
-	cursor:pointer;
-}
-#picture{
-/*	width:270px;
-	height:300px;*/
-	border:1px dotted gray;
-	cursor:pointer;
-}
-</style>
 <legend>Remote Product 	Asset</legend>
 
 <div  id='products_row'   >
@@ -75,10 +51,3 @@
 <div  class='oh '>
 	<img  id='picture'  src="http://placehold.it/270x300">
 </div>
-
-<script type="text/javascript" language="Javascript">
-
-
-	
-	
-</script>

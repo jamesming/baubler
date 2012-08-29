@@ -1,38 +1,3 @@
-<style>
-.tags.container{
-	padding-left:5px;
-	margin-bottom:20px;
-}
-.tags.container .colors .box{
-	width:30px;
-	height:30px;
-	margin-right:5px;
-	border:1px dotted gray;
-	cursor:pointer;
-	text-align:center;
-	box-sizing:border-box;
-	padding:4px;
-	font-weight:bold;
-}
-
- .tags.container .articles .box
-,.tags.container .typeOf .box
-,.tags.container .custom .box
-{
-	width:130px;
-	height:30px;
-	margin-right:5px;
-	margin-bottom:5px;
-	border:1px dotted gray;
-	cursor:pointer;
-	text-align:center;
-	box-sizing:border-box;
-	padding:4px;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
-}
-</style>
 <div   class=' tags container' >
 	<form  class="form-horizontal" >
 		<fieldset>
@@ -92,10 +57,3 @@
 	</fieldset>
 </form>
 </div>
-
-<script type="text/javascript" language="Javascript">
-
-
-	
-
-</script>
