@@ -63,10 +63,13 @@ class Search extends Controllers_Controller {
 	function testing(){?>
 		
 	<style>
+		body{
+		background-color:F6F4F5;	
+		}
 		#main{
 			width: 940px;
 			margin: 0 auto;
-			background:gray;
+			/*background:url(http://cgt256.files.wordpress.com/2011/03/layout_grid.gif) no-repeat;*/
 			min-height: 640px;
 			position: relative;
 		}
@@ -75,6 +78,11 @@ class Search extends Controllers_Controller {
 		ul#theContainer li{
 			list-style: none;
 			float:left;
+			box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+			-moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
+			-webkit-box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+			border:6px solid white;
+			box-sizing:border-box;			
 		}	
 	</style>
 	<div  id='main' >
