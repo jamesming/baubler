@@ -61,34 +61,41 @@ class Search extends Controllers_Controller {
 	
 	
 	function testing(){?>
-		
+	<!doctype html>
+	<head>
 	<style>
 		body{
-		background-color:F6F4F5;	
+		background-color:#F6F4F5;	
 		}
 		#main{
 			margin: 0 auto;
 			/*background:url(http://cgt256.files.wordpress.com/2011/03/layout_grid.gif) no-repeat;*/
-			min-height: 640px;
+			min-height: 840px;
 			position: relative;
 		}
-		ul#theContainer{
+		#main ul{
+			width:100%;
+			height:100%;
+			margin:0px 0px 0px 0px;
 		}
-		ul#theContainer li{
+		#main ul li{
 			list-style: none;
 			float:left;
 			box-shadow: 0 1px 3px rgba(34,25,25,0.4);
-			-moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
+			-moz-box-shadow: 0 1px 3px rgba(34,25,25,0.4);
 			-webkit-box-shadow: 0 1px 3px rgba(34,25,25,0.4);
-			border:6px solid white;
-			box-sizing:border-box;			
-		}	
+			padding:0px 0px 0px 0px;	
+		}
+		#main ul li img{
+			border:5px solid white;
+			margin:0px 0px 0px 0px;	
+		};
 	</style>
+	</head>
+	<body>
 	<div  id='main' >
-		<ul  id='theContainer' >
-		</ul>		
 	</div>
-
+	</body>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script src="<?php  echo base_url()   ?>js/libs/masonry/jquery.masonry.min.js"></script>
 	<script src="<?php  echo base_url()   ?>js/test.js"></script>
