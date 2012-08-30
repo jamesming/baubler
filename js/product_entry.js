@@ -338,40 +338,40 @@
 				 
 				 $('#picture').click(function(event) {
 				 	
-				 			that.jcropDiv.style.display = 'block';
-				 			
-				 			delete that.coordinates;
-				 			
-							if( that.hasOwnProperty('jcrop_api')){
-								that.jcrop_api.destroy();  // http://stackoverflow.com/questions/4466333/how-do-i-remove-jcrop
-							};
-				 			
-							$('#jcropThis').parent().html("\
-								<img  id='jcropThis' src=''  />\
-							");
-							
-							var  jcropThis = document.getElementById('jcropThis');
-							
-							jcropThis.src = window.base_url 
-															+ 'uploads/products/' 
-															+ that.product_id + '/' + that.cropfile + '.jpg?v=' 
-															+ that.getRandoms(1, 1, 10000);
-				 			
-							jcropThis.onload = function(){
-								
-											that.jcrop_api = $.Jcrop('#jcropThis', {
-												
-																					 onSelect:function(coordinates){
-																					
-																							that.coordinates = coordinates;
+		 			that.jcropDiv.style.display = 'block';
+		 			
+		 			delete that.coordinates;
+		 			
+					if( that.hasOwnProperty('jcrop_api')){
+						that.jcrop_api.destroy();  // http://stackoverflow.com/questions/4466333/how-do-i-remove-jcrop
+					};
+		 			
+					$('#jcropThis').parent().html("\
+						<img  id='jcropThis' src=''  />\
+					");
+					
+					var  jcropThis = document.getElementById('jcropThis');
+					
+					jcropThis.src = window.base_url 
+													+ 'uploads/products/' 
+													+ that.product_id + '/' + that.cropfile + '.jpg?v=' 
+													+ that.getRandoms(1, 1, 10000);
+		 			
+					jcropThis.onload = function(){
+						
+						that.jcrop_api = $.Jcrop('img#jcropThis', {
 
-																					}
-																					
-																					,aspectRatio:  1 
-																					
-											});						
+							 onSelect:function(coordinates){
+							
+									that.coordinates = coordinates;
 
-							};
+							}
+//							 ,setSelect:   [ 0, 0, 50, 50 ]
+							,aspectRatio:  1 
+																
+						});						
+
+					};
 
 				 });	
 				 
