@@ -190,13 +190,9 @@ class Product_entry extends Controllers_Controller {
 		
 		$post_array = $this->input->post();
 		
-		$table = $post_array['table'];
+		$table = $post_array['table'];unset($post_array['table']);		
 		
-		unset($post_array['table']);		
-		
-		$pk = $post_array['product_id'];
-		
-		unset($post_array['product_id']);		
+		$pk = $post_array['product_id'];unset($post_array['product_id']);		
 		
 		$dir_path = 'uploads/products/' . $pk . '/';
 
