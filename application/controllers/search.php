@@ -75,7 +75,6 @@ class Search extends Controllers_Controller {
 		}
 		#main ul{
 			width:100%;
-			height:100%;
 			margin:0px 0px 0px 0px;
 		}
 		#main ul li{
