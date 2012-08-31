@@ -170,14 +170,7 @@ core = {
 						    $(head).prepend(link);			
 			
 			}
-			,createFixedDiv:function( nameOfId, style ){
-										  var newDiv = document.createElement('div');
-											newDiv.id =  nameOfId;
-											newDiv.innerHTML = style;
-											document.body.insertBefore(newDiv, document.body.firstChild);	
-			}
-			
-			
+
 			,in_array: function (needle, haystack){
 				    var  count = 0
 				    	,len = haystack.length;
@@ -187,8 +180,14 @@ core = {
 				    }
 				    return false;
 			}
-				
-				
+			
+			,createFixedDiv:function( nameOfId, style ){
+			  var newDiv = document.createElement('div');
+				newDiv.id =  nameOfId;
+				newDiv.innerHTML = style;
+				document.body.insertBefore(newDiv, document.body.firstChild);	
+			}			
+			
 			,addToDom: function( element, id, parent, callback ){
 				var  el =   document.createElement(element)
 					,parent = document.getElementById(parent);

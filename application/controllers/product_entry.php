@@ -211,7 +211,7 @@ class Product_entry extends Controllers_Controller {
 
 		$post_array = $this->input->post();
 		
-		echo '<pre>';print_r(  $post_array );echo '</pre>';  exit;
+		echo '<pre>';print_r(  $post_array  );echo '</pre>';  
 		
 		$whichCropSize = $post_array['whichCropSize'];unset($post_array['whichCropSize']);		
 		
