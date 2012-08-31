@@ -192,6 +192,8 @@ class Product_entry extends Controllers_Controller {
 		
 		$table = $post_array['table'];unset($post_array['table']);		
 		
+		$whichCropSize = $post_array['whichCropSize'];unset($post_array['whichCropSize']);		
+		
 		$pk = $post_array['product_id'];unset($post_array['product_id']);		
 		
 		$dir_path = 'uploads/products/' . $pk . '/';
@@ -204,6 +206,27 @@ class Product_entry extends Controllers_Controller {
 
 	}
 	
+	
+	public function jcropThisCropSize(){
+
+		$post_array = $this->input->post();
+		
+		echo '<pre>';print_r(  $post_array );echo '</pre>';  exit;
+		
+		$whichCropSize = $post_array['whichCropSize'];unset($post_array['whichCropSize']);		
+		
+		$product_id = $post_array['product_id'];unset($post_array['product_id']);		
+		
+		$dir_path = 'uploads/products/' . $product_id . '/';
+
+		$this->model_uploads_products->createJPG_Image(
+			$dir_path, 
+			$post_array, 
+			$image_file =  $post_array['cropfile'] . '.jpg',
+			$whichCropSize
+		);		
+		
+	}
 	
 	public function crud_tags(){
 		
@@ -228,5 +251,6 @@ class Product_entry extends Controllers_Controller {
 		}
 		
 	}
+
 	
 }
