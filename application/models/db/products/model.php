@@ -71,29 +71,59 @@ class Models_Db_Products_Model extends Database {
 		
 	}
 	
-	private function tryProductTillWorks( $cropSize ){
+
+	protected function tryThis( $cropSize ){
 		
-		$product = array_shift($this->products);
+		$idx = 0;
 		
-		$file = 'uploads/products/'.$product['id'].'/'.$cropSize.'.jpg';
+		foreach( $this->products  as  $product){
+			
+			$file = 'uploads/products/'.$product['id'].'/'.   $cropSize  .'.jpg';
+			
+			if ( file_exists( $file )) {
+				
+				array_splice($this->products, $idx, 1);
+			
+				return $product;
+			
+			};
+			
+			$idx++;			
+			
+		}
 		
-		if( file_exists( $file ) ){
-			
-			return $product;
-			
-		}else{
-			
-//			$product = array_shift($this->products);
-//			
-//			return $product;
-			
-			echo $product['id']."<br />";
-			
-		};
 		
 	}
 	
 	public function get_products_in_order( ){
+		
+		$this->products = $this->object_to_array(	$this->get_all_products() );		
+
+		foreach( $this->_order  as  $arrangements){
+			
+			foreach( $arrangements  as  $cropSize){
+				
+				$product = $this->tryThis( $cropSize );
+				
+//				$order_arranged[] = array(
+//					 'cropSize' => $cropSize
+//					,'product_id' => $product['id']
+//				);
+				
+				$order_arranged[] = $product['id'];
+				
+			}
+			
+		}
+		
+		
+		return json_encode($order_arranged);
+		//echo '<pre>';print_r( $order_arranged  );echo '</pre>';  exit;
+		
+	}	
+	
+	
+	function testRandomCropSizes(){
 		
 		$cropSizes = array(
 			  array(
@@ -120,6 +150,7 @@ class Models_Db_Products_Model extends Database {
 		foreach( $this->products  as  $product){
 			
 			do {
+				
 				$random_selected = rand(0, 3);
 				
 				$oneRandomCropSize = $cropSizes[$random_selected]['name'];
@@ -134,81 +165,9 @@ class Models_Db_Products_Model extends Database {
 
 		}
 		
-		echo '<pre>';print_r(  $cropSizes  );echo '</pre>';  exit;
+		echo '<pre>';print_r(  $cropSizes  );echo '</pre>';  exit;	
 		
-		exit;
-
-		foreach( scandir('uploads/products/'.$product['id']) as $file){
-			
-			echo rand(1, 4)."<br />";
-			
-			if( $file == '220x180.jpg'){$_220x180[] = $product['id'];};
-			if( $file == '220x380.jpg'){$_220x380[] = $product['id'];};
-			if( $file == '356x180.jpg'){$_356x180[] = $product['id'];};
-			if( $file == '456x380.jpg'){$_456x380[] = $product['id'];};
-			
-		}		
-		echo '<pre>';print_r(  $_220x180  );echo '</pre>';  
-		echo '<pre>';print_r(  $_220x380  );echo '</pre>';  
-		echo '<pre>';print_r(  $_356x180  );echo '</pre>';  
-		echo '<pre>';print_r(  $_456x380  );echo '</pre>';  
-		
-		exit;
-		
-		foreach( $this->_order  as  $arrangements){
-			foreach( $arrangements  as  $arrangement){
-				$order[] = $arrangement;
-			}
-		}
-		
-		
-		do {
-			
-			$cropSize = array_shift($order);
-			
-			$product = $this->tryProductTillWorks( $cropSize );
-			
-			$file = 'uploads/products/'.$product['id'].'/'.$cropSize.'.jpg';
-			
-			echo "<img src=' "  .base_url() . $file." '>"."<br />";
-			
-			
-		} while ( count( $this->products ) > 0);
-		
-		
-		
-		echo '<pre>';print_r(  $order  );echo '</pre>';  exit;
-		
-		
-		
-		foreach( $this->_order  as  $arrangements){
-			
-			foreach( $arrangements  as  $arrangement){
-				
-				$product = array_shift($products);
-				
-				$file = 'uploads/products/'.$product['id'].'/'.$arrangement.'.jpg';
-				
-				if ( ! file_exists( $file )) {
-					
-					echo $file . " : NO"."<br />";
-					
-					$skipped[] = $product['id'];
-					
-				}else{
-					echo $file . " : YES"."<br />";
-					echo "<img src=' "  .base_url() . $file." '>"."<br />";
-				};
-				
-			}
-			
-		}
-		
-		echo '<pre>';print_r(  $skipped  );echo '</pre>';  exit;
-		
-		exit;
-	
-	}	
+	}
 		
 }
 
