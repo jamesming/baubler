@@ -41,6 +41,13 @@ class Search extends Controllers_Controller {
 		
 	}
 	
+	
+	function getJsonProductsInOrder(){
+		
+		$this->model_products_model->get_products_in_order();		
+		
+	}
+	
 	function test2(){
 		
 		
