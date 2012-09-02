@@ -55,7 +55,7 @@ class Models_Db_Products_Model extends Database {
 			$where_array = array(),
 			$use_order = TRUE,
 			$order_field = 'created',
-			$order_direction = 'desc'
+			$order_direction = 'asc'
 		);
 	}
 	
