@@ -117,6 +117,8 @@ class Models_Db_Products_Model extends Database {
 					
 					$productsInOrderOfArrangements[] = $product['id'];
 					
+					if( count($this->products) == 0) break;
+					
 				}
 				
 			}
@@ -128,14 +130,6 @@ class Models_Db_Products_Model extends Database {
 	public function get_products_in_order(){
 		
 		$this->products = $this->object_to_array(	$this->get_all_products() );
-		
-//		$productsInOrderOfArrangements1  = $this->cycleThroughArrangements();
-//		$productsInOrderOfArrangements2  = $this->cycleThroughArrangements();
-//		
-//		$productsInOrderOfArrangements = array_merge_recursive($productsInOrderOfArrangements1, $productsInOrderOfArrangements2);
-//		
-////		echo '<pre>';print_r( $productsInOrderOfArrangements  );echo '</pre>';  exit;	
-		
 		
 		$productsInOrderOfArrangements  = $this->cycleThroughArrangements();
 		
