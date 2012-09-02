@@ -54,10 +54,17 @@ class Models_Db_Products_Model extends Database {
 			$select_what = '*', 
 			$where_array = array(),
 			$use_order = TRUE,
-			$order_field = 'created',
-			$order_direction = 'asc'
+			$order_field = 'updated',
+			$order_direction = 'asc', 
+			$limit = 13
 		);
 	}
+	
+	
+	
+	
+	
+	
 	
 	public function get_products_where($product_id){
 		
@@ -95,11 +102,8 @@ class Models_Db_Products_Model extends Database {
 		
 	}
 	
-	public function get_products_in_order( ){
+	private function cycleThroughArrangements(){
 		
-		$this->products = $this->object_to_array(	$this->get_all_products() );
-		
-		do {
 			foreach( $this->_order  as  $arrangements){
 				
 				foreach( $arrangements  as  $cropSize){
@@ -111,17 +115,32 @@ class Models_Db_Products_Model extends Database {
 	//					,'product_id' => $product['id']
 	//				);
 					
-					$order_arranged[] = $product['id'];
+					$productsInOrderOfArrangements[] = $product['id'];
 					
 				}
 				
-			}			
-		} while ( count($this->products) > 0 );		
-
-
+			}
+			
+			return 	$productsInOrderOfArrangements;
 		
-		return json_encode($order_arranged);
-		//echo '<pre>';print_r( $order_arranged  );echo '</pre>';  exit;
+	}
+	
+	public function get_products_in_order(){
+		
+		$this->products = $this->object_to_array(	$this->get_all_products() );
+		
+//		$productsInOrderOfArrangements1  = $this->cycleThroughArrangements();
+//		$productsInOrderOfArrangements2  = $this->cycleThroughArrangements();
+//		
+//		$productsInOrderOfArrangements = array_merge_recursive($productsInOrderOfArrangements1, $productsInOrderOfArrangements2);
+//		
+////		echo '<pre>';print_r( $productsInOrderOfArrangements  );echo '</pre>';  exit;	
+		
+		
+		$productsInOrderOfArrangements  = $this->cycleThroughArrangements();
+		
+		return json_encode($productsInOrderOfArrangements);
+		
 		
 	}	
 	
