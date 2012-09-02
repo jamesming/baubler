@@ -72,7 +72,7 @@ class Models_Db_Products_Model extends Database {
 	}
 	
 
-	protected function tryThis( $cropSize ){
+	protected function tryUntilCropSizeFound( $cropSize ){
 		
 		$idx = 0;
 		
@@ -97,77 +97,34 @@ class Models_Db_Products_Model extends Database {
 	
 	public function get_products_in_order( ){
 		
-		$this->products = $this->object_to_array(	$this->get_all_products() );		
-
-		foreach( $this->_order  as  $arrangements){
-			
-			foreach( $arrangements  as  $cropSize){
-				
-				$product = $this->tryThis( $cropSize );
-				
-//				$order_arranged[] = array(
-//					 'cropSize' => $cropSize
-//					,'product_id' => $product['id']
-//				);
-				
-				$order_arranged[] = $product['id'];
-				
-			}
-			
-		}
+		$this->products = $this->object_to_array(	$this->get_all_products() );
 		
+		do {
+			foreach( $this->_order  as  $arrangements){
+				
+				foreach( $arrangements  as  $cropSize){
+					
+					$product = $this->tryUntilCropSizeFound( $cropSize );
+					
+	//				$order_arranged[] = array(
+	//					 'cropSize' => $cropSize
+	//					,'product_id' => $product['id']
+	//				);
+					
+					$order_arranged[] = $product['id'];
+					
+				}
+				
+			}			
+		} while ( count($this->products) > 0 );		
+
+
 		
 		return json_encode($order_arranged);
 		//echo '<pre>';print_r( $order_arranged  );echo '</pre>';  exit;
 		
 	}	
 	
-	
-	function testRandomCropSizes(){
-		
-		$cropSizes = array(
-			  array(
-			 	 'name' =>'220x180'
-			 	,'products' => array()
-			 )
-			 ,array(
-			 	 'name' =>'220x380'
-			 	,'products' => array()
-			 )
-			 ,array(
-			 	 'name' =>'356x180'
-			 	,'products' => array()
-			 )
-			 ,array(
-			 	 'name' =>'456x380'
-			 	,'products' => array()
-			 )			 
-		);
-		
-		$this->products = $this->object_to_array(	$this->get_all_products() );
-		
-		
-		foreach( $this->products  as  $product){
-			
-			do {
-				
-				$random_selected = rand(0, 3);
-				
-				$oneRandomCropSize = $cropSizes[$random_selected]['name'];
-				
-				$file = 'uploads/products/'.$product['id'].'/'. $oneRandomCropSize .'.jpg';				
-				
-			} while ( !file_exists( $file ) );
-			
-			
-			$cropSizes[$random_selected]['products'][] = $product['id'];
-			
 
-		}
-		
-		echo '<pre>';print_r(  $cropSizes  );echo '</pre>';  exit;	
-		
-	}
-		
 }
 

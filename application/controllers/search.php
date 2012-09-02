@@ -47,25 +47,7 @@ class Search extends Controllers_Controller {
 		echo $this->model_products_model->get_products_in_order();		
 		
 	}
-	
-	function test2(){
-		
-		
-		echo '<pre>';print_r( $this->model_products_model->get_all_products_tags()   );echo '</pre>';  exit;
-		
-	}
-	
-	
-	function test(){
-		
-		$tags = $this->input->get('tags');
-		$numberOfColors = $this->input->get('numberOfColors');
-		
-		echo '<pre>';print_r(  $this->model_products_tags_model->get_distinct_products_where_string_tags_are($tags, $numberOfColors)  );echo '</pre>';  exit;
-		
-		
-	}
-	
+
 	
 	function testing(){?>
 	<!doctype html>
