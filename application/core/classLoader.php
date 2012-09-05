@@ -7,6 +7,7 @@ class ClassLoader {
 								 APPPATH
 								,'application/core/'
 								,'application/controllers/'
+								,'application/models/'
 						 );
 																			 
 	protected static $_files 			= array();
