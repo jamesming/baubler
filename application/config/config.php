@@ -9,7 +9,7 @@ if( is_file('application/models/uploads/products.php')){
 }else{
 	echo "no";	
 };
-exit;
+
 require_once "application/core/classLoader.php";
 spl_autoload_register(array('ClassLoader', 'auto_load'));
 
