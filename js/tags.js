@@ -239,6 +239,13 @@
 							
 							$(this).data('checked', false ).css({background:'white'});
 							
+							
+							
+							
+							
+							
+							
+							
 						}else{
 							
 							that.tags.push($(this).attr('tag_id'));
@@ -301,6 +308,14 @@
 										that.tags.splice(idx, 1);
 										$(this).data('checked', false ).css({background:'white'});
 										
+										
+										
+										$('.tags_row.custom .box_wrapper')
+										.animate({'top':(-1 * $('.tags_row.custom .box_wrapper').height())+'px'}, 600)											
+										.show()
+										
+										
+										
 								
 							}else{
 								
@@ -322,13 +337,22 @@
 											
 										};
 										
+										$('.tags_row.custom .box_wrapper')
+										.css({'top':(-1 * $('.tags_row.custom .box_wrapper').css('height', 'auto').height())+'px'})
+										.show()
+										.animate({'top':'0px'}, 600);										
+										
+										
+										
 								
 							};
 							
-							$('.tags_row.custom .box_wrapper')
-							.css({'top':(-1 * $('.tags_row.custom .box_wrapper').css('height', 'auto').height())+'px'})
-							.show()
-							.animate({'top':'0px'}, 600);
+							
+							
+
+							
+							
+							
 							
 							if( that.hasOwnProperty('getProducts')){
 								
