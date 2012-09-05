@@ -260,14 +260,7 @@
 								$('.tags_row.typeOf .box_wrapper')
 									.css({'top':(-1 * $('.tags_row.typeOf .box_wrapper').css('height', 'auto').height())+'px'})
 									.show()
-									.animate({'top':'0px'}, 600, function(){
-										
-											$('.tags_row.custom .box_wrapper')
-												.css({'top':(-1 * $('.tags_row.custom .box_wrapper').css('height', 'auto').height())+'px'})
-												.show()
-												.animate({'top':'0px'}, 600);
-																				
-									});									
+									.animate({'top':'0px'}, 600);									
 								
 								core.bind_typeOf_click();
 								core.bindClickToCustomTags();	
@@ -332,7 +325,10 @@
 								
 							};
 							
-							
+							$('.tags_row.custom .box_wrapper')
+							.css({'top':(-1 * $('.tags_row.custom .box_wrapper').css('height', 'auto').height())+'px'})
+							.show()
+							.animate({'top':'0px'}, 600);
 							
 							if( that.hasOwnProperty('getProducts')){
 								
