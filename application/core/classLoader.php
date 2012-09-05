@@ -31,7 +31,7 @@ class ClassLoader {
 			// Class has been found
 			return TRUE;
 		}
-echo "Class is not in the filesystem";
+
 		// 
 		return FALSE;
 	}
@@ -66,9 +66,8 @@ echo "Class is not in the filesystem";
 				</script>";				
 				
 			};
-
 			
-			
+			echo $dir.$path."<br />";
 			
 			if (is_file($dir.$path)) {
 				$found = $dir.$path;
