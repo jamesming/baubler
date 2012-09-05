@@ -4,7 +4,7 @@ ini_set("display_errors", true);
 error_reporting(E_ALL);
 
 
-if( is_file('application/models/uploads/products.php')){
+if( is_file('baubler/application/models/uploads/products.php')){
 	echo "yes";
 }else{
 	echo "no";	
