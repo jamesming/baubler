@@ -241,11 +241,6 @@
 							
 							
 							
-							
-							
-							
-							
-							
 						}else{
 							
 							that.tags.push($(this).attr('tag_id'));
