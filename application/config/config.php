@@ -3,11 +3,6 @@
 ini_set("display_errors", true);
 error_reporting(E_ALL);
 
-
-echo "<br />";
-echo "<br />";
-echo "<br />";
-echo "<br />";
 require_once "application/core/classLoader.php";
 spl_autoload_register(array('ClassLoader', 'auto_load'));
 

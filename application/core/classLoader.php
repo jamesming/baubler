@@ -72,11 +72,7 @@ class ClassLoader {
 			if (is_file($dir.$path)) {
 				$found = $dir.$path;
 				break;
-			}else{
-				
-			echo $dir.' - '.$path."<br />";	
-			
-			}
+			};
 		}
 
 		if (ClassLoader::$caching === TRUE) {
