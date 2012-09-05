@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 require_once "application/core/classLoader.php";
 spl_autoload_register(array('ClassLoader', 'auto_load'));
 
-echo "test"."<br />";
+
 
 /*
 |--------------------------------------------------------------------------
