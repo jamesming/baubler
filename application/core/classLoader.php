@@ -31,8 +31,8 @@ class ClassLoader {
 			// Class has been found
 			return TRUE;
 		}
-
-		// Class is not in the filesystem
+echo "Class is not in the filesystem";
+		// 
 		return FALSE;
 	}
 	
