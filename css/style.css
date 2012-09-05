@@ -61,17 +61,46 @@ float:right;
 	padding-left:5px;
 	margin-bottom:20px;
 }
+
+.tags.container .form-horizontal{
+position:relative;	
+}
+
+.tags.container .tags_row{
+ 	clear:both;	
+} 
+
+
 .tags.container .colors .box{
 	width:30px;
 	height:30px;
 	margin-right:5px;
-	border:1px dotted gray;
 	cursor:pointer;
 	text-align:center;
 	box-sizing:border-box;
 	padding:4px;
 	font-weight:bold;
 }
+
+
+ .tags.container .typeOf
+,.tags.container .custom{
+	position:relative;
+	top:0px;
+	height:auto;
+
+}
+
+ .tags.container .box_wrapper{
+ 	float:left;	
+ }
+ 
+  .tags.container .typeOf  .box_wrapper
+ ,.tags.container .custom  .box_wrapper
+ {
+ 	border:1px solid red;
+ 	position: relative;
+ }
 
  .tags.container .articles .box
 ,.tags.container .typeOf .box

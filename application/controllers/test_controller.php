@@ -1,6 +1,6 @@
 <?php
 
-class Test_controller extends Controllers_Controller {
+class Test_controller extends Base_Controller {
 	
 	public function index() {
 		

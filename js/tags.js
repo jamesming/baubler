@@ -250,6 +250,18 @@
 						that.getTypeOfAndCustomTagsButtonsBasedOnTheArticleTag($(this).attr('tag_id'),
 						
 							function(){
+
+								console.log($('.tags_row.typeOf .box_wrapper').css('height', 'auto').height());
+								console.log($('.tags_row.custom .box_wrapper').css('height', 'auto').height());
+								
+								$('.tags_row.custom .box_wrapper')
+									.css({'top':(-1 * $('.tags_row.custom .box_wrapper').css('height', 'auto').height())+'px'})
+									.animate({'top':'0px'}, 600);
+									
+								$('.tags_row.typeOf .box_wrapper')
+									.css({'top':(-1 * $('.tags_row.typeOf .box_wrapper').css('height', 'auto').height())+'px'})
+									.animate({'top':'0px'}, 600);									
+								
 								core.bind_typeOf_click();
 								core.bindClickToCustomTags();	
 							}

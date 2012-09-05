@@ -1,6 +1,6 @@
 <?php
 
-class Boot extends Controllers_Controller {
+class Boot extends Base_Controller {
 	
 	public function index() {
 		$this->_data->body = "body/boot/view";

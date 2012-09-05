@@ -56,7 +56,7 @@ class Models_Db_Products_Model extends Database {
 			$use_order = TRUE,
 			$order_field = 'updated',
 			$order_direction = 'asc', 
-			$limit = 13
+			$limit = -1
 		);
 	}
 	

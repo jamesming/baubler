@@ -16,7 +16,7 @@
 	</style>
 	
 	<link rel="stylesheet" href="<?php  echo base_url()   ?>css/bootstrap/bootstrap-responsive.min.css">
-	<link rel="stylesheet" href="<?php  echo base_url()   ?>css/style.css">
+	<link rel="stylesheet" href="<?php  echo base_url()   ?>css/style.css?v=<?php echo rand()    ?>">
 
 	<script type="text/javascript" language="Javascript">
 		

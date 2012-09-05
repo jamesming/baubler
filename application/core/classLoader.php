@@ -3,11 +3,11 @@ class ClassLoader {
 	
 	public static $caching 				= FALSE;
 	
-	protected static $_paths 			= array(
-																					 APPPATH
-																					,'application/core/'
-//																					,'application/models/'
-																			 );
+	protected static $_paths = array(
+								 APPPATH
+								,'application/core/'
+								,'application/controllers/'
+						 );
 																			 
 	protected static $_files 			= array();
 	protected static $_files_changed 	= FALSE;

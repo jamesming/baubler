@@ -1,6 +1,6 @@
 <?php
 
-class Tags extends Controllers_Controller {
+class Tags extends Base_Controller {
 	
 	function __construct() {
 		
