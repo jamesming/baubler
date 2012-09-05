@@ -3,9 +3,13 @@
 ini_set("display_errors", true);
 error_reporting(E_ALL);
 
-echo is_file('application/models/uploads/products.php');exit;
-
-
+echo ;exit;
+if( is_file('application/models/uploads/products.php')){
+	echo "yes";
+}else{
+	echo "no";	
+};
+exit;
 require_once "application/core/classLoader.php";
 spl_autoload_register(array('ClassLoader', 'auto_load'));
 
