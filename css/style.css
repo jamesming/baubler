@@ -93,14 +93,23 @@ position:relative;
 
  .tags.container .box_wrapper{
  	float:left;	
+ 	width:100%;
+ 	background:white; 	
+ 	/*border:1px dotted gray;*/
+ 	position: relative;
+ 	min-height:36px; 	
  }
+ 
+ .tags.container .articles .box_wrapper
+,.tags.container .colors .box_wrapper{
+ 	z-index:3;
+ }
+  
+ 
  
   .tags.container .typeOf  .box_wrapper
  ,.tags.container .custom  .box_wrapper{
- 	border:1px dotted gray;
- 	position: relative;
- 	width:100%;
- 	background:white;
+
  }
 .tags.container .typeOf  .box_wrapper{
  	z-index:2;
