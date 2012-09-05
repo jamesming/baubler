@@ -96,10 +96,18 @@ position:relative;
  }
  
   .tags.container .typeOf  .box_wrapper
- ,.tags.container .custom  .box_wrapper
- {
- 	border:1px solid red;
+ ,.tags.container .custom  .box_wrapper{
+ 	border:1px dotted gray;
  	position: relative;
+ 	width:100%;
+ 	background:white;
+ }
+.tags.container .typeOf  .box_wrapper{
+ 	z-index:2;
+ }
+ 
+.tags.container .custom  .box_wrapper{
+ 	z-index:1;
  }
 
  .tags.container .articles .box
