@@ -67,11 +67,15 @@ class ClassLoader {
 				
 			};
 			
-			echo $dir.$path."<br />";
+			
 			
 			if (is_file($dir.$path)) {
 				$found = $dir.$path;
 				break;
+			}else{
+				
+			echo $dir.' - '.$path."<br />";	
+			
 			}
 		}
 
