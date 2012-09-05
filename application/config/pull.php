@@ -1,6 +1,6 @@
 <?php
 
-$output = shell_exec('/usr/local/bin/git pull origin master');
+$output = shell_exec('git pull');
 echo "<pre>$output</pre>";
 
 ?>
