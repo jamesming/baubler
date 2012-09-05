@@ -34,14 +34,14 @@
 				<?php if( $key === 'typeOf' ){?>
 				
 					<div class="tags_row typeOf non_color">
-							<div  class='box_wrapper' >type Of
+							<div  class='box_wrapper' >
 							</div>
 					</div>			
 				<?php } ?>					
 				
 				<?php if( $key === 'custom' ){?>
 					<div class="tags_row custom non_color">
-							<div  class='box_wrapper' >Colors
+							<div  class='box_wrapper' >
 							</div>
 					</div>			
 				<?php } ?>	
