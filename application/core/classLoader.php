@@ -58,9 +58,6 @@ class ClassLoader {
 		// The file has not been found yet
 		$found = FALSE;
 		
-		echo '<pre>';print_r(  ClassLoader::$_paths   );echo '</pre>'; 
-		
-		
 		foreach (ClassLoader::$_paths as $dir) {
 			
 			if( $path =='db.php'){
