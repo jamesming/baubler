@@ -8,6 +8,9 @@ class Base_Controller extends CI_Controller
 		
 		parent::__construct();
 		
+		
+			echo "hello.";
+		
 			$this->model_products_model = new Models_Db_Products_Model;				
 			$this->model_products_tags_model = new Models_Db_Products_Tags_Model;				
 		
