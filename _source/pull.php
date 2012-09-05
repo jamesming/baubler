@@ -1,6 +1,6 @@
 <?php
 
 $output = shell_exec('git pull');
-echo "<pre>$output</pre>";
+echo "TEST<pre>$output</pre>";
 
 ?>
