@@ -3,7 +3,7 @@
 ini_set("display_errors", true);
 error_reporting(E_ALL);
 
-echo ;exit;
+
 if( is_file('application/models/uploads/products.php')){
 	echo "yes";
 }else{
